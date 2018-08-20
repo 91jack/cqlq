@@ -79,8 +79,13 @@
 				</div>
 			</div>
 			
-			<div class="section3 fr">
-				
+			<div class="section3 fl">
+				<div class="section3-top">
+					<h2>生产数据</h2>
+				</div>
+				<div class="section3-bottom">
+					
+				</div>
 			</div>
 		</div>
 		
@@ -88,7 +93,7 @@
 		<script src="static/js/app.js"></script>
 		<script src="static/js/jquery-1.11.0.min.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=wqB7npvF7DsDGlFG2oYhih93K5iEqsou"></script>
-		
+		<script src="static/js/echarts.min.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
 			// 顶部导航切换效果
 			$('.header .nav a').hover(function(){
@@ -119,6 +124,24 @@
 			map.centerAndZoom(point, 8); // 初始化地图,设置中心点坐标和地图级别
 			
 			map.enableScrollWheelZoom(true); // 缩放地图
+			
+			// 当前定位
+			var geolocation = new BMap.Geolocation();
+			geolocation.getCurrentPosition(function(r) {
+				if(this.getStatus() == BMAP_STATUS_SUCCESS) {
+					var geoc = new BMap.Geocoder();
+						geoc.getLocation(r.point, function(rs) {
+							console.log(r.point)
+							var addComp = rs.addressComponents;
+							var address = addComp.city + addComp.district + addComp.street + addComp.streetNumber;
+							console.log(address);
+							
+						})
+				
+				} else {
+					alert('failed' + this.getStatus());
+				}
+			});
 		</script>
 	</body>
 </html>

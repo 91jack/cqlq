@@ -209,6 +209,7 @@ body {
 	height:8.6rem;
 	background: #FFA611;
 	float:left;
+	margin: 0.05rem;
 }
 
 .section2 {
@@ -239,8 +240,19 @@ body {
 	background: url(../images/section2_bottom_bg.png) no-repeat;
 	margin-top: 0.85rem;
 }
-.section2-bottom h2 {
+.section2-bottom h2,
+.section3-top h2 {
 	font-size: 1rem;
 	color: #00CAB0;
 	padding: 1rem;
+}
+.section3-top {
+	width:23.65rem;
+	height:12.45rem;
+	background: url(../images/section3_top_bg.png) no-repeat;
+}
+.section3-bottom {
+	width:23.8rem;
+	height:32.6rem;
+	
 }
