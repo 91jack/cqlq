@@ -1,0 +1,246 @@
+html, body, div, h1, h2, h3, h4, h5, h6, p, dl, dt, dd, ol, ul, li, fieldset, form, label, input, legend, table, caption, tbody, tfoot, thead, tr, th, td, textarea, article, aside, audio, canvas, figure, footer, header, mark, menu, nav, section, time, video { margin: 0; padding: 0; }
+h1, h2, h3, h4, h5, h6 { font-size: 100%; font-weight: normal }
+article, aside, dialog, figure, footer, header, hgroup, nav, section, blockquote { display: block; }
+ul, ol { list-style: none; }
+img { border: 0 none; vertical-align: top; }
+blockquote, q { quotes: none; }
+blockquote:before, blockquote:after, q:before, q:after { content: none; }
+table { border-collapse: collapse; border-spacing: 0; }
+strong, em, i { font-style: normal; font-weight: normal; }
+ins { text-decoration: underline; }
+del { text-decoration: line-through; }
+mark { background: none; }
+input::-ms-clear { display: none !important; }
+a { text-decoration: none;}
+ul,ol,li{
+	margin: 0;
+	padding: 0;
+}
+.fl {
+	float: left;
+}
+.fr {
+	float:right;
+}
+
+.clearfix:after {
+   content:""; 
+   display: block; 
+   clear:both; 
+}
+/*
+ * index.html
+ * */
+body {
+	background: #153052;
+/*	overflow: hidden;*/
+}
+.header {
+	height:5.1rem;
+	background:#202B3D;
+}
+
+.header h2 {
+	font-size: 1.2rem;
+	line-height: 5.1rem;
+	padding-left: 2.65rem;
+	color:#19B6E8;
+	font-weight:bold;
+}
+.header .nav {
+	width:41rem;
+	position: absolute;
+	left:50%;
+	top:0;
+	margin-left: -21.5rem;
+}
+.header .nav a img {
+	width:1.2rem
+	height:1.2rem;
+	margin-top: 1.95rem;
+}
+.header .nav a {
+	display: block;
+	width:8.2rem;
+	height: 5.1rem;
+	line-height:  5.1rem;
+	font-size:1.2rem;
+	text-align: center;
+	float: left;
+	color:#00CAB0;
+}
+.header .nav a.active {
+	background:#00CAB0;
+	color:#fff;
+}
+
+.top-title {
+	width: 95.3rem;
+	height:4.55rem;
+	margin: 0 auto;
+	margin-top: 1rem;
+	position: relative;
+}
+.top-title img{
+	width:100%;
+	height:100%;
+}
+.top-title h1 {
+	width:100%;
+	font-size: 2.15rem;
+	line-height: 4.55rem;
+	color:#00CAB0;
+	position: absolute;
+	top:0;
+	text-align: center;
+}
+
+.main {
+	width:100%;
+}
+.section1 {
+	width:25.45rem;
+	margin-left: 1rem;
+	float:left;
+}
+.section1-top {
+	width:24.6rem;
+	
+	
+}
+.section1-top-item {
+	width:24.6rem;
+	height:5.3rem;
+	background: url(../images/num_bg.png) no-repeat;
+	position: relative;
+	margin-top:1.65rem;
+}
+.section1-top-item .intro {
+	width:5.3rem;
+	height:5.3rem;
+	background: url(../images/icon_num.png) no-repeat;
+	background-size:100%;
+	
+	position: absolute;
+	left:2.4rem;
+	top:-0.275rem;
+	
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
+}
+ @-webkit-keyframes spin {
+    0%   {
+        -webkit-transform: rotate(0deg);
+        -ms-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+        -ms-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+@keyframes spin {
+    0%   {
+        -webkit-transform: rotate(0deg);
+        -ms-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+        -ms-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+    
+.intro-text {
+	width:5.3rem;
+	height:5.3rem;
+	text-align: center;
+	line-height: 5.3rem;
+	color:#FFA611;
+	position: absolute;
+	left:2.4rem;
+	top:-0.275rem;
+	
+}
+.produce-num {
+	padding-left: 3.6rem;
+	text-align: center;
+	line-height: 5.3rem;
+	color:#19B6E8;
+	font-size: 0.9rem
+}
+
+.produce-num span {
+	font-size: 1.65rem;
+}
+
+.section1-bottom {
+	width:23.65rem;
+	height:31.7rem;
+	background: url(../images/section1__bottom_bg.png) no-repeat;
+	position: relative;
+	margin-left: 1.85rem;
+	margin-top: 1.75rem;
+}
+.section1-bottom:before {
+	content: '';
+	width:3.75rem;
+	height:3.45rem;
+	background: url(../images/icon_animation.png) no-repeat;
+	position: absolute;
+	top:-1.75rem;
+	left:-1.85rem;
+	 -webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
+	
+}
+.section1-bottom h2 {
+	font-size: 1rem;
+	color: #00CAB0;
+	padding: 1rem 2rem;
+}
+.video-list {
+	padding: 0.8rem;
+}
+.video-list img {
+	width:10.9rem;
+	height:8.6rem;
+	background: #FFA611;
+	float:left;
+}
+
+.section2 {
+	width:41.7rem;
+	height:43.75rem;
+	float:left;
+	margin: 0 1.05rem;
+}
+.section2-top {
+	width:41.75rem;
+	height:32.35rem;
+	background: url(../images/map_bg.png) no-repeat;
+}
+.section2-top #map {
+	width:39.95rem;
+	height:28.85rem;
+	margin: 0.3rem 0.9rem;
+}
+.section2-top h2 {
+	font-size: 1rem;
+	color: #00CAB0;
+	text-align: center;
+	line-height: 2.5rem;
+}
+.section2-bottom {
+	width:41.7rem;
+	height:14.05rem;
+	background: url(../images/section2_bottom_bg.png) no-repeat;
+	margin-top: 0.85rem;
+}
+.section2-bottom h2 {
+	font-size: 1rem;
+	color: #00CAB0;
+	padding: 1rem;
+}
