@@ -133,11 +133,13 @@ body {
         -webkit-transform: rotate(0deg);
         -ms-transform: rotate(0deg);
         transform: rotate(0deg);
+          transform-origin:center center;
     }
     100% {
         -webkit-transform: rotate(360deg);
         -ms-transform: rotate(360deg);
         transform: rotate(360deg);
+          transform-origin:center center;
     }
 }
 @keyframes spin {
@@ -145,11 +147,13 @@ body {
         -webkit-transform: rotate(0deg);
         -ms-transform: rotate(0deg);
         transform: rotate(0deg);
+          transform-origin:center center;
     }
     100% {
         -webkit-transform: rotate(360deg);
         -ms-transform: rotate(360deg);
         transform: rotate(360deg);
+          transform-origin:center center;
     }
 }
     
@@ -240,8 +244,11 @@ body {
 	background: url(../images/section2_bottom_bg.png) no-repeat;
 	margin-top: 0.85rem;
 }
+.scection3 {
+	
+}
 .section2-bottom h2,
-.section3-top h2 {
+.section3 h2 {
 	font-size: 1rem;
 	color: #00CAB0;
 	padding: 1rem;
@@ -249,10 +256,36 @@ body {
 .section3-top {
 	width:23.65rem;
 	height:12.45rem;
+	margin-top: 1.8rem;
 	background: url(../images/section3_top_bg.png) no-repeat;
 }
 .section3-bottom {
 	width:23.8rem;
 	height:32.6rem;
-	
+	margin-top: 0.4rem;
+	background: url(../images/section3_bottom_bg.png) no-repeat;
+	position: relative;
+}
+.section3-bottom:before {
+	content: '';
+	width:3.75rem;
+	height:3.45rem;
+	background: url(../images/icon_animation.png) no-repeat;
+	position: absolute;
+	top:-0.5rem;
+	right:-0.5rem;
+	 -webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
+}
+.section3-bottom:after {
+	content: '';
+	width:3.75rem;
+	height:3.45rem;
+	background: url(../images/icon_animation.png) no-repeat;
+	position: absolute;
+	bottom:-0.4rem;
+	right:-0.5rem;
+	 -webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
+  
 }
