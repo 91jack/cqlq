@@ -38,6 +38,7 @@ body {
 .header {
 	height:5.1rem;
 	background:#202B3D;
+	display: none;
 }
 
 .header h2 {
@@ -288,4 +289,31 @@ body {
 	 -webkit-animation: spin 2s linear infinite;
     animation: spin 2s linear infinite;
   
+}
+#temperatureChart {
+	width:23rem;
+	height:12rem;
+	background: transparent;
+}
+
+.section3-chart1 {
+	width:23.8rem;
+	height:16.15rem;
+}
+.section3-chart2 {
+	width:23.8rem;
+	height: 16.45rem;
+}
+
+#lineChart {
+	display: block;
+	width:23rem;
+	height:14rem;
+	/*margin: 0 auto;*/
+	margin-left: 2rem;
+}
+#barChart {
+	width:23rem;
+	height:14rem;
+	margin-left: 2rem;
 }
