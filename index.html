@@ -76,7 +76,96 @@
 				<div class="section2-bottom">
 					<h2>出货详情</h2>
 					<div class="chuhuo-list">
-
+						<div class="chuhuo-list-item">
+							<p>
+								<span>项目名称</span>
+								<span>解放碑项目</span>
+							</p>
+							<p>
+								<span>车牌号</span>
+								<span>渝B654XS</span>
+							</p>
+							<p>
+								<span>净重</span>
+								<span>60Kg</span>
+							</p>
+							<p>
+								<span>出货时间</span>
+								<span>2018-09-10 08:22</span>
+							</p>
+						</div>
+						<div class="chuhuo-list-item">
+							<p>
+								<span>项目名称</span>
+								<span>解放碑项目</span>
+							</p>
+							<p>
+								<span>车牌号</span>
+								<span>渝B654XS</span>
+							</p>
+							<p>
+								<span>净重</span>
+								<span>60Kg</span>
+							</p>
+							<p>
+								<span>出货时间</span>
+								<span>2018-09-10 08:22</span>
+							</p>
+						</div>
+						<div class="chuhuo-list-item">
+							<p>
+								<span>项目名称</span>
+								<span>解放碑项目</span>
+							</p>
+							<p>
+								<span>车牌号</span>
+								<span>渝B654XS</span>
+							</p>
+							<p>
+								<span>净重</span>
+								<span>60Kg</span>
+							</p>
+							<p>
+								<span>出货时间</span>
+								<span>2018-09-10 08:22</span>
+							</p>
+						</div>
+						<div class="chuhuo-list-item">
+							<p>
+								<span>项目名称</span>
+								<span>解放碑项目</span>
+							</p>
+							<p>
+								<span>车牌号</span>
+								<span>渝B654XS</span>
+							</p>
+							<p>
+								<span>净重</span>
+								<span>60Kg</span>
+							</p>
+							<p>
+								<span>出货时间</span>
+								<span>2018-09-10 08:22</span>
+							</p>
+						</div>
+						<div class="chuhuo-list-item">
+							<p>
+								<span>项目名称</span>
+								<span>解放碑项目</span>
+							</p>
+							<p>
+								<span>车牌号</span>
+								<span>渝B654XS</span>
+							</p>
+							<p>
+								<span>净重</span>
+								<span>60Kg</span>
+							</p>
+							<p>
+								<span>出货时间</span>
+								<span>2018-09-10 08:22</span>
+							</p>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -84,12 +173,28 @@
 			<div class="section3 fl">
 				<div class="section3-top">
 					<h2>生产数据</h2>
-					<div id="temperatureChart"></div>
-
+					<div id="temperature">
+						<!--<div class="wendu-item">
+							<span>骨料温度</span>
+						</div>-->
+					</div>
 				</div>
 				<div class="section3-bottom">
 					<div class="section3-chart1">
 						<h2>油石比</h2>
+						<div class="time-wrap">
+							<div class="start-time">
+								<span>开始时间</span>
+								<input type="text" id="startTime">
+							</div>
+							<div class="end-time">
+								<span>结束时间</span>
+								<input type="text" id="endTime">
+							</div>
+							<a href="javascript:;" class="btn">确定</a>
+						</div>
+						
+						
 						<div id="lineChart"></div>
 					</div>
 
@@ -97,7 +202,6 @@
 						<h2>温度</h2>
 						<div id="barChart"></div>
 					</div>
-
 				</div>
 			</div>
 		</div>
@@ -106,265 +210,17 @@
 		<script src="static/js/jquery-1.11.0.min.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=wqB7npvF7DsDGlFG2oYhih93K5iEqsou"></script>
 		<script src="static/js/echarts.min.js" type="text/javascript" charset="utf-8"></script>
-		<script src="static/js/echarts-liquidfill.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="static/js/index.js" type="text/javascript" charset="utf-8"></script>
+		<script src="static/laydate/laydate.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
-			// 顶部导航切换效果
-			$('.header .nav a').hover(function() {
-				$(this).addClass('active').siblings().removeClass('active');
-				var imgUrl = $(this).children('img').attr('src');
-				var newImgUrl = imgUrl.replace(/1/, "2");
-				$(this).children('img').attr('src', newImgUrl);
-			}, function() {
-				var imgUrl = $(this).children('img').attr('src');
-				var newImgUrl = imgUrl.replace(/2/, "1");
-				$(this).children('img').attr('src', newImgUrl);
-			})
-
-			// 顶部导航显示隐藏	
-			var on = true;
-			$('.top-title h1').on('click', function() {
-				if(on) {
-					$('.header').hide();
-				} else {
-					$('.header').show();
-				}
-				on = !on;
-			})
-			// 地图模块
-			// 地图初始化
-			var map = new BMap.Map("map"); // 创建Map实例
-			var point = new BMap.Point(107.562695, 29.271674); //赵家乡政府
-			map.centerAndZoom(point, 8); // 初始化地图,设置中心点坐标和地图级别
-
-			map.enableScrollWheelZoom(true); // 缩放地图
-
-			// 当前定位
-			var geolocation = new BMap.Geolocation();
-			geolocation.getCurrentPosition(function(r) {
-				if(this.getStatus() == BMAP_STATUS_SUCCESS) {
-					var geoc = new BMap.Geocoder();
-					geoc.getLocation(r.point, function(rs) {
-						console.log(r.point)
-						var addComp = rs.addressComponents;
-						var address = addComp.city + addComp.district + addComp.street + addComp.streetNumber;
-						console.log(address);
-
-					})
-
-				} else {
-					alert('failed' + this.getStatus());
-				}
+			// 时间选择
+			laydate.render({
+			  elem: '#startTime'
 			});
-
-			// 生产数据
-			// 基于准备好的dom，初始化echarts实例
-			var temperatureChart = echarts.init(document.getElementById('temperatureChart'));
-			var option = {
-				backgroundColor: 'transparent',
-				series: [{
-					type: 'liquidFill',
-					//data: [0.6, 0.5, 0.4, 0.3],
-					data: [0.6, 0.5, 0.4, 0.3],
-					radius: '20%',
-					// 水球颜色
-					color: ['#5ED8BF', '#2DBBB0', '#3C9A87'],
-					center: ['25%', '50%'],
-					// outline  外边
-					outline: {
-						// show: false
-						borderDistance: 5,
-						itemStyle: {
-							borderWidth: 5,
-							borderColor: '#13FDCE',
-						},
-					},
-					label: {
-						normal: {
-							// textStyle: {
-							color: 'red',
-							insideColor: 'yellow',
-							//fontSize: 100
-							// }
-						}
-					},
-					// 内图 背景色 边
-					backgroundStyle: {
-						color: 'rgba(4,24,74,0.8)',
-						// borderWidth: 5,
-						// borderColor: 'red',
-					}
-				}, {
-					type: 'liquidFill',
-					//data: [0.6, 0.5, 0.4, 0.3],
-					data: [0.3, 0.2, 0.1, 0.05],
-					radius: '20%',
-					// 水球颜色
-					color: ['#FE5555', '#F07581', '#FB5E61'],
-					center: ['50%', '50%'],
-					// outline  外边
-					outline: {
-						// show: false
-						borderDistance: 5,
-						itemStyle: {
-							borderWidth: 5,
-							borderColor: '#FE5555',
-						},
-					},
-					label: {
-						normal: {
-							textStyle: {
-								color: 'red',
-								insideColor: 'yellow',
-								//fontSize: 100
-							}
-						}
-					},
-					// 内图 背景色 边
-					backgroundStyle: {
-						color: 'rgba(4,24,74,0.8)',
-						// borderWidth: 5,
-						// borderColor: 'red',
-					}
-				}, {
-					type: 'liquidFill',
-					//data: [0.6, 0.5, 0.4, 0.3],
-					data: [0.1, 0.05, 0.25],
-					radius: '20%',
-					// 水球颜色
-					color: ['#FFBF11', '#F4B30E', '#EACE36'],
-					center: ['75%', '50%'],
-					// outline  外边
-					outline: {
-						// show: false
-						borderDistance: 5,
-						itemStyle: {
-							borderWidth: 5,
-							borderColor: '#FFBF11',
-						},
-					},
-					label: {
-						normal: {
-							textStyle: {
-								color: 'red',
-								insideColor: 'yellow',
-								//fontSize: 100
-							}
-						}
-					},
-					// 内图 背景色 边
-					backgroundStyle: {
-						color: 'rgba(4,24,74,0.8)',
-						// borderWidth: 5,
-						// borderColor: 'red',
-					}
-				}]
-			};
-			temperatureChart.setOption(option);
-
-			//
-			var lineChart = echarts.init(document.getElementById('lineChart'));
-			var option = {
-				grid: {
-					//				show:true,
-					top: 10,
-					left: 30,
-				},
-				xAxis: {
-					type: 'category',
-					data: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
-					axisLine: {
-						//      	show:true,
-						lineStyle: {
-							color: '#148976'
-						}
-					},
-					axisTick: {
-						lineStyle: {
-							color: '#fff'
-						}
-					},
-
-				},
-				yAxis: {
-					type: 'value',
-					splitLine: {
-						show: false
-					},
-					axisLine: {
-						show: true,
-						lineStyle: {
-							color: '#148976'
-						}
-					},
-					axisTick: {
-						lineStyle: {
-							color: '#fff'
-						}
-					},
-				},
-				series: [{
-					type: 'line',
-					data: [1330, 1320, 932, 901, 300, 100, 900, 934, 820, 934, 1290, 1330, 1320, 932, 901, 934, 1290, 1330, 1320, 1500],
-					itemStyle: {
-						color: '#FFAE00'
-					}
-				}]
-			};
-
-			lineChart.setOption(option);
-
-			//
-			var barChart = echarts.init(document.getElementById('barChart'));
-			var option = {
-				grid: {
-					//				show:true,
-					top: 10,
-					left: 30,
-				},
-				xAxis: {
-					type: 'category',
-					data: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
-					axisTick: {
-						lineStyle: {
-							color: '#fff'
-						}
-					},
-					axisLine: {
-						show: true,
-						lineStyle: {
-							color: '#148976'
-						}
-					},
-				},
-				yAxis: {
-					type: 'value',
-					splitLine: {
-						show: false
-					},
-					axisLine: {
-						show: true,
-						lineStyle: {
-							color: '#148976'
-						}
-					},
-					axisTick: {
-						lineStyle: {
-							color: '#fff'
-						}
-					},
-				},
-				series: [{
-						data: [1330, 1320, 932, 901, 300, 100, 900, 934, 820, 934, 1290, 1330, 1320, 932, 901, 934, 1290, 1330, 1320, 1500],
-						type: 'bar',
-						itemStyle: {
-							color: '#00CAB0'
-						}
-					},
-
-				]
-			};
-
-			barChart.setOption(option);
+			
+			laydate.render({
+			  elem: '#endTime'
+			});
 		</script>
 	</body>
 
