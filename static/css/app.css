@@ -1,33 +1,4 @@
-html, body, div, h1, h2, h3, h4, h5, h6, p, dl, dt, dd, ol, ul, li, fieldset, form, label, input, legend, table, caption, tbody, tfoot, thead, tr, th, td, textarea, article, aside, audio, canvas, figure, footer, header, mark, menu, nav, section, time, video { margin: 0; padding: 0; }
-h1, h2, h3, h4, h5, h6 { font-size: 100%; font-weight: normal }
-article, aside, dialog, figure, footer, header, hgroup, nav, section, blockquote { display: block; }
-ul, ol { list-style: none; }
-img { border: 0 none; vertical-align: top; }
-blockquote, q { quotes: none; }
-blockquote:before, blockquote:after, q:before, q:after { content: none; }
-table { border-collapse: collapse; border-spacing: 0; }
-strong, em, i { font-style: normal; font-weight: normal; }
-ins { text-decoration: underline; }
-del { text-decoration: line-through; }
-mark { background: none; }
-input::-ms-clear { display: none !important; }
-a { text-decoration: none;}
-ul,ol,li{
-	margin: 0;
-	padding: 0;
-}
-.fl {
-	float: left;
-}
-.fr {
-	float:right;
-}
 
-.clearfix:after {
-   content:""; 
-   display: block; 
-   clear:both; 
-}
 /*
  * index.html
  * */
@@ -35,66 +6,7 @@ body {
 	background: #153052;
 	overflow: hidden;
 }
-.header {
-	height:5.1rem;
-	background:#202B3D;
-	display: none;
-}
 
-.header h2 {
-	font-size: 1.2rem;
-	line-height: 5.1rem;
-	padding-left: 2.65rem;
-	color:#19B6E8;
-	font-weight:bold;
-}
-.header .nav {
-	width:41rem;
-	position: absolute;
-	left:50%;
-	top:0;
-	margin-left: -21.5rem;
-}
-.header .nav a img {
-	width:1.2rem
-	height:1.2rem;
-	margin-top: 1.95rem;
-}
-.header .nav a {
-	display: block;
-	width:8.2rem;
-	height: 5.1rem;
-	line-height:  5.1rem;
-	font-size:1.2rem;
-	text-align: center;
-	float: left;
-	color:#00CAB0;
-}
-.header .nav a.active {
-	background:#00CAB0;
-	color:#fff;
-}
-
-.top-title {
-	width: 95.3rem;
-	height:4.55rem;
-	margin: 0 auto;
-	margin-top: 1rem;
-	position: relative;
-}
-.top-title img{
-	width:100%;
-	height:100%;
-}
-.top-title h1 {
-	width:100%;
-	font-size: 2.15rem;
-	line-height: 4.55rem;
-	color:#00CAB0;
-	position: absolute;
-	top:0;
-	text-align: center;
-}
 
 .main {
 	width:100%;
