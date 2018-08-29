@@ -14,20 +14,29 @@ body {
 .section1 {
 	width:25.45rem;
 	margin-left: 1rem;
+	overflow: hidden;
+	position:relative;
 	float:left;
 }
 .section1-top {
 	width:24.6rem;
-	
-	
+	height:15.65rem;
+	margin-top: 1.8rem;
 }
-.section1-top-item {
+.section1-top-item1 {
 	width:24.6rem;
-	height:5.3rem;
-	background: url(../images/num_bg.png) no-repeat;
+	height:7.45rem;
+	background: url(../images/produce_bg.png) no-repeat;
 	position: relative;
-	margin-top:1.65rem;
 }
+.section1-top-item2 {
+	width:24.6rem;
+	height:8.45rem;
+	background: url(../images/fahuo_bg.png) no-repeat;
+	position: relative;
+	/*margin-top:1.65rem;*/
+}
+
 .section1-top-item .intro {
 	width:5.3rem;
 	height:5.3rem;
@@ -35,11 +44,15 @@ body {
 	background-size:100%;
 	
 	position: absolute;
-	left:2.4rem;
-	top:-0.275rem;
+	left:1.8rem;
+	top:1.3rem;
 	
     -webkit-animation: spin 2s linear infinite;
     animation: spin 2s linear infinite;
+}
+
+.section1-top-item1 .intro {
+	top:0.9rem;
 }
  @-webkit-keyframes spin {
     0%   {
@@ -69,18 +82,26 @@ body {
           transform-origin:center center;
     }
 }
-    
+
 .intro-text {
 	width:5.3rem;
 	height:5.3rem;
 	text-align: center;
-	line-height: 5.3rem;
+	
 	color:#FFA611;
 	position: absolute;
-	left:2.4rem;
+	left:1.75rem;
 	top:-0.275rem;
-	
 }
+.section1-top-item1 .intro-text,
+.section1-top-item1 .produce-num {
+	line-height: 7.45rem;
+}
+.section1-top-item2 .intro-text,
+.section1-top-item2 .produce-num {
+	line-height: 8.45rem;
+}
+
 .produce-num {
 	padding-left: 3.6rem;
 	text-align: center;
@@ -95,11 +116,12 @@ body {
 
 .section1-bottom {
 	width:23.65rem;
-	height:31.7rem;
+	height:27.25rem;
 	background: url(../images/section1__bottom_bg.png) no-repeat;
 	position: relative;
+	margin-top: 2.6rem;
 	margin-left: 1.85rem;
-	margin-top: 1.75rem;
+	
 }
 .section1-bottom:before {
 	content: '';
@@ -118,12 +140,23 @@ body {
 	color: #00CAB0;
 	padding: 1rem 2rem;
 }
+.section1-bottom h2 a {
+	display: inline-block;
+	width:5.15rem;
+	height:1.45rem;
+	line-height: 1.45rem;
+	text-align: center;
+	background:#00CAB0 ;
+	color:#fff;
+	font-size:0.7rem;
+	border-radius: 0.2rem;
+}
 .video-list {
 	padding: 0.8rem;
 }
 .video-list img {
 	width:10.9rem;
-	height:8.6rem;
+	height:10.75rem;
 	background: #FFA611;
 	float:left;
 	margin: 0.05rem;
