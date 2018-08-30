@@ -32,8 +32,6 @@
 				<a href="javascript:;" id="tongji">
 					<img src="static/images/icon_tongji1.png" />
 					<span>统计分析</span>
-					
-					
 				</a>
 				<ul class="subnav">
 						<li><a href="">生产动态表</a></li>
@@ -54,12 +52,9 @@
 			<div class="section1 fl">
 				<div class="section1-top">
 					<div class="section1-top-item section1-top-item1">
-						
-							<div class="intro"></div>
-							<div class="intro-text">生产量</div>
-							<div class="produce-num"><span>150000</span>吨</div>
-						
-						
+						<div class="intro"></div>
+						<div class="intro-text">生产量</div>
+						<div class="produce-num"><span>150000</span>吨</div>
 					</div>
 					<div class="section1-top-item section1-top-item2">
 						<div class="intro"></div>
@@ -68,12 +63,18 @@
 					</div>
 				</div>
 				<div class="section1-bottom">
-					<h2>拌站场区视频监控画面   <a href="" class="fr">查看全部监控</a></h2>
+					<h2>拌站场区视频监控画面   <a href="http://192.168.2.222" target="_blank" class="fr">查看全部监控</a></h2>
 					<div class="video-list">
-						<img src="" alt="" />
-						<img src="" alt="" />
-						<img src="" alt="" />
-						<img src="" alt="" />
+						<div id="login_install_dialog" style="display:none;height:20px; width:400px;padding-top:30px; margin:auto;">
+							<div style="clear: both;zoom:1; border: 2px solid #373737;background: #D5D5D5;">
+								<a id="login_btn_install" href="/webplugin.exe" target="_download" onclick="instal()" style="background: rgb(255,0,0);">Instal</a>
+								<a id="login_btn_cancel" href="javascript:;">Cancle</a>
+							</div>
+						</div>
+						<!--<div>
+							<button id="Login" href="javascript:;" Onclick="LoginDevice()">Login</button>
+						</div>-->
+						<div id="f_ocx" style="top:60px; left:0; width: 436px; height: 436px;"></div>
 					</div>
 				</div>
 			</div>
@@ -88,91 +89,91 @@
 					<div class="chuhuo-list">
 						<div class="chuhuo-list-item">
 							<p>
-								<span>项目名称</span>
+								
 								<span>解放碑项目</span>
 							</p>
 							<p>
-								<span>车牌号</span>
+								
 								<span>渝B654XS</span>
 							</p>
 							<p>
-								<span>净重</span>
+								
 								<span>60Kg</span>
 							</p>
 							<p>
-								<span>出货时间</span>
+								
 								<span>2018-09-10 08:22</span>
 							</p>
 						</div>
 						<div class="chuhuo-list-item">
 							<p>
-								<span>项目名称</span>
+								
 								<span>解放碑项目</span>
 							</p>
 							<p>
-								<span>车牌号</span>
+								
 								<span>渝B654XS</span>
 							</p>
 							<p>
-								<span>净重</span>
+								
 								<span>60Kg</span>
 							</p>
 							<p>
-								<span>出货时间</span>
+								
 								<span>2018-09-10 08:22</span>
 							</p>
 						</div>
 						<div class="chuhuo-list-item">
 							<p>
-								<span>项目名称</span>
+								
 								<span>解放碑项目</span>
 							</p>
 							<p>
-								<span>车牌号</span>
+								
 								<span>渝B654XS</span>
 							</p>
 							<p>
-								<span>净重</span>
+								
 								<span>60Kg</span>
 							</p>
 							<p>
-								<span>出货时间</span>
+								
 								<span>2018-09-10 08:22</span>
 							</p>
 						</div>
 						<div class="chuhuo-list-item">
 							<p>
-								<span>项目名称</span>
+								
 								<span>解放碑项目</span>
 							</p>
 							<p>
-								<span>车牌号</span>
+								
 								<span>渝B654XS</span>
 							</p>
 							<p>
-								<span>净重</span>
+								
 								<span>60Kg</span>
 							</p>
 							<p>
-								<span>出货时间</span>
+								
 								<span>2018-09-10 08:22</span>
 							</p>
 						</div>
 						<div class="chuhuo-list-item">
 							<p>
-								<span>项目名称</span>
+								
 								<span>解放碑项目</span>
 							</p>
 							<p>
-								<span>车牌号</span>
+								
 								<span>渝B654XS</span>
 							</p>
 							<p>
-								<span>净重</span>
+								
 								<span>60Kg</span>
 							</p>
 							<p>
-								<span>出货时间</span>
+								
 								<span>2018-09-10 08:22</span>
 							</p>
 						</div>
@@ -183,10 +184,19 @@
 			<div class="section3 fl">
 				<div class="section3-top">
 					<h2>生产数据</h2>
-					<div id="temperature">
-						<!--<div class="wendu-item">
-							<span>骨料温度</span>
-						</div>-->
+					<div class="section3-top-content">
+						<div class="section3-top-item">
+							<div class="guliao">150°C</div>
+							<p>骨料温度</p>
+						</div>
+						<div class="section3-top-item">
+							<div class="chucai">100°C</div>
+							<p>出材温度</p>
+						</div>
+						<div class="section3-top-item">
+							<div class="ratio">80%</div>
+							<p>油石比</p>
+						</div>
 					</div>
 				</div>
 				<div class="section3-bottom">
@@ -222,7 +232,12 @@
 		<script src="static/js/echarts.min.js" type="text/javascript" charset="utf-8"></script>
 		<script src="static/js/index.js" type="text/javascript" charset="utf-8"></script>
 		<script src="static/laydate/laydate.js" type="text/javascript" charset="utf-8"></script>
+		<script src="static/js/jquery.tempgauge.js" type="text/javascript" charset="utf-8"></script>
+<script src="static/js/video.js" type="text/javascript" charset="utf-8"></script>
+		
 		<script type="text/javascript">
+			
+			
 			// 时间选择
 			laydate.render({
 			  elem: '#startTime'
@@ -231,6 +246,12 @@
 			laydate.render({
 			  elem: '#endTime'
 			});
+		
+			$(".guliao").tempGauge({width:60, borderWidth:2, showLabel:true, borderColor:"#19B6E8",maxTemp:200,fillColor:'#FAB80C'});     
+			$(".chucai").tempGauge({width:60, borderWidth:2, showLabel:true, borderColor:"#19B6E8",maxTemp:200,fillColor:'#FF7979'});
+			$(".ratio").tempGauge({width:60, borderWidth:0, showLabel:true, borderColor:"#19B6E8",maxTemp:100,fillColor:'#00CAB0'});
+		
+			LoginDevice();
 		</script>
 	</body>
 

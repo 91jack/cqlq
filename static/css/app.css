@@ -47,8 +47,8 @@ body {
 	left:1.8rem;
 	top:1.3rem;
 	
-    -webkit-animation: spin 2s linear infinite;
-    animation: spin 2s linear infinite;
+    /*-webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;*/
 }
 
 .section1-top-item1 .intro {
@@ -131,8 +131,8 @@ body {
 	position: absolute;
 	top:-1.75rem;
 	left:-1.85rem;
-	 -webkit-animation: spin 2s linear infinite;
-    animation: spin 2s linear infinite;
+	 /*-webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;*/
 	
 }
 .section1-bottom h2 {
@@ -218,6 +218,9 @@ body {
 .scection3 {
 	
 }
+
+
+
 .section2-bottom h2,
 .section3 h2 {
 	font-size: 1rem;
@@ -230,6 +233,27 @@ body {
 	margin-top: 1.8rem;
 	background: url(../images/section3_top_bg.png) no-repeat;
 }
+.section3-top-content {
+	
+}
+.section3-top-item {
+	width:33.333%;
+	float:left;
+	text-align: center;
+}
+.section3-top-item .canvas-bg {
+	width:1.95rem;
+	margin: 0 auto;
+	height:5.7rem;
+	background: url(../images/icon_wendu.png) no-repeat;
+	background-size:100% ;
+}
+.section3-top-item p {
+	text-align: center;
+	color:#19B6E8;
+	font-size:0.8rem;
+} 
+
 .section3-bottom {
 	width:23.8rem;
 	height:32.6rem;
@@ -245,8 +269,8 @@ body {
 	position: absolute;
 	top:-0.5rem;
 	right:-0.5rem;
-	 -webkit-animation: spin 2s linear infinite;
-    animation: spin 2s linear infinite;
+	 /*-webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;*/
 }
 .section3-bottom:after {
 	content: '';
@@ -256,8 +280,8 @@ body {
 	position: absolute;
 	bottom:-0.4rem;
 	right:-0.5rem;
-	 -webkit-animation: spin 2s linear infinite;
-    animation: spin 2s linear infinite;
+	 /*-webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;*/
   
 }
 #temperatureChart {
