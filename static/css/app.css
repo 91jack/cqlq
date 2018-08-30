@@ -187,33 +187,49 @@ body {
 .section2-bottom {
 	width:41.7rem;
 	height:14.05rem;
-	background: url(../images/section2_bottom_bg.png) no-repeat;
+	/*background: url(../images/section2_bottom_bg.png) no-repeat;*/
 	margin-top: 0.85rem;
 }
+.section2-bottom-item {
+	width:20.65rem;
+	height:14.1rem;
+	background: url(../images/section2_bottom_item.png) no-repeat;
+}
+
+
 .chuhuo-list {
 	padding: 0 1rem;
 }
-.chuhuo-list-item {
-	
+/*.chuhuo-list-item {
+	clear:both;
 }
 .chuhuo-list-item p {
 	float:left;
-	width:25%;
+	margin-right: .5rem;
 	line-height: 2rem;
 	font-size: 0.7rem;
-}
-.chuhuo-list-item p span:first-child {
+}*/
+/*.chuhuo-list-item p span:first-child {
 	color: #1D9DC5;
 }
 
 .chuhuo-list-item p span:last-child {
 	color: #19B6E8;
 	font-weight: bold;
+}*/
+
+.chuhuo-list table {
+	width:100%;
+	color: #19B6E8;
+	text-align: center;
+	font-size: 0.7rem;
 }
-
-
-
-
+.chuhuo-list table th{
+	font-weight: bold;
+}
+.chuhuo-list table tr {
+	height:1.5rem;
+}
 
 .scection3 {
 	
@@ -227,10 +243,26 @@ body {
 	color: #00CAB0;
 	padding: 1rem;
 }
+
+.section3-top1 {
+	width:23.65rem;
+	height:4rem;
+	background:url(../images/section3_top1_bg.png) no-repeat ;
+	margin-top: 1.8rem;
+	margin-bottom: 0.5rem;
+}
+.section3-top1 h1 {
+	line-height: 4rem;
+	font-size: 1rem;
+	color: #00CAB0;
+	text-align: center;
+}
+.section3-top1 h1 span {
+	color:#FAB80C ;
+}
 .section3-top {
 	width:23.65rem;
-	height:12.45rem;
-	margin-top: 1.8rem;
+	height:11.5rem;
 	background: url(../images/section3_top_bg.png) no-repeat;
 }
 .section3-top-content {
@@ -241,13 +273,7 @@ body {
 	float:left;
 	text-align: center;
 }
-.section3-top-item .canvas-bg {
-	width:1.95rem;
-	margin: 0 auto;
-	height:5.7rem;
-	background: url(../images/icon_wendu.png) no-repeat;
-	background-size:100% ;
-}
+
 .section3-top-item p {
 	text-align: center;
 	color:#19B6E8;
@@ -256,7 +282,7 @@ body {
 
 .section3-bottom {
 	width:23.8rem;
-	height:32.6rem;
+	height:29rem;
 	margin-top: 0.4rem;
 	background: url(../images/section3_bottom_bg.png) no-repeat;
 	position: relative;
@@ -292,11 +318,11 @@ body {
 
 .section3-chart1 {
 	width:23.8rem;
-	height:16.15rem;
+	height:14rem;
 }
 .section3-chart2 {
 	width:23.8rem;
-	height: 16.45rem;
+	height: 13rem;
 }
 
 .time-wrap {
@@ -354,11 +380,11 @@ body {
 #lineChart {
 	display: block;
 	width:22rem;
-	height:15rem;
+	height:12rem;
 	margin-left: 2rem;
 }
 #barChart {
 	width:22rem;
-	height:15rem;
+	height:12rem;
 	margin-left: 2rem;
 }
