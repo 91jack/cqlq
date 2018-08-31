@@ -23,6 +23,14 @@ ul,ol,li{
 	float:right;
 }
 
+.cFFB400 {
+	color: #FFB400;
+}
+.c2AB7F6{
+	color: #2AB7F6;
+}
+
+
 .clearfix:after {
    content:""; 
    display: block; 
@@ -113,6 +121,255 @@ ul,ol,li{
 }
 
 .container {
-	width:80%;
-	margin: 2.5rem auto;
+	width:92.4rem;
+	margin: 0 auto;
+}
+
+
+
+
+/*
+ * jiankong.html
+ * */
+.jiankong-top {
+	width:76.3rem;
+	height: 6.35rem;
+	margin: 2.85rem auto;
+}
+.jiankong-top-item {
+	width:23.6rem;
+	height: 6.35rem;
+	line-height: 6.35rem;
+	font-size: 0.9rem;
+	color: #202B3D;
+	background:#EEEEEE;
+	float:left;
+	margin-right: 2.7rem;
+}
+.jiankong-top-item span {
+	font-size: 1rem;
+}
+.jiankong-top-item span em {
+	font-size: 2rem;
+}
+.jiankong-top-item:last-child {
+	margin-right: 0;
+}
+.jiankong-top-item img {
+	width:4.7rem;
+	height:4.7rem;
+	margin-top: 0.85rem;
+	margin-left: 3.55rem;
+	margin-right:1.3rem;
+}
+.jiankong-main {
+	height:32.3rem;
+	margin-bottom: 3rem;
+}
+.jiankong-main .table {
+	width:58.9rem;
+	height:32.3rem;
+}
+.jiankong-main .table h2 {
+	height:3.35rem;
+	line-height: 3.35rem;
+	font-size: 0.8rem;
+	color:#FF5857;
+	text-align: center;
+	border:0.05rem solid #00CAB0;
+}
+.jiankong-main .table table{
+	width:58.9rem;
+	height:28.95rem;
+	text-align: center;
+	border:0.05rem solid #00CAB0;
+}
+.jiankong-main .table table thead tr{
+	height:2.7rem;
+}
+.jiankong-main .video {
+	width:30.65rem;
+	height:32.2rem;
+	border-radius:0.5rem 0.5rem 0 0  ;
+	border:0.05rem solid #00CAB0;
+}
+.jiankong-main .video h2 {
+	width:30.65rem;
+	height:3.95rem;
+	border-radius:0.5rem 0.5rem 0 0  ;
+	background: #202B3D;
+	color: #00CAB0;
+	font-size: 0.8rem;
+	line-height: 4rem;
+	text-align: center;
+}
+.jiankong-main .video .clk-video {
+	width:29.75rem;
+	height:27rem;
+	margin:0.5rem;
+}
+.jiankong-main .video .clk-video img {
+	width:100%;
+	height:100%;
+}
+
+/*
+ * carmanage.html车辆调度
+ * */
+.car-list {
+	width:9.25rem;
+	height:45rem;
+	margin-top: 1.8rem;
+	overflow: auto;
+	background: #F7F7F7;
+	border:0.05rem solid #00CAB0;
+}
+.car-list li {
+	height:2.15rem;
+	line-height: 2.15rem;
+	font-size:0.7rem;
+	text-align: center;
+	border-bottom:0.05rem solid #E4E5E7;
+}
+.car-list li.active,
+.car-list li:hover{
+	background:#00CAB0;
+	color: #fff;
+}
+.car-map {
+	width:81.2rem;
+	height:45rem;
+	margin-top: 1.8rem;
+	border:0.05rem solid #00CAB0;
+}
+
+/*
+ * producestate 生产动态表
+ */
+.top-select {
+	/*height:7.75rem;*/
+	padding: 1rem;
+}
+.top-select .title a{
+	display: block;
+	width:7.55rem;
+	height:1.5rem;
+	line-height: 1.5rem;
+	text-align: center;
+	float:left;
+	margin-right: 1rem;
+	border-radius: 0.3rem;
+	background: #00CAB0;
+	color: #fff;
+}
+.top-select .cell {
+	height:1.5rem;
+	line-height: 1.5rem;
+	margin-bottom: 1rem;
+	font-size: 0.8rem;
+	clear:both;
+}
+.cite span {
+	font-size:0.8rem;
+	font-weight: bold;
+	margin-right: 1rem;
+}
+.cite ul li {
+	float:left;
+	padding:0 .5rem;
+	border:	0.05rem solid #00CAB0;
+	margin-right: .5rem;
+	border-radius: 0.2rem;
+}
+
+.top-select .time-wrap {
+	width:26rem;
+	margin-left: 0;
+	height:1.5rem;
+	color: #36BDE8;
+}
+.top-select .start-time,
+.top-select .end-time {
+	width:10rem;
+	height:1.5rem;
+	line-height: 1.5rem;
+	font-size: 0.8rem;
+	float:left;
+	border:0.05rem solid #BFBFBF;
+	margin-right: 1rem;
+}
+.top-select .start-time span,
+.top-select .end-time span {
+	display: inline-block;
+	width:4rem;
+	text-align: center;
+	float:left;
+	border-right:0.05rem solid #BFBFBF;
+}
+.top-select #startTime,
+.top-select #endTime {
+	width:4.25rem;
+	height:1.5rem;
+	text-align:center;
+	line-height: 1.5rem;
+	color: #19B6E8;
+	
+	float:right;
+	border:none;
+	background: transparent;
+}
+.top-select .time-btn {
+	display: inline-block;
+	width:2.85rem;
+	height:1.5rem;
+	line-height: 1.5rem;
+	text-align: center;
+	background:#19B6E8;
+	color:#fff;
+	float:left;
+	font-size: 0.6rem;
+	border-radius: 0.2rem;
+}
+
+
+
+.producestate-table {
+	width:100%;
+	height:34rem;
+	text-align: center;
+	border:0.05rem solid #00CAB0;
+}
+.producestate-table  table{
+	width:100%;
+	height:34rem;
+	text-align: center;
+	border:0.05rem solid #00CAB0;
+}
+.producestate-table table thead tr{
+	height:2.7rem;
+}
+
+/*
+ * producenum.html 生产量分析
+ * 
+ */
+ .col-2 {
+ 	width:50%;
+ 	height:34rem;
+ 	/*background: red;*/
+ }
+.col-2  table{
+	width:100%;
+	height:34rem;
+	text-align:center;
+	border:0.05rem solid #00CAB0;
+}
+.col-2 table thead tr{
+	height:2.7rem;
+}
+
+.col-2 #barChart{
+	width:40rem;
+	height:34rem;
+	margin-left: 5rem;
 }

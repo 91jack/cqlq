@@ -1,0 +1,133 @@
+<!doctype html>
+<html class="no-js">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>重交沥青搅拌站智慧生产管控系统</title>
+		<link rel="stylesheet" type="text/css" href="static/layui/css/layui.css"/>
+		<link rel="stylesheet" type="text/css" href="static/css/common.css" />
+	</head>
+
+	<body>
+		<div class="header clearfix">
+			<h2>重交沥青搅拌站智慧生产管控系统</h2>
+			<div class="nav">
+				<a href="index.html">
+					<img src="static/images/icon_home1.png" alt="" />
+					<span>首页</span>
+				</a>
+				<a href="weigh.html">
+					<img src="static/images/icon_chengzhong1.png" alt="" />
+					<span>称重过磅</span>
+				</a>
+				<a href="jiankong.html">
+					<img src="static/images/icon_jiankong1.png" alt="" />
+					<span>生产监控</span>
+				</a>
+				<a href="carmanage.html">
+					<img src="static/images/icon_car1.png" />
+					<span>车辆调度</span>  
+				</a>
+				<a href="javascript:;" id="tongji">
+					<img src="static/images/icon_tongji1.png" />
+					<span>统计分析</span>
+				</a>
+				<ul class="subnav">
+					<li><a href="">生产动态表</a></li>
+					<li><a href="">生产量分析</a></li>
+					<li><a href="">核算量分析</a></li>
+					<li><a href="">消耗量分析</a></li>
+					<li><a href="">温度波动分析</a></li>
+				</ul>
+			</div>
+		</div>
+	
+		
+		<div class="container">
+			<div class="jiankong-top">
+				<div class="jiankong-top-item">
+					<img src="static/images/icon_produce.png"/>
+					生产量
+					<span class="cFFB400">
+						<em>2000</em>吨
+					</span>
+				</div>
+				<div class="jiankong-top-item">
+					<img src="static/images/icon_temp.png"/>
+					出料温度
+					<span class="c2AB7F6">
+						<em>2000</em>℃
+					</span>
+				</div>
+				<div class="jiankong-top-item">
+					<img src="static/images/icon_guliao.png"/>
+					骨料温度
+					<span class="c2AB7F6">
+						<em>2000</em>℃
+					</span>
+				</div>
+			</div>
+			
+			
+			<div class="jiankong-main">
+				<div class="fl table">
+					<h2>中控数据滚动</h2>
+					<table border="1" cellspacing="0" cellpadding="10">
+						
+						<thead>
+							<tr>
+								<th>时间</th>
+								<th>集料</th>
+								<th>沥青</th>
+								<th>矿粉</th>
+								<th>添加剂</th>
+								<th>油石比</th>
+							</tr>
+						</thead>
+						<tbody id="tbody">
+							<!--<tr>
+								<td>2018-02-02</td>
+								<td>碎石头</td>
+								<td>石油沥青</td>
+								<td>595</td>
+								<td>128</td>
+								<td>65%</td>
+							</tr>-->
+						</tbody>
+					</table>
+				</div>
+				<div class="fr video">
+					<h2>出料口视频</h2>
+					<div class="clk-video">
+						<img src="static/images/section2_bottom_item.png"/>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		
+	<script src="static/js/jquery-1.11.0.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="static/js/common.js"></script>
+	<script src="static/js/echarts.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="static/layui/layui.all.js" type="text/javascript" charset="utf-8"></script>
+	<script src="static/laydate/laydate.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		// 时间选择
+//		laydate.render({
+//		  elem: '#startTime'
+//		});
+//		
+//		laydate.render({
+//		  elem: '#endTime'
+//		});
+//		
+		var str = '';
+		for(var i=0;i<10;i++){
+			str +='<tr><td>2018-02-02</td><td>'+i+'碎石头</td><td>石油沥青</td><td>595</td><td>128</td><td>65%</td></tr>';
+		}
+		$('#tbody').append(str);
+	</script>
+	</body>
+
+</html>

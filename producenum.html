@@ -33,17 +33,27 @@
 					<span>统计分析</span>
 				</a>
 				<ul class="subnav">
-						<li><a href="">生产动态表</a></li>
-						<li><a href="">生产量分析</a></li>
-						<li><a href="">核算量分析</a></li>
-						<li><a href="">消耗量分析</a></li>
-						<li><a href="">温度波动分析</a></li>
-					</ul>
-				
+					<li>
+						<a href="">生产动态表</a>
+					</li>
+					<li>
+						<a href="">生产量分析</a>
+					</li>
+					<li>
+						<a href="">核算量分析</a>
+					</li>
+					<li>
+						<a href="">消耗量分析</a>
+					</li>
+					<li>
+						<a href="">温度波动分析</a>
+					</li>
+				</ul>
 			</div>
 		</div>
 		
-		<div class="container">
+		
+	<div class="container">
 			<div class="top-select">
 				<div class="cell title">
 					<a>生产动态表</a>
@@ -55,6 +65,14 @@
 						<li>两江站1</li>
 						<li>两江站2</li>
 						<li>两江站3</li>
+					</ul>
+				</div>
+				<div class="cite cell">
+					<span class="fl">显示类型</span>
+					<ul class="fl">
+						<li>SMA</li>
+						<li>MA</li>
+						<li>CBA</li>
 					</ul>
 				</div>
 				<div class="time-wrap cell">
@@ -70,7 +88,7 @@
 				</div>
 				
 			</div>
-			<div class="producestate-table">
+			<div class="col-2 fl">
 				<table border="1" cellspacing="0" cellpadding="10">
 						<thead>
 							<tr>
@@ -82,13 +100,7 @@
 								<th>仓4</th>
 								<th>仓5</th>
 								<th>仓6</th>
-								<th>矿1</th>
-								<th>矿2</th>
-								<th>矿3</th>
-								<th>沥青</th>
-								<th>沥温</th>
-								<th>集温</th>
-								<th>出温</th>
+								
 							</tr>
 						</thead>
 						<tbody id="tbody">
@@ -112,8 +124,10 @@
 						</tbody>
 					</table>
 			</div>
+			<div class="col-2 fr">
+				<div class="chart" id="barChart"></div>
+			</div>
 		</div>
-		
 		
 	<script src="static/js/jquery-1.11.0.min.js" type="text/javascript" charset="utf-8"></script>
 	<script src="static/js/common.js"></script>
@@ -132,10 +146,73 @@
 	
 		var str = '';
 		for(var i=0;i<15;i++){
-			str +="<tr> <td>SMA"+i+"</td> <td>2018-02-02</td> <td>100</td> <td>200</td> <td>300</td> <td>400</td> <td>500</td> <td>600</td> <td>10</td> <td>20</td> <td>30</td> <td>1023</td> <td>11.22</td> <td>30.33</td> <td>1023.55</td> </tr>";
+			str +="<tr> <td>SMA"+i+"</td> <td>2018-02-02</td> <td>100</td> <td>200</td> <td>300</td> <td>400</td> <td>500</td> <td>600</td></tr>";
 			//str +='<tr><td>2018-02-02</td><td>'+i+'碎石头</td><td>石油沥青</td><td>595</td><td>128</td><td>65%</td></tr>';
 		}
 		$('#tbody').append(str);
+		
+		
+		
+			//柱状图
+			var barChart = echarts.init(document.getElementById('barChart'));
+			var option = {
+				grid: {
+					//show:true,
+					top: 30,
+					left: 40,
+					right:0,
+					bottom:10
+				},
+				tooltip: {
+			        trigger: 'axis',  
+			    },
+				xAxis: {
+					type: 'category',
+					data: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
+					axisTick: {
+						lineStyle: {
+							color: '#fff'
+						}
+					},
+					axisLine: {
+						show: true,
+						lineStyle: {
+							color: '#148976'
+						}
+					},
+				},
+				yAxis: {
+					name:'温度（℃）',
+					type: 'value',
+					splitLine: {
+						show: false
+					},
+					axisLine: {
+						show: true,
+						lineStyle: {
+							color: '#148976'
+						}
+					},
+					axisTick: {
+						lineStyle: {
+							color: '#fff'
+						}
+					},
+				},
+				series: [{
+						name:'温度',
+						data: [1330, 1320, 932, 901, 300, 100, 900, 934, 820, 934, 1290, 1330, 1320, 932, 901, 934, 1290, 1330, 1320, 1500],
+						type: 'bar',
+						itemStyle: {
+							color: '#00CAB0'
+						}
+					},
+
+				]
+			};
+
+			barChart.setOption(option);
+		
 	</script>
 	</body>
 

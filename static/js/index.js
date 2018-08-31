@@ -5,7 +5,7 @@
 			var point = new BMap.Point(107.562695, 29.271674); //赵家乡政府
 			map.centerAndZoom(point, 10); // 初始化地图,设置中心点坐标和地图级别
 
-map.enableScrollWheelZoom(true);
+			map.enableScrollWheelZoom(true);
 			//创建小汽车
 			var pt = new BMap.Point(107.562695, 29.271674);
 			var myIcon = new BMap.Icon("static/images/icon_car.png", new BMap.Size(33,21));
