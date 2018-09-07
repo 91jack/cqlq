@@ -13,19 +13,19 @@
 		<div class="header clearfix">
 			<h2>重交沥青搅拌站智慧生产管控系统</h2>
 			<div class="nav">
-				<a href="">
+				<a href="index.html">
 					<img src="static/images/icon_home1.png" alt="" />
 					<span>首页</span>
 				</a>
-				<a href="">
+				<a href="weigh.html">
 					<img src="static/images/icon_chengzhong1.png" alt="" />
 					<span>称重过磅</span>
 				</a>
-				<a href="">
+				<a href="jiankong.html">
 					<img src="static/images/icon_jiankong1.png" alt="" />
 					<span>生产监控</span>
 				</a>
-				<a href="">
+				<a href="carmanage.html">
 					<img src="static/images/icon_car1.png" />
 					<span>车辆调度</span>
 				</a>
@@ -36,18 +36,148 @@
 					
 				</a>
 				<ul class="subnav">
-						<li><a href="">生产动态表</a></li>
-						<li><a href="">生产量分析</a></li>
+						<li><a href="producestate.html">生产动态表</a></li>
+						<li><a href="producenum.html">生产量分析</a></li>
 						<li><a href="">核算量分析</a></li>
 						<li><a href="">消耗量分析</a></li>
 						<li><a href="">温度波动分析</a></li>
 					</ul>
-				
 			</div>
 		</div>
 		
-		<div class="container">
-			<div class="top"></div>
+		<div class="container clearfix">
+			<div class="fl weigh-wrap">
+				<div class="weigh-wraptop clearfix">
+					
+					<div class="fl weigh">
+						<div class="weigh-num fl">
+							16.88
+						</div>
+						<div class="weigh-btn fl">
+							称<br/>重
+						</div>
+					</div>
+					<div class="fr">
+						<div class="input-group">
+							<span>车牌号</span>
+							<input type="text" />
+						</div>
+						<div class="input-group">
+							<span>红外感应</span>
+							<button>主</button>
+							<button>左</button>
+							<button>右</button>
+						</div>
+					</div>
+				</div>
+				<div class="weigh-form clearfix">
+					<div class="input-group">
+						<span>毛重（吨）</span>
+						<input type="text" />
+					</div>
+					<div class="input-group">
+						<span>过磅单号</span>
+						<input type="text" />
+					</div>
+					<div class="input-group">
+						<span>过磅人员</span>
+						<input type="text" />
+					</div>
+					<div class="input-group">
+						<span>皮重（吨）</span>
+						<input type="text" />
+					</div>
+					<div class="input-group">
+						<span>原始皮重（吨）</span>
+						<input type="text" />
+					</div>
+					<div class="input-group">
+						<span>过磅时间</span>
+						<input type="text" />
+					</div>
+					
+					<div class="input-group">
+						<span>净重（吨）</span>
+						<input type="text" />
+					</div>
+					<div class="input-group">
+						<span>车号</span>
+						<input type="text" />
+					</div>
+					<div class="input-group">
+						<span>司机</span>
+						<input type="text" />
+					</div>
+					<div class="input-group">
+						<span>打印净重（吨）</span>
+						<input type="text" />
+					</div>
+					<div class="input-group">
+						<span>工程名称</span>
+						<input type="text" />
+					</div>
+					<div class="input-group">
+						<span>过磅备注</span>
+						<input type="text" />
+					</div>
+					
+					<div class="input-group">
+						<span>设定容量</span>
+						<input type="text" />
+					</div>
+					<div class="input-group">
+						<span>施工单位</span>
+						<input type="text" />
+					</div>
+					<div class="input-group">
+						<span>自动识别车牌</span>
+						<input type="radio" /> 是
+						<input type="radio" /> 否
+						
+					</div>
+					<div class="input-group">
+						<span>砼类型</span>
+						<input type="text" />
+					</div>
+					
+				</div>
+			</div>
+			
+			<div class="fr carnum"></div>
+		</div>
+		
+		<div class="container  clearfix">
+			<div class="tab-btn">
+				<span>最近称重车辆列表</span>
+				<span>最近50条发货过磅信息</span>
+			</div>
+			<div class="producestate-table">
+				<table  border="1" cellspacing="0" cellpadding="10">
+					<thead>
+								<tr>
+									<th>材料类型</th>
+									<th>出料时间</th>
+									<th>仓1</th>
+									<th>仓2</th>
+									<th>仓3</th>
+									<th>仓4</th>
+									<th>仓5</th>
+									<th>仓6</th>
+									<th>矿1</th>
+									<th>矿2</th>
+									<th>矿3</th>
+									<th>沥青</th>
+									<th>沥温</th>
+									<th>集温</th>
+									<th>出温</th>
+								</tr>
+							</thead>
+					<tbody id="tbody">
+					
+					</tbody>
+				</table>
+			</div>	
+			
 		</div>
 		
 		
@@ -57,36 +187,22 @@
 	<script src="static/layui/layui.all.js" type="text/javascript" charset="utf-8"></script>
 	<script src="static/laydate/laydate.js" type="text/javascript" charset="utf-8"></script>
 	<script type="text/javascript">
-		// 时间选择
-//		laydate.render({
-//		  elem: '#startTime'
-//		});
-//		
-//		laydate.render({
-//		  elem: '#endTime'
-//		});
-//		
-		layui.use('table', function(){
-  var table = layui.table;
-  
-  table.render({
-    elem: '#test'
-    ,url:'data/producestate.json'
-    ,cols: [[
-      {field:'id', width:80, title: 'ID', sort: true}
-      ,{field:'username', width:80, title: '用户名'}
-      ,{field:'sex', width:80, title: '性别', sort: true}
-      ,{field:'city', width:80, title: '城市'}
-      ,{field:'sign', title: '签名', minWidth: 150}
-      ,{field:'experience', width:80, title: '积分', sort: true}
-      ,{field:'score', width:80, title: '评分', sort: true}
-      ,{field:'classify', width:80, title: '职业'}
-      ,{field:'wealth', width:135, title: '财富', sort: true}
-    ]]
-    ,page: true
-  });
-});
+		var arr = ['沪','浙','苏','皖','鲁','豫',
+					'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z',
+					'0','1','2','3','4','5','6','7','8','9'];
+		var spanStr = '';			
+		for(var i=0;i<arr.length;i++){
+			spanStr +='<span>'+arr[i]+'</span>'
+		}
+		$('.carnum').append(spanStr);
 		
+		
+		var str = '';
+		for(var i=0;i<15;i++){
+			str +="<tr> <td>SMA"+i+"</td> <td>2018-02-02</td> <td>100</td> <td>200</td> <td>300</td> <td>400</td> <td>500</td> <td>600</td> <td>10</td> <td>20</td> <td>30</td> <td>1023</td> <td>11.22</td> <td>30.33</td> <td>1023.55</td> </tr>";
+			//str +='<tr><td>2018-02-02</td><td>'+i+'碎石头</td><td>石油沥青</td><td>595</td><td>128</td><td>65%</td></tr>';
+		}
+		$('#tbody').append(str);
 	</script>
 	</body>
 
