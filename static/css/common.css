@@ -40,7 +40,6 @@ ul,ol,li{
 .header {
 	height:5.1rem;
 	background:#202B3D;
-	/*display: none;*/
 }
 
 .header h2 {
@@ -60,12 +59,11 @@ ul,ol,li{
 .header .nav a img {
 	width:1.2rem
 	height:1.2rem;
-	margin-top: 1.95rem;
+	margin-top: 2rem;
 }
 .header .nav a {
 	display: block;
 	width:8.2rem;
-	/*height: 5.1rem;*/
 	line-height:  5.1rem;
 	font-size:1.2rem;
 	text-align: center;
@@ -338,7 +336,7 @@ ul,ol,li{
  */
 .top-select {
 	/*height:7.75rem;*/
-	padding: 1rem;
+	/*padding: 1rem;*/
 }
 .top-select .title a{
 	display: block;
@@ -423,13 +421,13 @@ ul,ol,li{
 
 
 
-.producestate-table {
+/*table {
 	width:100%;
 	height:34rem;
 	text-align: center;
 	border:0.05rem solid #00CAB0;
-}
-.producestate-table  table{
+}*/
+/*.producestate-table  table{
 	width:100%;
 	height:34rem;
 	text-align: center;
@@ -437,16 +435,16 @@ ul,ol,li{
 }
 .producestate-table table thead tr{
 	height:2.7rem;
-}
+}*/
 
 /*
  * producenum.html 生产量分析
  * 
  */
- .col-2 {
+ /*.col-2 {
  	width:50%;
  	height:34rem;
- 	/*background: red;*/
+ 	
  }
 .col-2  table{
 	width:100%;
@@ -456,7 +454,7 @@ ul,ol,li{
 }
 .col-2 table thead tr{
 	height:2.7rem;
-}
+}*/
 
 .col-2 #barChart{
 	width:40rem;

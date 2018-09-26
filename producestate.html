@@ -6,6 +6,7 @@
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<title>重交沥青搅拌站智慧生产管控系统</title>
 		<link rel="stylesheet" type="text/css" href="static/css/common.css" />
+		<link rel="stylesheet" type="text/css" href="static/layui/css/layui.css"/>
 	</head>
 
 	<body>
@@ -71,48 +72,8 @@
 				</div>
 				
 			</div>
-			<div class="producestate-table">
-				<table border="1" cellspacing="0" cellpadding="10">
-						<thead>
-							<tr>
-								<th>材料类型</th>
-								<th>出料时间</th>
-								<th>仓1</th>
-								<th>仓2</th>
-								<th>仓3</th>
-								<th>仓4</th>
-								<th>仓5</th>
-								<th>仓6</th>
-								<th>矿1</th>
-								<th>矿2</th>
-								<th>矿3</th>
-								<th>沥青</th>
-								<th>沥温</th>
-								<th>集温</th>
-								<th>出温</th>
-							</tr>
-						</thead>
-						<tbody id="tbody">
-							<!--<tr>
-								<td>SMA</td>
-								<td>2018-02-02</td>
-								<td>100</td>
-								<td>200</td>
-								<td>300</td>
-								<td>400</td>
-								<td>500</td>
-								<td>600</td>
-								<td>10</td>
-								<td>20</td>
-								<td>30</td>
-								<td>1023</td>
-								<td>11.22</td>
-								<td>30.33</td>
-								<td>1023.55</td>
-							</tr>-->
-						</tbody>
-					</table>
-			</div>
+			
+			<table class="layui-hide" id="test"></table>
 		</div>
 		
 		
@@ -120,6 +81,7 @@
 	<script src="static/js/common.js"></script>
 	<script src="static/js/echarts.min.js" type="text/javascript" charset="utf-8"></script>
 	<script src="static/laydate/laydate.js" type="text/javascript" charset="utf-8"></script>
+	<script src="static/layui/layui.all.js" type="text/javascript" charset="utf-8"></script>
 	<script type="text/javascript">
 		// 时间选择
 		laydate.render({
@@ -129,14 +91,42 @@
 		laydate.render({
 		  elem: '#endTime'
 		});
-		
-	
-		var str = '';
-		for(var i=0;i<15;i++){
-			str +="<tr> <td>SMA"+i+"</td> <td>2018-02-02</td> <td>100</td> <td>200</td> <td>300</td> <td>400</td> <td>500</td> <td>600</td> <td>10</td> <td>20</td> <td>30</td> <td>1023</td> <td>11.22</td> <td>30.33</td> <td>1023.55</td> </tr>";
-			//str +='<tr><td>2018-02-02</td><td>'+i+'碎石头</td><td>石油沥青</td><td>595</td><td>128</td><td>65%</td></tr>';
-		}
-		$('#tbody').append(str);
+
+		layui.use('table', function(){
+		  var table = layui.table;
+		  table.render({
+		    elem: '#test'
+		    ,url:'http://192.168.1.123:8080/jbz/api/data/ajaxList'
+		    ,cellMinWidth: 80 //全局定义常规单元格的最小宽度
+		    ,cols: [[ 
+		      {field:'pbh', title: '材料类型'}
+		      ,{field:'dateTime', title: '出料时间',width:200}
+		      ,{field:'one', title: '仓1'}
+		      ,{field:'two', title: '仓2'}
+		      ,{field:'three',  title: '仓3'}
+		      ,{field:'four', title: '仓4', }
+		      ,{field:'five', title: '仓5'}
+		      ,{field:'six',  title: '新粉1'}
+ 			  ,{field:'seven',  title: '新粉2'}
+ 			  ,{field:'eight',  title: '沥青'}
+		    ]]
+		    ,page: true
+		    ,limit:10
+		    ,request: {
+			    pageName: 'page' //页码的参数名称，默认：page
+			    ,limitName: 'pageSize' //每页数据量的参数名，默认：limit
+			}
+		    , response: {
+	            statusName: 'errno' //数据状态的字段名称，默认：code
+	            , statusCode: 0 //成功的状态码，默认：0
+	            , msgName: 'error' //状态信息的字段名称，默认：msg
+	            , countName: 'num' //数据总数的字段名称，默认：count
+	            , dataName: 'list' //数据列表的字段名称，默认：data
+	        }
+			,even:true
+			
+		  });
+		});
 	</script>
 	</body>
 

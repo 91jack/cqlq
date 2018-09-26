@@ -32,8 +32,6 @@
 				<a href="javascript:;" id="tongji">
 					<img src="static/images/icon_tongji1.png" />
 					<span>统计分析</span>
-					
-					
 				</a>
 				<ul class="subnav">
 						<li><a href="producestate.html">生产动态表</a></li>
@@ -56,7 +54,7 @@
 					<div class="section1-top-item section1-top-item1">
 						<div class="intro"></div>
 						<div class="intro-text">生产量</div>
-						<div class="produce-num"><span>150000</span>吨</div>
+						<div class="produce-num"><span id="productTotal">150000</span>吨</div>
 					</div>
 					<div class="section1-top-item section1-top-item2">
 						<div class="intro"></div>
@@ -97,8 +95,8 @@
 										<th>沥青</th>
 									</tr>
 								</thead>
-								<tbody>
-									<tr>
+								<tbody id="productList">
+									<!--<tr>
 										<td>10:33:23</td>
 										<td>111</td>
 										<td>888</td>
@@ -132,7 +130,7 @@
 										<td>888</td>
 										<td>333</td>
 										<td>1111</td>
-									</tr>
+									</tr>-->
 								</tbody>
 							</table>
 							
@@ -193,7 +191,7 @@
 
 			<div class="section3 fl">
 				<div class="section3-top1">
-					<h1>当前生产材料<span>SMA</span></h1>
+					<h1>当前生产材料:<span id="productName">SMA</span></h1>
 				</div>
 				<div class="section3-top">
 					<h2>生产数据</h2>
@@ -239,33 +237,192 @@
 			</div>
 		</div>
 
-		<script src="static/js/jquery-1.11.0.min.js" type="text/javascript" charset="utf-8"></script>
-		<script src="static/js/common.js"></script>
-		<script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=wqB7npvF7DsDGlFG2oYhih93K5iEqsou"></script>
-		<script src="static/js/echarts.min.js" type="text/javascript" charset="utf-8"></script>
-		<script src="static/js/index.js" type="text/javascript" charset="utf-8"></script>
-		<script src="static/laydate/laydate.js" type="text/javascript" charset="utf-8"></script>
-		<script src="static/js/jquery.tempgauge.js" type="text/javascript" charset="utf-8"></script>
-		<script src="static/js/video.js" type="text/javascript" charset="utf-8"></script>
-		
-		<script type="text/javascript">
-			
-			
-			// 时间选择
-			laydate.render({
-			  elem: '#startTime'
-			});
-			
-			laydate.render({
-			  elem: '#endTime'
-			});
-		
-			$(".guliao").tempGauge({width:50, borderWidth:2, showLabel:true, borderColor:"#19B6E8",maxTemp:200,fillColor:'#FAB80C'});     
-			$(".chucai").tempGauge({width:50, borderWidth:2, showLabel:true, borderColor:"#19B6E8",maxTemp:200,fillColor:'#FF7979'});
-			$(".ratio").tempGauge({width:50, borderWidth:0, showLabel:true, borderColor:"#19B6E8",maxTemp:100,fillColor:'#00CAB0'});
-		
-			LoginDevice();
-		</script>
-	</body>
+<script src="static/js/jquery-1.11.0.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="static/js/common.js"></script>
+<script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=wqB7npvF7DsDGlFG2oYhih93K5iEqsou"></script>
+<script src="static/js/echarts.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="static/js/index.js" type="text/javascript" charset="utf-8"></script>
+<script src="static/laydate/laydate.js" type="text/javascript" charset="utf-8"></script>
+<script src="static/js/jquery.tempgauge.js" type="text/javascript" charset="utf-8"></script>
+<script src="static/js/video.js" type="text/javascript" charset="utf-8"></script>
 
+<script type="text/javascript">
+	// 时间选择
+	laydate.render({
+	  elem: '#startTime'
+	});
+	
+	laydate.render({
+	  elem: '#endTime'
+	});
+
+	$(".guliao").tempGauge({width:50, borderWidth:2, showLabel:true, borderColor:"#19B6E8",maxTemp:200,fillColor:'#FAB80C'});     
+	$(".chucai").tempGauge({width:50, borderWidth:2, showLabel:true, borderColor:"#19B6E8",maxTemp:200,fillColor:'#FF7979'});
+	$(".ratio").tempGauge({width:50, borderWidth:0, showLabel:true, borderColor:"#19B6E8",maxTemp:100,fillColor:'#00CAB0'});
+	
+	// 地图初始化
+	var map = new BMap.Map("map"); // 创建Map实例
+	var point = new BMap.Point(106.662101,29.501584);//赵家乡政府
+	map.centerAndZoom(point, 14); // 初始化地图,设置中心点坐标和地图级别
+	map.enableScrollWheelZoom(true); // 缩放地图
+			
+
+	// 添加带有定位的导航控件
+	var navigationControl = new BMap.NavigationControl({
+			// 靠左上角位置
+			anchor: BMAP_ANCHOR_TOP_LEFT,
+			// LARGE类型
+			type: BMAP_NAVIGATION_CONTROL_LARGE,
+			// 启用显示定位
+	    enableGeolocation: true
+	});
+	
+	map.addControl(navigationControl);
+	
+	// 添加定位控件
+	var geolocationControl = new BMap.GeolocationControl();
+	geolocationControl.addEventListener("locationSuccess", function(r){
+		 	map.clearOverlays();
+		 	mapinit(r);
+			curPoint = r.point;
+			
+	});
+	
+	geolocationControl.addEventListener("locationError",function(e){
+	// 定位失败事件
+	    alert(e.message);
+	});
+	map.addControl(geolocationControl);
+	
+
+	function mapinit(r){
+		var positionIcon = new BMap.Icon("static/mapicon/icon_position.png", new BMap.Size(18,33));
+		var positionMarker = new BMap.Marker(r.point,{icon:positionIcon});
+		
+		positionMarker.addEventListener('click',attribute);
+		map.addOverlay(positionMarker); 
+		positionMarker.enableDragging();//可拖拽
+			
+		map.panTo(r.point);
+		
+		function attribute(){
+			var p = positionMarker.getPosition(); // 获取marker的位置
+			console.log(p);
+			console.log(p.lng,p.lat);
+			
+			map.centerAndZoom(new BMap.Point(p.lng,p.lat), 14); // 初始化地图,设置中心点坐标和地图级别
+			
+			var geoc = new BMap.Geocoder();
+			geoc.getLocation(p,function(rs){
+				console.log(rs)
+				var addComp = rs.addressComponents;
+				var newaddress = '';
+				newaddress += addComp.street;
+				newaddress += addComp.streetNumber;
+				
+				console.log(newaddress);
+			});
+		}
+	}
+	
+ 	// 调用数据
+ 	// GPS
+ 	var url = "ws://192.168.1.123:8080/jbz/gps";
+	WebSocketFn(url,function(data){
+   		map.clearOverlays();
+   		if(data !=null){
+	   		for (var i = 0; i < data.length ; i ++) {
+				// 地图标注
+				var lng = data[i].lng;
+				var lat = data[i].lat;
+				var point = new BMap.Point(lng,lat);
+				
+				map.centerAndZoom(point, 15); 
+				
+				var label = data[i].vno;
+				var icon = new BMap.Icon("static/images/icon_car.png", new BMap.Size(33,21));
+				addMarker(point,icon,label);
+	   		}
+  		}
+	});
+	
+	// 生产数据
+	var url = "ws://192.168.1.123:8080/jbz/product";
+	WebSocketFn(url,function(data){
+		console.log(data)
+   		$('#productTotal').html(data.productTotal);
+   		$('#productName').html(data.productName);
+   		
+   		var str = ''
+   		for(var i=0;i<data.productList.length;i++){
+   			str +='<tr>'
+				+	'<td>'+data.productList[i].dateTime+'</td>'
+				+	'<td>'+data.productList[i].glsl+'</td>'
+				+	'<td>'+data.productList[i].tjjsl+'</td>'
+				+	'<td>'+data.productList[i].xfsl+'</td>'
+				+	'<td>'+data.productList[i].lqsl+'</td>'
+				+'</tr>'
+   		}
+   		
+   		$('#productList').append(str)
+	});
+		
+		
+		
+	// 添加标注函数
+	function addMarker(point,icon,label){
+	  	var marker = new BMap.Marker(point,{icon:icon});
+	  
+	  	map.addOverlay(marker);
+		var opts = {
+		  position : point,    // 指定文本标注所在的地理位置
+		  offset   : new BMap.Size(15,-20)    //设置文本偏移量
+		}
+		
+		var label = new BMap.Label(label, opts);  // 创建文本标注对象
+		label.setStyle({
+			 color : "red",
+			 fontSize : "12px",
+			 height : "20px",
+			 lineHeight : "20px",
+			 fontFamily:"微软雅黑"
+		});
+	  
+	 	marker.setLabel(label)
+	}
+	
+	
+		
+	// websocket函数
+	function WebSocketFn(url,callback){
+        if ("WebSocket" in window){
+          // console.log("您的浏览器支持 WebSocket!");
+           // 打开一个 web socket
+           var ws = new WebSocket(url);
+            
+           ws.onopen = function(){
+              // Web Socket 已连接上，使用 send() 方法发送数据
+              //ws.send("发送数据");
+              //alert("数据发送中...");
+           };
+            
+           ws.onmessage = function (evt) { 
+              var received_msg = evt.data;
+              callback(JSON.parse(received_msg));
+              //alert("数据已接收...");
+           };
+            
+           ws.onclose = function(){ 
+              // 关闭 websocket
+              console.log("连接已关闭..."); 
+           };
+        }else{
+           // 浏览器不支持 WebSocket
+           alert("您的浏览器不支持 WebSocket!");
+        }
+    }
+	
+	
+</script>
+</body>
 </html>
