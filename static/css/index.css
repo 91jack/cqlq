@@ -7,7 +7,11 @@ body {
 	overflow: hidden;
 }
 
-
+.header .nav a img {
+    width: 1.2rem
+ 	height:1.2rem;
+    margin-top: 2rem; 
+}
 .main {
 	width:100%;
 }
@@ -379,7 +383,7 @@ body {
 
 #lineChart {
 	display: block;
-	width:22rem;
+	width:20rem;
 	height:12rem;
 	margin-left: 2rem;
 }

@@ -5,6 +5,7 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<title>重交沥青搅拌站智慧生产管控系统</title>
+		<link rel="stylesheet" type="text/css" href="static/layui/css/layui.css"/>
 		<link rel="stylesheet" type="text/css" href="static/css/common.css" />
 		<link rel="stylesheet" type="text/css" href="static/css/index.css"/>
 	</head>
@@ -96,41 +97,7 @@
 									</tr>
 								</thead>
 								<tbody id="productList">
-									<!--<tr>
-										<td>10:33:23</td>
-										<td>111</td>
-										<td>888</td>
-										<td>333</td>
-										<td>1111</td>
-									</tr>
-									<tr>
-										<td>10:33:23</td>
-										<td>111</td>
-										<td>888</td>
-										<td>333</td>
-										<td>1111</td>
-									</tr>
-									<tr>
-										<td>10:33:23</td>
-										<td>111</td>
-										<td>888</td>
-										<td>333</td>
-										<td>1111</td>
-									</tr>
-									<tr>
-										<td>10:33:23</td>
-										<td>111</td>
-										<td>888</td>
-										<td>333</td>
-										<td>1111</td>
-									</tr>
-									<tr>
-										<td>10:33:23</td>
-										<td>111</td>
-										<td>888</td>
-										<td>333</td>
-										<td>1111</td>
-									</tr>-->
+									
 								</tbody>
 							</table>
 							
@@ -191,7 +158,7 @@
 
 			<div class="section3 fl">
 				<div class="section3-top1">
-					<h1>当前生产材料:<span id="productName">SMA</span></h1>
+					<h1>当前生产材料:<span id="productName"></span></h1>
 				</div>
 				<div class="section3-top">
 					<h2>生产数据</h2>
@@ -205,7 +172,7 @@
 							<p>出材温度</p>
 						</div>
 						<div class="section3-top-item">
-							<div class="ratio">80%</div>
+							<div class="ratio" id="ratio"></div>
 							<p>油石比</p>
 						</div>
 					</div>
@@ -242,23 +209,33 @@
 <script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=wqB7npvF7DsDGlFG2oYhih93K5iEqsou"></script>
 <script src="static/js/echarts.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="static/js/index.js" type="text/javascript" charset="utf-8"></script>
-<script src="static/laydate/laydate.js" type="text/javascript" charset="utf-8"></script>
+<!--<script src="static/laydate/laydate.js" type="text/javascript" charset="utf-8"></script>-->
+<script src="static/layui/layui.all.js" type="text/javascript" charset="utf-8"></script>
 <script src="static/js/jquery.tempgauge.js" type="text/javascript" charset="utf-8"></script>
 <script src="static/js/video.js" type="text/javascript" charset="utf-8"></script>
 
 <script type="text/javascript">
 	// 时间选择
-	laydate.render({
-	  elem: '#startTime'
+	layui.use('laydate', function(){
+	  var laydate = layui.laydate;
+	  
+	 
+	  laydate.render({
+	    elem: '#startTime',
+	    value:'2018-09-01'
+	  });
+	  
+	  laydate.render({
+	   elem: '#endTime',
+	   value:'2018-09-26'
+	  });
 	});
 	
-	laydate.render({
-	  elem: '#endTime'
-	});
+	
 
 	$(".guliao").tempGauge({width:50, borderWidth:2, showLabel:true, borderColor:"#19B6E8",maxTemp:200,fillColor:'#FAB80C'});     
 	$(".chucai").tempGauge({width:50, borderWidth:2, showLabel:true, borderColor:"#19B6E8",maxTemp:200,fillColor:'#FF7979'});
-	$(".ratio").tempGauge({width:50, borderWidth:0, showLabel:true, borderColor:"#19B6E8",maxTemp:100,fillColor:'#00CAB0'});
+
 	
 	// 地图初始化
 	var map = new BMap.Map("map"); // 创建Map实例
@@ -269,11 +246,11 @@
 
 	// 添加带有定位的导航控件
 	var navigationControl = new BMap.NavigationControl({
-			// 靠左上角位置
-			anchor: BMAP_ANCHOR_TOP_LEFT,
-			// LARGE类型
-			type: BMAP_NAVIGATION_CONTROL_LARGE,
-			// 启用显示定位
+		// 靠左上角位置
+		anchor: BMAP_ANCHOR_TOP_LEFT,
+		// LARGE类型
+		type: BMAP_NAVIGATION_CONTROL_LARGE,
+		// 启用显示定位
 	    enableGeolocation: true
 	});
 	
@@ -282,10 +259,9 @@
 	// 添加定位控件
 	var geolocationControl = new BMap.GeolocationControl();
 	geolocationControl.addEventListener("locationSuccess", function(r){
-		 	map.clearOverlays();
-		 	mapinit(r);
-			curPoint = r.point;
-			
+	 	map.clearOverlays();
+	 	mapinit(r);
+		curPoint = r.point;
 	});
 	
 	geolocationControl.addEventListener("locationError",function(e){
@@ -325,12 +301,102 @@
 		}
 	}
 	
+	// 油石比
+	var GetYSBUrl = 'http://192.168.1.123:8080/jbz/api/data/ajaxGetYSB';
+	
+	// 首页图表（折线图、柱状图）
+	
+	
+	$('.btn').click(function(){
+		indexChart();
+	})
+	
+	
+	function indexChart(){
+		var params = {
+			beginDate:$('#startTime').val(),
+			endDate:$('#endTime').val(),
+			productName:$('#productName').text()
+		}
+		
+		ajaxData(GetYSBUrl,params,function(data){
+			//console.log(data)
+			var xData = data.list.map(function(index,value){
+				return index.dateTime;
+			})
+			var yData = data.list.map(function(index,value){
+				return index.rate;
+			})
+			// 折线图
+			var lineChart = echarts.init(document.getElementById('lineChart'));
+			var option = {
+				grid: {
+					//				show:true,
+					top: 35,
+					left: 40,
+					right:0,
+					bottom:10
+					
+				},
+				tooltip: {
+			        trigger: 'axis',  
+			    },
+				xAxis: {
+					type: 'category',
+					data:xData,
+					axisLine: {
+						lineStyle: {
+							color: '#148976'
+						}
+					},
+					axisTick: {
+						lineStyle: {
+							color: '#fff'
+						}
+					},
+	
+				},
+				yAxis: {
+					name:'油石比（%）',
+					type: 'value',
+					splitLine: {
+						show: false
+					},
+					axisLine: {
+						show: true,
+						lineStyle: {
+							color: '#148976'
+						}
+					},
+					axisTick: {
+						lineStyle: {
+							color: '#fff'
+						}
+					},
+				},
+				series: [{
+					name:'油石比',
+					type: 'line',
+					data: yData,
+					itemStyle: {
+						color: '#FFAE00'
+					}
+				}]
+			};
+	
+			lineChart.setOption(option);
+		})
+		
+	}
  	// 调用数据
  	// GPS
- 	var url = "ws://192.168.1.123:8080/jbz/gps";
-	WebSocketFn(url,function(data){
-   		map.clearOverlays();
-   		if(data !=null){
+ 	var gpsUrl = "ws://192.168.1.123:8080/jbz/gps";
+	WebSocketFn(gpsUrl,function(data){
+		
+		var data = JSON.parse(data) 
+   		
+   		if(data.length > 0){
+   			map.clearOverlays();
 	   		for (var i = 0; i < data.length ; i ++) {
 				// 地图标注
 				var lng = data[i].lng;
@@ -347,27 +413,83 @@
 	});
 	
 	// 生产数据
-	var url = "ws://192.168.1.123:8080/jbz/product";
-	WebSocketFn(url,function(data){
-		console.log(data)
+	var productUrl = "ws://192.168.1.123:8080/jbz/product";
+	WebSocketFn(productUrl,function(data){
+		var data = JSON.parse(data) 
    		$('#productTotal').html(data.productTotal);
    		$('#productName').html(data.productName);
    		
+   		// 生产消耗
    		var str = ''
-   		for(var i=0;i<data.productList.length;i++){
-   			str +='<tr>'
-				+	'<td>'+data.productList[i].dateTime+'</td>'
-				+	'<td>'+data.productList[i].glsl+'</td>'
-				+	'<td>'+data.productList[i].tjjsl+'</td>'
-				+	'<td>'+data.productList[i].xfsl+'</td>'
-				+	'<td>'+data.productList[i].lqsl+'</td>'
-				+'</tr>'
+   		if(!data.rate){
+   			return;
    		}
+   		if(data.productList.length>0){
+	   		for(var i=0;i<data.productList.length;i++){
+	   			str +='<tr>'
+					+	'<td>'+data.productList[i].dateTime+'</td>'
+					+	'<td>'+data.productList[i].glsl+'</td>'
+					+	'<td>'+data.productList[i].tjjsl+'</td>'
+					+	'<td>'+data.productList[i].xfsl+'</td>'
+					+	'<td>'+data.productList[i].lqsl+'</td>'
+					+'</tr>'
+	   		}
+   		}
+   		$('#productList').append(str);
    		
-   		$('#productList').append(str)
+   		$('#ratio').html(data.rate+'%');
+		$(".ratio").tempGauge({width:50, borderWidth:0, showLabel:true, borderColor:"#19B6E8",maxTemp:100,fillColor:'#00CAB0'});
+   		
+   		indexChart();
 	});
 		
 		
+	
+	
+	
+		
+	// websocket函数
+	function WebSocketFn(url,callback){
+        if ("WebSocket" in window){
+          // console.log("您的浏览器支持 WebSocket!");
+           // 打开一个 web socket
+           var ws = new WebSocket(url);
+            
+           ws.onopen = function(){
+              // Web Socket 已连接上，使用 send() 方法发送数据
+              //ws.send("发送数据");
+              //alert("数据发送中...");
+           };
+            
+           ws.onmessage = function (evt) { 
+              var received_msg = evt.data;
+              //console.log(received_msg);
+              callback(received_msg);
+              //alert("数据已接收...");
+           };
+            
+           ws.onclose = function(){ 
+              // 关闭 websocket
+              console.log("连接已关闭..."); 
+           };
+        }else{
+           // 浏览器不支持 WebSocket
+           alert("您的浏览器不支持 WebSocket!");
+        }
+    }
+	
+	// ajax数据请求
+	function ajaxData(url,params,callback){
+		$.ajax({
+			type:"get",
+			url:url,
+			data:params,
+			success:function(res){
+				//console.log(res);
+				callback(res)
+			}
+		});
+	}
 		
 	// 添加标注函数
 	function addMarker(point,icon,label){
@@ -391,38 +513,7 @@
 	 	marker.setLabel(label)
 	}
 	
-	
-		
-	// websocket函数
-	function WebSocketFn(url,callback){
-        if ("WebSocket" in window){
-          // console.log("您的浏览器支持 WebSocket!");
-           // 打开一个 web socket
-           var ws = new WebSocket(url);
-            
-           ws.onopen = function(){
-              // Web Socket 已连接上，使用 send() 方法发送数据
-              //ws.send("发送数据");
-              //alert("数据发送中...");
-           };
-            
-           ws.onmessage = function (evt) { 
-              var received_msg = evt.data;
-              callback(JSON.parse(received_msg));
-              //alert("数据已接收...");
-           };
-            
-           ws.onclose = function(){ 
-              // 关闭 websocket
-              console.log("连接已关闭..."); 
-           };
-        }else{
-           // 浏览器不支持 WebSocket
-           alert("您的浏览器不支持 WebSocket!");
-        }
-    }
-	
-	
+
 </script>
 </body>
 </html>

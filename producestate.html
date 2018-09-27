@@ -80,16 +80,22 @@
 	<script src="static/js/jquery-1.11.0.min.js" type="text/javascript" charset="utf-8"></script>
 	<script src="static/js/common.js"></script>
 	<script src="static/js/echarts.min.js" type="text/javascript" charset="utf-8"></script>
-	<script src="static/laydate/laydate.js" type="text/javascript" charset="utf-8"></script>
 	<script src="static/layui/layui.all.js" type="text/javascript" charset="utf-8"></script>
 	<script type="text/javascript">
 		// 时间选择
-		laydate.render({
-		  elem: '#startTime'
-		});
-		
-		laydate.render({
-		  elem: '#endTime'
+		layui.use('laydate', function(){
+		  var laydate = layui.laydate;
+		  
+		 
+		  laydate.render({
+		    elem: '#startTime',
+		    value:'2018-09-01'
+		  });
+		  
+		  laydate.render({
+		   elem: '#endTime',
+		   value:'2018-09-26'
+		  });
 		});
 
 		layui.use('table', function(){
@@ -109,13 +115,21 @@
 		      ,{field:'six',  title: '新粉1'}
  			  ,{field:'seven',  title: '新粉2'}
  			  ,{field:'eight',  title: '沥青'}
+ 			  ,{field:'eight',  title: '沥温'}
+ 			  ,{field:'eight',  title: '集温'}
+ 			  ,{field:'eight',  title: '出温'}
 		    ]]
 		    ,page: true
 		    ,limit:10
 		    ,request: {
 			    pageName: 'page' //页码的参数名称，默认：page
 			    ,limitName: 'pageSize' //每页数据量的参数名，默认：limit
+			   
 			}
+		    ,where:{
+		    	 beginDate:'2018-09-01'
+			    ,endDate:'2018-09-26'
+		    }
 		    , response: {
 	            statusName: 'errno' //数据状态的字段名称，默认：code
 	            , statusCode: 0 //成功的状态码，默认：0
