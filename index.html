@@ -215,6 +215,9 @@
 <script src="static/js/video.js" type="text/javascript" charset="utf-8"></script>
 
 <script type="text/javascript">
+	LoginDevice()
+	
+	
 	// 时间选择
 	layui.use('laydate', function(){
 	  var laydate = layui.laydate;
@@ -424,7 +427,9 @@
    		if(!data.rate){
    			return;
    		}
+   		
    		if(data.productList.length>0){
+   			
 	   		for(var i=0;i<data.productList.length;i++){
 	   			str +='<tr>'
 					+	'<td>'+data.productList[i].dateTime+'</td>'
@@ -434,8 +439,17 @@
 					+	'<td>'+data.productList[i].lqsl+'</td>'
 					+'</tr>'
 	   		}
+	   		
+	   		if(data.productList.length == 5){
+   				$('#productList').html(str);
+   			}else{
+   				$('#productList').prepend(str);
+   				var n = $('#productList  tr').length-1;
+   				$('#productList tr').eq(n).remove();
+   			}
    		}
-   		$('#productList').append(str);
+   		
+   		
    		
    		$('#ratio').html(data.rate+'%');
 		$(".ratio").tempGauge({width:50, borderWidth:0, showLabel:true, borderColor:"#19B6E8",maxTemp:100,fillColor:'#00CAB0'});
