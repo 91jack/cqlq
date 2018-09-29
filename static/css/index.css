@@ -1,4 +1,3 @@
-
 /*
  * index.html
  * */
@@ -23,107 +22,62 @@ body {
 	float:left;
 }
 .section1-top {
-	width:24.6rem;
+	width:23.6rem;
 	height:15.65rem;
-	margin-top: 1.8rem;
+	margin-top: 1.25rem;
+	margin-left: 1.85rem;
 }
-.section1-top-item1 {
-	width:24.6rem;
-	height:7.45rem;
+.section1-top-item {
+	width:23.6rem;
+	height:5.85rem;
 	background: url(../images/produce_bg.png) no-repeat;
-	position: relative;
-}
-.section1-top-item2 {
-	width:24.6rem;
-	height:8.45rem;
-	background: url(../images/fahuo_bg.png) no-repeat;
-	position: relative;
-	/*margin-top:1.65rem;*/
-}
-
-.section1-top-item .intro {
-	width:5.3rem;
-	height:5.3rem;
-	background: url(../images/icon_num.png) no-repeat;
 	background-size:100%;
-	
-	position: absolute;
-	left:1.8rem;
-	top:1.3rem;
-	
-    /*-webkit-animation: spin 2s linear infinite;
-    animation: spin 2s linear infinite;*/
+	position: relative;
+	clear: both;
+	margin-bottom: 0.25rem;
 }
-
-.section1-top-item1 .intro {
-	top:0.9rem;
-}
- @-webkit-keyframes spin {
-    0%   {
-        -webkit-transform: rotate(0deg);
-        -ms-transform: rotate(0deg);
-        transform: rotate(0deg);
-          transform-origin:center center;
-    }
-    100% {
-        -webkit-transform: rotate(360deg);
-        -ms-transform: rotate(360deg);
-        transform: rotate(360deg);
-        transform-origin:center center;
-    }
-}
-@keyframes spin {
-    0%   {
-        -webkit-transform: rotate(0deg);
-        -ms-transform: rotate(0deg);
-        transform: rotate(0deg);
-          transform-origin:center center;
-    }
-    100% {
-        -webkit-transform: rotate(360deg);
-        -ms-transform: rotate(360deg);
-        transform: rotate(360deg);
-          transform-origin:center center;
-    }
-}
-
 .intro-text {
-	width:5.3rem;
-	height:5.3rem;
-	text-align: center;
-	
-	color:#FFA611;
-	position: absolute;
-	left:1.75rem;
-	top:-0.275rem;
-}
-.section1-top-item1 .intro-text,
-.section1-top-item1 .produce-num {
-	line-height: 7.45rem;
-}
-.section1-top-item2 .intro-text,
-.section1-top-item2 .produce-num {
-	line-height: 8.45rem;
-}
-
-.produce-num {
-	padding-left: 3.6rem;
-	text-align: center;
-	line-height: 5.3rem;
+	width:9.75rem;
+	height:5.4rem;
+	text-align:center;
+	line-height: 5.65rem;
+	padding-top: 0.3rem;
 	color:#19B6E8;
-	font-size: 0.9rem
+	float:left;
+	font-size: 1rem;
+}
+.intro-text em {
+	display: inline-block;
+	width:0.5rem;
+	height:0.5rem;
+	border-radius: 50%;
+	background: #FFA611;
+	margin-right: 0.5rem;
+	margin-top: -0.5rem;
+}
+.produce-num {
+	width:13.5rem;
+	height:5.4rem;
+	padding-top: 0.3rem;
+	text-align:center;
+	line-height: 5.65rem;
+	color:#FFA611;
+	font-size: 0.9rem;
+	float:right;
 }
 
 .produce-num span {
 	font-size: 1.65rem;
+	margin-right: 0.3rem;
 }
 
 .section1-bottom {
 	width:23.65rem;
 	height:27.25rem;
 	background: url(../images/section1__bottom_bg.png) no-repeat;
+	background-size:100%;
 	position: relative;
-	margin-top: 2.6rem;
+	margin-top: 3.3rem;
 	margin-left: 1.85rem;
 	
 }
@@ -132,12 +86,10 @@ body {
 	width:3.75rem;
 	height:3.45rem;
 	background: url(../images/icon_animation.png) no-repeat;
+	background-size:100%;
 	position: absolute;
-	top:-1.75rem;
+	top:-1rem;
 	left:-1.85rem;
-	 /*-webkit-animation: spin 2s linear infinite;
-    animation: spin 2s linear infinite;*/
-	
 }
 .section1-bottom h2 {
 	font-size: 1rem;
@@ -176,6 +128,7 @@ body {
 	width:41.75rem;
 	height:32.35rem;
 	background: url(../images/map_bg.png) no-repeat;
+	background-size:100%;
 }
 .section2-top #map {
 	width:39.95rem;
@@ -185,42 +138,25 @@ body {
 .section2-top h2 {
 	font-size: 1rem;
 	color: #00CAB0;
-	text-align: center;
+	text-align:center;
 	line-height: 2.5rem;
 }
 .section2-bottom {
 	width:41.7rem;
 	height:14.05rem;
-	/*background: url(../images/section2_bottom_bg.png) no-repeat;*/
 	margin-top: 0.85rem;
 }
 .section2-bottom-item {
 	width:20.65rem;
 	height:14.1rem;
 	background: url(../images/section2_bottom_item.png) no-repeat;
+	background-size:100%;
 }
 
 
 .chuhuo-list {
 	padding: 0 1rem;
 }
-/*.chuhuo-list-item {
-	clear:both;
-}
-.chuhuo-list-item p {
-	float:left;
-	margin-right: .5rem;
-	line-height: 2rem;
-	font-size: 0.7rem;
-}*/
-/*.chuhuo-list-item p span:first-child {
-	color: #1D9DC5;
-}
-
-.chuhuo-list-item p span:last-child {
-	color: #19B6E8;
-	font-weight: bold;
-}*/
 
 .chuhuo-list table {
 	width:100%;
@@ -235,12 +171,6 @@ body {
 	height:1.5rem;
 }
 
-.scection3 {
-	
-}
-
-
-
 .section2-bottom h2,
 .section3 h2 {
 	font-size: 1rem;
@@ -252,6 +182,7 @@ body {
 	width:23.65rem;
 	height:4rem;
 	background:url(../images/section3_top1_bg.png) no-repeat ;
+	background-size:100%;
 	margin-top: 1.8rem;
 	margin-bottom: 0.5rem;
 }
@@ -268,6 +199,7 @@ body {
 	width:23.65rem;
 	height:11.5rem;
 	background: url(../images/section3_top_bg.png) no-repeat;
+	background-size:100%;
 }
 .section3-top-content {
 	
@@ -289,6 +221,7 @@ body {
 	height:29rem;
 	margin-top: 0.4rem;
 	background: url(../images/section3_bottom_bg.png) no-repeat;
+	background-size:100%;
 	position: relative;
 }
 .section3-bottom:before {
@@ -296,28 +229,20 @@ body {
 	width:3.75rem;
 	height:3.45rem;
 	background: url(../images/icon_animation.png) no-repeat;
+	background-size:100%;
 	position: absolute;
 	top:-0.5rem;
 	right:-0.5rem;
-	 /*-webkit-animation: spin 2s linear infinite;
-    animation: spin 2s linear infinite;*/
 }
 .section3-bottom:after {
 	content: '';
 	width:3.75rem;
 	height:3.45rem;
 	background: url(../images/icon_animation.png) no-repeat;
+	background-size:100%;
 	position: absolute;
 	bottom:-0.4rem;
 	right:-0.5rem;
-	 /*-webkit-animation: spin 2s linear infinite;
-    animation: spin 2s linear infinite;*/
-  
-}
-#temperatureChart {
-	width:23rem;
-	height:12rem;
-	background: transparent;
 }
 
 .section3-chart1 {
@@ -333,7 +258,6 @@ body {
 	width:23.8rem;
 	margin-left:1rem;
 	height:1.15rem;
-	
 	color: #36BDE8;
 }
 .start-time,
@@ -349,14 +273,14 @@ body {
 .start-time span,
 .end-time span {
 	display: inline-block;
-	width:3.15rem;
+	width:2.4rem;
 	text-align: center;
 	float:left;
 	border-right:1px solid #BFBFBF;
 }
 #startTime,
 #endTime {
-	width:4.25rem;
+	width:5rem;
 	height:1.15rem;
 	text-align: center;
 	line-height: 1.15rem;
@@ -384,11 +308,43 @@ body {
 #lineChart {
 	display: block;
 	width:20rem;
-	height:12rem;
+	height:10rem;
 	margin-left: 2rem;
 }
 #barChart {
-	width:22rem;
-	height:12rem;
+	display: block;
+	width:20rem;
+	height:10rem;
 	margin-left: 2rem;
+}
+
+
+
+ @-webkit-keyframes spin {
+    0%   {
+        -webkit-transform: rotate(0deg);
+        -ms-transform: rotate(0deg);
+        transform: rotate(0deg);
+          transform-origin:center center;
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+        -ms-transform: rotate(360deg);
+        transform: rotate(360deg);
+        transform-origin:center center;
+    }
+}
+@keyframes spin {
+    0%   {
+        -webkit-transform: rotate(0deg);
+        -ms-transform: rotate(0deg);
+        transform: rotate(0deg);
+          transform-origin:center center;
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+        -ms-transform: rotate(360deg);
+        transform: rotate(360deg);
+          transform-origin:center center;
+    }
 }
