@@ -54,7 +54,7 @@ ul,ol,li{
 	left:22rem;
 }
 .header .nav>a img {
-	width:1.2rem
+	width:1.2rem;
 	height:1.2rem;
 	margin-top: 1.9rem;
 }
@@ -79,10 +79,10 @@ ul,ol,li{
 	height:12.5rem;
 	position: absolute;
 	top:5.1rem;
-	left:0rem;
+	left:57.4rem;
 	background: #202B3D;
 	z-index: 999;
-	/*display: none;*/
+	display: none;
 }
 .subnav>li>a {
 	color:#00CAB0;
@@ -222,8 +222,8 @@ ul,ol,li{
  * jiankong.html
  * */
 .jiankong-top {
-	width:76.3rem;
-	height: 6.35rem;
+	/*width:76.3rem;*/
+	height: 6rem;
 	margin: 2.85rem auto;
 }
 .jiankong-top-item {
