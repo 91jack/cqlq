@@ -30,7 +30,6 @@ ul,ol,li{
 	color: #2AB7F6;
 }
 
-
 .clearfix:after {
    content:""; 
    display: block; 
@@ -50,27 +49,27 @@ ul,ol,li{
 	font-weight:bold;
 }
 .header .nav {
-	width:41rem;
 	position: absolute;
-	left:50%;
 	top:0;
-	margin-left: -21.5rem;
+	left:22rem;
 }
-.header .nav a img {
+.header .nav>a img {
 	width:1.2rem
 	height:1.2rem;
-/*	margin-top: 2rem;*/
+	margin-top: 1.9rem;
 }
-.header .nav a {
+.header .nav>a {
 	display: block;
 	width:8.2rem;
+	height: 5.1rem;
 	line-height:  5.1rem;
 	font-size:1.2rem;
-	text-align: center;
+	text-align:center;
 	float: left;
 	color:#00CAB0;
+	position: relative;
 }
-.header .nav a.active {
+.header .nav>a.active {
 	background:#00CAB0;
 	color:#fff;
 }
@@ -78,21 +77,24 @@ ul,ol,li{
 .subnav {
 	width:8.25rem;
 	height:12.5rem;
-	background: #202B3D;
-	position: absolute!important;
+	position: absolute;
 	top:5.1rem;
-	left:32.8rem;
+	left:0rem;
+	background: #202B3D;
 	z-index: 999;
-	display: none;
+	/*display: none;*/
 }
-.subnav li a {
+.subnav>li>a {
+	color:#00CAB0;
+	text-align: center;
 	clear: both;
 	display: block;
 	height:2.5rem!important;
 	line-height: 2.5rem!important;
 	font-size: 0.8rem!important;
+	border-bottom: 0.05rem solid #fff;
 }
-.subnav li a:hover {
+.subnav>li>a:hover {
 	background:#00CAB0;
 	color:#fff;
 }

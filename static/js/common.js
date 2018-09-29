@@ -27,13 +27,13 @@ $('.header .nav>a').hover(function() {
 })
 
 // 二级导航
-$('#tongji').hover(function(){
-	$('.subnav').slideDown(200);
-},function(){
-	setTimeout(function(){
-		$('.subnav').slideUp(200);
-	},3000)
-})
+//$('#tongji').hover(function(){
+//	$('.subnav').slideDown(200);
+//},function(){
+//	setTimeout(function(){
+//		$('.subnav').slideUp(200);
+//	},3000)
+//})
 
 // 顶部导航显示隐藏	
 var on = true;

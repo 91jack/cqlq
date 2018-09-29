@@ -30,17 +30,33 @@
 					<img src="static/images/icon_car1.png" />
 					<span>车辆调度</span>
 				</a>
-				<a href="javascript:;" id="tongji">
+				
+				<a href="weigh.html">
+					<img src="static/images/icon_kucun1.png" alt="" />
+					<span>库存盘点</span>
+				</a>
+				<a href="jiankong.html">
+					<img src="static/images/icon_zhiliang1.png" alt="" />
+					<span>质量管控</span>
+				</a>
+				<a href="carmanage.html">
+					<img src="static/images/icon_shiyan1.png" />
+					<span>实验管理</span>
+				</a>
+				
+				<a href="javascript:(void);" id="tongji">
 					<img src="static/images/icon_tongji1.png" />
 					<span>统计分析</span>
-				</a>
-				<ul class="subnav">
+					
+					<ul class="subnav">
 						<li><a href="producestate.html">生产动态表</a></li>
 						<li><a href="producenum.html">生产量分析</a></li>
 						<li><a href="">核算量分析</a></li>
 						<li><a href="">消耗量分析</a></li>
 						<li><a href="">温度波动分析</a></li>
 					</ul>
+				</a>
+				
 			</div>
 		</div>
 
@@ -52,15 +68,17 @@
 		<div class="main">
 			<div class="section1 fl">
 				<div class="section1-top">
-					<div class="section1-top-item section1-top-item1">
-						<div class="intro"></div>
-						<div class="intro-text">生产量</div>
-						<div class="produce-num"><span id="productTotal">150000</span>吨</div>
+					<div class="section1-top-item">
+						<div class="intro-text"><em></em>累计生产总量</div>
+						<div class="produce-num"><span id="productTotal">150000</span>万吨</div>
 					</div>
-					<div class="section1-top-item section1-top-item2">
-						<div class="intro"></div>
-						<div class="intro-text">发货量</div>
-						<div class="produce-num"><span>130000</span>吨</div>
+					<div class="section1-top-item">
+						<div class="intro-text"><em></em>当日生产总量</div>
+						<div class="produce-num"><span>130000</span>万吨</div>
+					</div>
+					<div class="section1-top-item">
+						<div class="intro-text"><em></em>当日发货总量</div>
+						<div class="produce-num"><span>130000</span>万吨</div>
 					</div>
 				</div>
 				<div class="section1-bottom">
@@ -169,7 +187,7 @@
 						</div>
 						<div class="section3-top-item">
 							<div class="chucai">100°C</div>
-							<p>出材温度</p>
+							<p>出料温度</p>
 						</div>
 						<div class="section3-top-item">
 							<div class="ratio" id="ratio"></div>
@@ -182,11 +200,11 @@
 						<h2>油石比</h2>
 						<div class="time-wrap">
 							<div class="start-time">
-								<span>开始时间</span>
+								<span>开始</span>
 								<input type="text" id="startTime">
 							</div>
 							<div class="end-time">
-								<span>结束时间</span>
+								<span>结束</span>
 								<input type="text" id="endTime">
 							</div>
 							<a href="javascript:;" class="btn">确定</a>
@@ -209,14 +227,23 @@
 <script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=wqB7npvF7DsDGlFG2oYhih93K5iEqsou"></script>
 <script src="static/js/echarts.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="static/js/index.js" type="text/javascript" charset="utf-8"></script>
-<!--<script src="static/laydate/laydate.js" type="text/javascript" charset="utf-8"></script>-->
 <script src="static/layui/layui.all.js" type="text/javascript" charset="utf-8"></script>
 <script src="static/js/jquery.tempgauge.js" type="text/javascript" charset="utf-8"></script>
 <script src="static/js/video.js" type="text/javascript" charset="utf-8"></script>
-
 <script type="text/javascript">
+<<<<<<< HEAD
+	//LoginDevice()
+=======
+	// 监控视频
 	//LoginDevice()
 	
+>>>>>>> b9fba30699347a7bbfa4da00951e01e46ed77f61
+	
+	var time = new Date();
+	var y = time.getFullYear();
+	var m = time.getMonth()+1;
+	var d = time.getDate();
+	var curDate = y + '-' + m +'-'+ d;
 	
 	// 时间选择
 	layui.use('laydate', function(){
@@ -225,19 +252,19 @@
 	 
 	  laydate.render({
 	    elem: '#startTime',
-	    value:'2018-09-01'
+	    value:curDate
 	  });
 	  
 	  laydate.render({
 	   elem: '#endTime',
-	   value:'2018-09-26'
+	   value:curDate
 	  });
 	});
 	
 	
 
-	$(".guliao").tempGauge({width:50, borderWidth:2, showLabel:true, borderColor:"#19B6E8",maxTemp:200,fillColor:'#FAB80C'});     
-	$(".chucai").tempGauge({width:50, borderWidth:2, showLabel:true, borderColor:"#19B6E8",maxTemp:200,fillColor:'#FF7979'});
+	$(".guliao").tempGauge({width:35, borderWidth:2, showLabel:true, borderColor:"#19B6E8",maxTemp:200,fillColor:'#FAB80C'});     
+	$(".chucai").tempGauge({width:35, borderWidth:2, showLabel:true, borderColor:"#19B6E8",maxTemp:200,fillColor:'#FF7979'});
 
 	
 	// 地图初始化
@@ -308,8 +335,6 @@
 	var GetYSBUrl = 'http://192.168.1.123:8080/jbz/api/data/ajaxGetYSB';
 	
 	// 首页图表（折线图、柱状图）
-	
-	
 	$('.btn').click(function(){
 		indexChart();
 	})
@@ -334,12 +359,10 @@
 			var lineChart = echarts.init(document.getElementById('lineChart'));
 			var option = {
 				grid: {
-					//				show:true,
 					top: 35,
 					left: 40,
 					right:0,
 					bottom:10
-					
 				},
 				tooltip: {
 			        trigger: 'axis',  
@@ -452,16 +475,12 @@
    		
    		
    		$('#ratio').html(data.rate+'%');
-		$(".ratio").tempGauge({width:50, borderWidth:0, showLabel:true, borderColor:"#19B6E8",maxTemp:100,fillColor:'#00CAB0'});
+		$(".ratio").tempGauge({width:35, borderWidth:0, showLabel:true, borderColor:"#19B6E8",maxTemp:100,fillColor:'#00CAB0'});
    		
    		indexChart();
 	});
 		
-		
-	
-	
-	
-		
+
 	// websocket函数
 	function WebSocketFn(url,callback){
         if ("WebSocket" in window){
@@ -499,7 +518,6 @@
 			url:url,
 			data:params,
 			success:function(res){
-				//console.log(res);
 				callback(res)
 			}
 		});
