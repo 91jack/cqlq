@@ -125,6 +125,26 @@ ul,ol,li{
 	margin: 1rem auto;
 }
 
+.car-dialog {
+	width:10rem;
+	padding: 1rem;
+	border-radius: 1rem;
+	background: rgba(0,0,0,0.5);
+}
+.car-dialog p {
+	height:2rem;
+	line-height: 2rem;
+	color: #fff;
+	font-size: 1rem;
+}
+
+
+
+
+
+
+
+
 /*
  * weigh.html
  */
@@ -422,44 +442,116 @@ ul,ol,li{
 }
 
 
-
-/*table {
-	width:100%;
-	height:34rem;
-	text-align: center;
-	border:0.05rem solid #00CAB0;
-}*/
-/*.producestate-table  table{
-	width:100%;
-	height:34rem;
-	text-align: center;
-	border:0.05rem solid #00CAB0;
-}
-.producestate-table table thead tr{
-	height:2.7rem;
-}*/
-
-/*
- * producenum.html 生产量分析
- * 
- */
- /*.col-2 {
- 	width:50%;
- 	height:34rem;
- 	
- }
-.col-2  table{
-	width:100%;
-	height:34rem;
-	text-align:center;
-	border:0.05rem solid #00CAB0;
-}
-.col-2 table thead tr{
-	height:2.7rem;
-}*/
-
 .col-2 #barChart{
 	width:40rem;
 	height:34rem;
 	margin-left: 5rem;
+}
+
+/*库存盘点*/
+.page-kucun .kucun {
+	height:12rem;
+	border:0.05rem solid #00CAB0;
+	border-radius: 0.5rem;
+	overflow: hidden;
+}
+.page-kucun .kucun .title {
+	height:2.05rem;
+	line-height: 2.05rem;
+	text-align:center;
+	color: #FF5857;
+	font-size: 0.8rem;
+	background:#F7F7F7;
+}
+
+.page-kucun .kanban {
+	width:72.4rem;
+	height:16.8rem;
+}
+.page-kucun .kanban-head {
+	height:2.8rem;
+}
+.page-kucun .kanban-name {
+	width:7.55rem;
+	height: 2rem;
+	line-height: 2rem;
+	background: #00CAB0;
+	color: #fff;
+	text-align: center;
+	border-radius: 0.3rem;
+	margin-right: 0.5rem;
+	margin-top:0.4rem;
+}
+.page-kucun .filter {
+	height:1.6rem;
+	margin-top: 0.6rem;
+}
+.page-kucun .filter span {
+	display: inline-block;
+	border:0.05rem solid #00CAB0;
+	border-radius: 0.2rem;
+	padding: 0.25rem 0.5rem;
+	margin-right: 0.5rem;
+}
+
+.time-filter {
+	margin-top: 0.6rem;
+}
+.time-filter .time {
+	float:left;
+	height:1.6rem;
+	border:0.05rem solid #19B6E8;
+	border-radius: 0.85rem;
+	margin-right: 1rem;
+}
+.time-filter .time input {
+	border:none;
+	height:1.6rem;
+	border-radius: 0.85rem;
+	text-indent: 1rem;
+	background: #E5E5E5;
+	color: #19B6E8;
+}
+.confirm-btn {
+	display: inline-block;
+	width:3.25rem;
+	height:1.6rem;
+	line-height: 1.6rem;
+	text-align: center;
+	color: #fff;
+	
+	background:rgba(25,182,232,1);
+	border-radius:0.3rem;
+	box-shadow:0px 0px 8px 1px rgba(25,182,232,0.39);
+}
+
+
+
+
+.page-kucun .video {
+	width:16rem;
+	height:16rem;
+	border:0.05rem solid #00CAB0;
+	border-radius:0.5rem;
+	overflow: hidden;
+	margin-bottom: 1rem;
+}
+.page-kucun .video h2 {
+	width:16rem;
+	height:2.8rem;
+	line-height: 2.8rem;
+	background: #202B3D;
+	color: #00CAB0;
+	font-size: 0.8rem;
+	text-align: center;
+}
+.page-kucun .video .video-box {
+	width:15rem;
+	height:12rem;
+	overflow: hidden;
+	margin: 0.55rem auto;
+}
+.page-kucun .video img {
+	width:100%;
+	height:100%;
 }
