@@ -1,5 +1,5 @@
 // sockt host
-var socktHost = 'ws://192.168.1.123:8080/jbz/';
+var socktHost = 'ws://113.207.26.29:8080/jbz/';
 
 // GPS
 var gpsUrl = socktHost + 'gps';
@@ -8,13 +8,32 @@ var gpsUrl = socktHost + 'gps';
 var productUrl = socktHost + 'product';
 
 // host 
-var host= 'http://192.168.1.123:8080/jbz';
+var host= 'http://113.207.26.29:8080/jbz';
 
 
-// 油石比
-var GetYSBUrl = host + '/api/data/ajaxGetYSB';
+// 获取车辆列表
+var carList = host + '/api/location/ajaxGet';
 
+// 车辆历史轨迹
+var carTrail = host + '/api/location/history/ajaxGet';
 
+/*统计分析*/
+// 生产动态表
+var produceStsteUrl = host + '/api/data/ajaxList';
+
+// 生产量分析
+var produceNumUrl = host + '/api/data/ajaxSCL';
+
+// 核算量分析
+
+// 消耗量统计
+var xhlUrl = host + '/api/data/ajaxXHL';
+
+// 温度波动
+var tempUrl = host + '/api/temperature/out/ajaxList';
+
+// 油石比波动分析
+var ysbUrl = host + '/api/data/ajaxGetYSB';
 
 // ajax数据请求
 function ajaxData(url,params,callback){
@@ -57,3 +76,31 @@ function WebSocketFn(url,callback){
        alert("您的浏览器不支持 WebSocket!");
     }
 }
+
+// 获取本地时间
+function timeFn() {
+	var nowdate = new Date();
+	var y = nowdate.getFullYear();
+	var m = nowdate.getMonth() + 1;
+	var d = nowdate.getDate();
+	var h = nowdate.getHours();
+	var minutes = nowdate.getMinutes();
+	var s = nowdate.getSeconds();
+	m = m < 10 ? '0' + m : m;
+	d = d < 10 ? '0' + d : d;
+	h = h < 10 ? '0' + h : h;
+	minutes = minutes < 10 ? '0' + minutes : minutes;
+	s = s < 10 ? '0' + s : s;
+
+	return {
+		y:y,
+		m:m,
+		d:d,
+		h:h,
+		min:minutes,
+		s:s
+	}
+	
+}
+
+timeFn();

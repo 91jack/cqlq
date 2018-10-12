@@ -61,7 +61,7 @@
 	<div class="container">
 		<div class="top-select">
 			<div class="cell title">
-				<a>生产量分析</a>
+				<a>油石比波动分析</a>
 				<a href="javascript:;">立即下载</a>
 			</div>
 			<div class="cite cell">
@@ -115,7 +115,7 @@
 		  var laydate = layui.laydate;
 		  laydate.render({
 		    elem: '#startTime',
-		    value:startTime
+		    value: startTime
 		  });
 		  
 		  laydate.render({
@@ -125,20 +125,21 @@
 		});
 		
 		var params = {
-	    	beginDate:$('#startTime').val() ,
-		   	endDate:$('#endTime').val()
-	    }
+		    	beginDate:$('#startTime').val() ,
+			   	endDate:$('#endTime').val(),
+			   	productName:'SMA13'
+		    }
 		tableFn(params)
-		
-		
-		
+		//chartFn()
 		
 		$('.time-btn').click(function(){
 			params = {
-			    	beginDate:$('#startTime').val() ,
-				   	endDate:$('#endTime').val()
-			    }
-			tableFn(params)
+		    	beginDate:$('#startTime').val() ,
+			   	endDate:$('#endTime').val(),
+			   	productName:'SMA13'
+		    }
+			tableFn(params);
+			//chartFn()
 		})
 		
 		function tableFn(params){
@@ -146,18 +147,18 @@
 			  var table = layui.table;
 			  table.render({
 			    elem: '#test'
-			    ,url:produceNumUrl
+			    ,url:ysbUrl
 			    ,cellMinWidth: 80 //全局定义常规单元格的最小宽度
 			    ,cols: [[ 
-			      {field:'date', title: '生产时间'}
-			      ,{field:'PB', title: '生产类型'}
-			      ,{field:'total', title: '总量'}
+			      {field:'dateTime', title: '时间'}
+			      ,{field:'rate', title: '油石比'}
 			    ]]
 			    ,page: true
 			    ,limit:10
 			    ,request: {
 				    pageName: 'page' //页码的参数名称，默认：page
 				    ,limitName: 'pageSize' //每页数据量的参数名，默认：limit
+				   
 				}
 			    ,where:params
 			    , response: {
@@ -172,7 +173,81 @@
 			  });
 			});
 		}
+	
+	//柱状图
+	function chartFn(){
+		ajaxData(ysbUrl,params,function(res){
+			var xData = res.list.map(function(index,value){
+					return index.dateTime;
+			})
+			var yData = res.list.map(function(index,value){
+					return index.rate;
+			})
+			
+			var barChart = echarts.init(document.getElementById('barChart'));
+			var option = {
+				title:{
+					text:'油石比曲线分析',
+					 x: 'center',
+				},
+				grid: {
+					top: 30,
+					left: 40,
+					right:0,
+					bottom:'10%'
+				},
+				tooltip: {
+			        trigger: 'axis',  
+			    },
+				xAxis: {
+					type: 'category',
+					data: xData,
+					axisTick: {
+						lineStyle: {
+							color: '#fff'
+						}
+					},
+					axisLine: {
+						show: true,
+						lineStyle: {
+							color: '#148976'
+						}
+					},
+				},
+				yAxis: {
+					name:'油石比（%）',
+					type: 'value',
+					splitLine: {
+						show: false
+					},
+					axisLine: {
+						show: true,
+						lineStyle: {
+							color: '#148976'
+						}
+					},
+					axisTick: {
+						lineStyle: {
+							color: '#fff'
+						}
+					},
+				},
+				series: [
+					{
+						name:'油石比',
+						data:yData,
+						type: 'line',
+						itemStyle: {
+							color: '#19B6E8'
+						}
+					},
+					
+				]
+			};
 		
+			barChart.setOption(option);
+		})
+	}
 	
 		
 	</script>

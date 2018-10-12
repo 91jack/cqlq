@@ -76,7 +76,7 @@ ul,ol,li{
 
 .subnav {
 	width:8.25rem;
-	height:12.5rem;
+	height:15rem;
 	position: absolute;
 	top:5.1rem;
 	left:57.4rem;
@@ -242,43 +242,138 @@ ul,ol,li{
  * jiankong.html
  * */
 .jiankong-top {
-	/*width:76.3rem;*/
 	height: 6rem;
 	margin: 2.85rem auto;
 }
 .jiankong-top-item {
-	width:23.6rem;
-	height: 6.35rem;
-	line-height: 6.35rem;
+	height: 6rem;
+	line-height: 6rem;
 	font-size: 0.9rem;
 	color: #202B3D;
 	background:#EEEEEE;
 	float:left;
 	margin-right: 2.7rem;
 }
-.jiankong-top-item span {
-	font-size: 1rem;
+.jiankong-top-item img {
+	width:6rem;
+	height:6rem;
+	float:left;
 }
-.jiankong-top-item span em {
-	font-size: 2rem;
+.jiankong-top-item p {
+	float:left;
+	height:4rem;
+	padding: 1rem 0;
+	text-align: center;
 }
-.jiankong-top-item:last-child {
+.jiankong-top-item p span {
+	display: block;
+	height:2rem;
+	line-height: 3rem;
+	font-size: 1.8rem;
+}
+.jiankong-top-item p em {
+	display: block;
+	height:1rem;
+	line-height: 3rem;
+	font-size: 0.9rem;
+}
+.jiankong-top .type {
+	width:20.15rem;	
+}
+.jiankong-top .temp {
+	width:32.9rem;
+}
+.jiankong-top .num {
+	width:32.9rem;
 	margin-right: 0;
 }
-.jiankong-top-item img {
-	width:4.7rem;
-	height:4.7rem;
-	margin-top: 0.85rem;
-	margin-left: 3.55rem;
-	margin-right:1.3rem;
+.jiankong-top .type p {
+	width:14.15rem;
+	text-align: center;
 }
+.jiankong-top .type-inner span{
+	color:#FFB400;
+}
+.jiankong-top .temp-inner {
+	width:26.9rem;
+	height:4rem;
+	float:left;
+} 
+.jiankong-top .temp-inner span {
+	color: #2AB7F6;
+}
+.jiankong-top .temp-inner p {
+	display: inline-block;
+	width:33.3%;
+}
+.jiankong-top .num-inner {
+	width:26.9rem;
+	float:left;
+}
+.jiankong-top .num-inner {
+	color:#FF8686 ;
+}
+.jiankong-top .num-inner p {
+	display: inline-block;
+	width:50%;
+}
+
+
 .jiankong-main {
 	height:32.3rem;
 	margin-bottom: 3rem;
 }
+.jiankong-main .section {
+	width:60rem;
+}
+.jiankong-main .section1 {
+	width:60rem;
+}
+.jiankong-main .section1 .peibi {
+	width:49.4rem;
+	height:7.2rem;
+	border:0.05rem solid #00CAB0;
+	border-radius: 0.2rem;
+	overflow: hidden;
+}
+.jiankong-main .section1 .peibi .head {
+	height:2.5rem;
+	line-height: 2.5rem;
+	background: #fff;
+	color: #FF5857;
+	text-align: center;
+	font-size: 0.8rem;
+}
+.jiankong-main .section1 .ysb {
+	width:8.7rem;
+	height:7.2rem;
+	border:0.05rem solid #00CAB0;
+	border-radius: 0.2rem;
+	overflow: hidden;
+}
+.jiankong-main .section1 .ysb .head {
+	height:2.5rem;
+	line-height: 2.5rem;
+	background: #00CAB0;
+	text-align: center;
+	color: #fff;
+	font-size: 0.8rem;
+}
+.jiankong-main .section1 .ysb .ratio {
+	height:4.7rem;
+	font-size:2rem;
+	line-height: 4.7rem;
+	color:#202B3D;
+	text-align: center;
+}
+
+
+
+
 .jiankong-main .table {
-	width:58.9rem;
-	height:32.3rem;
+	width:60rem;
+	/*height:25.75rem;*/
+	margin-top: 2rem;
 }
 .jiankong-main .table h2 {
 	height:3.35rem;
@@ -288,18 +383,21 @@ ul,ol,li{
 	text-align: center;
 	border:0.05rem solid #00CAB0;
 }
-.jiankong-main .table table{
-	width:58.9rem;
-	height:28.95rem;
+/*.jiankong-main  table{
+	width:60rem;
 	text-align: center;
 	border:0.05rem solid #00CAB0;
 }
-.jiankong-main .table table thead tr{
+.jiankong-main  table thead tr{
 	height:2.7rem;
 }
+.jiankong-main  table tbody tr{
+	height:2rem;
+}*/
+
 .jiankong-main .video {
 	width:30.65rem;
-	height:32.2rem;
+	height:35.4rem;
 	border-radius:0.5rem 0.5rem 0 0  ;
 	border:0.05rem solid #00CAB0;
 }
@@ -442,11 +540,7 @@ ul,ol,li{
 }
 
 
-.col-2 #barChart{
-	width:40rem;
-	height:34rem;
-	margin-left: 5rem;
-}
+
 
 /*库存盘点*/
 .page-kucun .kucun {
@@ -554,4 +648,14 @@ ul,ol,li{
 .page-kucun .video img {
 	width:100%;
 	height:100%;
+}
+
+.col-2 {
+	width:50%;
+	height:25rem;
+}
+.col-2 #barChart{
+	width:40rem;
+	height:25rem;
+	margin-left: 5rem;
 }

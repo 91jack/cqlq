@@ -61,7 +61,7 @@
 	<div class="container">
 		<div class="top-select">
 			<div class="cell title">
-				<a>生产量分析</a>
+				<a>消耗量统计</a>
 				<a href="javascript:;">立即下载</a>
 			</div>
 			<div class="cite cell">
@@ -109,7 +109,7 @@
 	<script type="text/javascript">
 		// 时间选择
 		var time = timeFn();
-		var startTime = time.y+'-'+time.m+'-'+time.d;
+		var startTime = time.y+'-'+(time.m-1)+'-'+time.d;
 		var endTime = time.y+'-'+time.m+'-'+time.d;
 		layui.use('laydate', function(){
 		  var laydate = layui.laydate;
@@ -125,20 +125,19 @@
 		});
 		
 		var params = {
-	    	beginDate:$('#startTime').val() ,
-		   	endDate:$('#endTime').val()
-	    }
+		    	beginDate:$('#startTime').val() ,
+			   	endDate:$('#endTime').val()
+		    }
 		tableFn(params)
-		
-		
-		
+		chartFn()
 		
 		$('.time-btn').click(function(){
 			params = {
 			    	beginDate:$('#startTime').val() ,
 				   	endDate:$('#endTime').val()
 			    }
-			tableFn(params)
+			tableFn(params);
+			chartFn()
 		})
 		
 		function tableFn(params){
@@ -146,18 +145,22 @@
 			  var table = layui.table;
 			  table.render({
 			    elem: '#test'
-			    ,url:produceNumUrl
+			    ,url:xhlUrl
 			    ,cellMinWidth: 80 //全局定义常规单元格的最小宽度
 			    ,cols: [[ 
-			      {field:'date', title: '生产时间'}
-			      ,{field:'PB', title: '生产类型'}
-			      ,{field:'total', title: '总量'}
+			      {field:'date', title: '时间'}
+			      ,{field:'GLSL', title: '骨料'}
+			      ,{field:'XFSL', title: '新粉'}
+			      ,{field:'LQSL', title: '沥青'}
+			      ,{field:'TJJSL', title: '添加剂'}
+			      ,{field:'total', title: '总数量'}
 			    ]]
 			    ,page: true
 			    ,limit:10
 			    ,request: {
 				    pageName: 'page' //页码的参数名称，默认：page
 				    ,limitName: 'pageSize' //每页数据量的参数名，默认：limit
+				   
 				}
 			    ,where:params
 			    , response: {
@@ -172,7 +175,129 @@
 			  });
 			});
 		}
+	
+	//柱状图
+	function chartFn(){
+		ajaxData(xhlUrl,params,function(res){
+			var xData = res.list.map(function(index,value){
+					return index.date;
+			})
+			var yGuliao = res.list.map(function(index,value){
+					return index.GLSL;
+			})
+			var yXinfen = res.list.map(function(index,value){
+					return index.XFSL;
+			})
+			var yLiqing = res.list.map(function(index,value){
+					return index.LQSL;
+			})
+			var yTjj = res.list.map(function(index,value){
+					return index.TJJSL;
+			})
+			var yTotal = res.list.map(function(index,value){
+					return index.total;
+			})
+			var barChart = echarts.init(document.getElementById('barChart'));
+			var option = {
+				title:{
+					text:'消耗量统计分析',
+					 x: 'center',
+				},
+				grid: {
+					top: 30,
+					left: 40,
+					right:0,
+					bottom:'10%'
+				},
+				tooltip: {
+			        trigger: 'axis',  
+			    },
+			    legend: {
+			        data: ['骨料', '新粉', '沥青', '添加剂','总量'],
+			        orient: 'vertical',
+			        right:0
+			    },
+				xAxis: {
+					type: 'category',
+					data: xData,
+					axisTick: {
+						lineStyle: {
+							color: '#fff'
+						}
+					},
+					axisLine: {
+						show: true,
+						lineStyle: {
+							color: '#148976'
+						}
+					},
+				},
+				yAxis: {
+					name:'消耗量（吨）',
+					type: 'value',
+					splitLine: {
+						show: false
+					},
+					axisLine: {
+						show: true,
+						lineStyle: {
+							color: '#148976'
+						}
+					},
+					axisTick: {
+						lineStyle: {
+							color: '#fff'
+						}
+					},
+				},
+				series: [
+					{
+						name:'骨料',
+						data:yGuliao,
+						type: 'bar',
+						barGap: 0,
+						itemStyle: {
+							color: '#19B6E8'
+						}
+					},
+					{
+						name:'新粉',
+						data:yXinfen,
+						type: 'bar',
+						itemStyle: {
+							color: '#18DEBE'
+						}
+					},
+					{
+						name:'沥青',
+						data:yLiqing,
+						type: 'bar',
+						itemStyle: {
+							color: '#DFA803'
+						}
+					},
+					{
+						name:'添加剂',
+						data:yTjj,
+						type: 'bar',
+						itemStyle: {
+							color: '#0356DF'
+						}
+					},
+					{
+						name:'总量',
+						data:yTotal,
+						type: 'bar',
+						itemStyle: {
+							color: '#0336DF'
+						}
+					},
+				]
+			};
 		
+			barChart.setOption(option);
+		})
+	}
 	
 		
 	</script>

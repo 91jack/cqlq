@@ -61,7 +61,7 @@
 	<div class="container">
 		<div class="top-select">
 			<div class="cell title">
-				<a>生产量分析</a>
+				<a>生产动态表</a>
 				<a href="javascript:;">立即下载</a>
 			</div>
 			<div class="cite cell">
@@ -109,7 +109,7 @@
 	<script type="text/javascript">
 		// 时间选择
 		var time = timeFn();
-		var startTime = time.y+'-'+time.m+'-'+time.d;
+		var startTime = time.y+'-'+(time.m-1)+'-'+time.d;
 		var endTime = time.y+'-'+time.m+'-'+time.d;
 		layui.use('laydate', function(){
 		  var laydate = layui.laydate;
@@ -125,20 +125,19 @@
 		});
 		
 		var params = {
-	    	beginDate:$('#startTime').val() ,
-		   	endDate:$('#endTime').val()
-	    }
-		tableFn(params)
-		
-		
-		
+		    	beginDate:$('#startTime').val() ,
+			   	endDate:$('#endTime').val()
+		    }
+		tableFn(params);
+		chartFn();
 		
 		$('.time-btn').click(function(){
 			params = {
 			    	beginDate:$('#startTime').val() ,
 				   	endDate:$('#endTime').val()
 			    }
-			tableFn(params)
+			tableFn(params);
+			chartFn();
 		})
 		
 		function tableFn(params){
@@ -146,18 +145,19 @@
 			  var table = layui.table;
 			  table.render({
 			    elem: '#test'
-			    ,url:produceNumUrl
+			    ,url:tempUrl
 			    ,cellMinWidth: 80 //全局定义常规单元格的最小宽度
 			    ,cols: [[ 
-			      {field:'date', title: '生产时间'}
-			      ,{field:'PB', title: '生产类型'}
-			      ,{field:'total', title: '总量'}
+			      {field:'outDate', title: '时间'}
+			      ,{field:'product', title: '材料类型'}
+			      ,{field:'out', title: '出料温度'}
 			    ]]
 			    ,page: true
 			    ,limit:10
 			    ,request: {
 				    pageName: 'page' //页码的参数名称，默认：page
 				    ,limitName: 'pageSize' //每页数据量的参数名，默认：limit
+				   
 				}
 			    ,where:params
 			    , response: {
@@ -165,7 +165,7 @@
 		            , statusCode: 0 //成功的状态码，默认：0
 		            , msgName: 'error' //状态信息的字段名称，默认：msg
 		            , countName: 'num' //数据总数的字段名称，默认：count
-		            , dataName: 'list' //数据列表的字段名称，默认：data
+		            , dataName: 'obj' //数据列表的字段名称，默认：data
 		        }
 				,even:true
 				
@@ -173,7 +173,78 @@
 			});
 		}
 		
-	
+	//柱状图
+	function chartFn(){
+		ajaxData(tempUrl,params,function(res){
+			var xData = res.obj.map(function(index,value){
+					return index.outDate;
+			})
+			var yData = res.obj.map(function(index,value){
+					return index.out;
+			})
+			var barChart = echarts.init(document.getElementById('barChart'));
+			var option = {
+				title:{
+					text:'温度波动分析',
+					 x: 'center',
+				},
+				grid: {
+					top: 30,
+					left: 40,
+					right:0,
+					bottom:'10%'
+				},
+				tooltip: {
+			        trigger: 'axis',  
+			    },
+				xAxis: {
+					type: 'category',
+					data: xData,
+					axisTick: {
+						lineStyle: {
+							color: '#fff'
+						}
+					},
+					axisLine: {
+						show: true,
+						lineStyle: {
+							color: '#148976'
+						}
+					},
+				},
+				yAxis: {
+					name:'温度（℃）',
+					type: 'value',
+					splitLine: {
+						show: false
+					},
+					axisLine: {
+						show: true,
+						lineStyle: {
+							color: '#148976'
+						}
+					},
+					axisTick: {
+						lineStyle: {
+							color: '#fff'
+						}
+					},
+				},
+				series: [{
+						name:'温度',
+						data:yData,
+						type: 'bar',
+						itemStyle: {
+							color: '#00CAB0'
+						}
+					},
+		
+				]
+			};
+		
+			barChart.setOption(option);
+		})
+	}
 		
 	</script>
 	</body>

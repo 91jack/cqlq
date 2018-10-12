@@ -5,14 +5,12 @@ map.centerAndZoom(point, 14); // 初始化地图,设置中心点坐标和地图�
 map.enableScrollWheelZoom(true); // 缩放地图
 		
 
-		
-
 
 // 添加标注函数
 function addMarker(point,icon,label,InfoWindow){
-  	var marker = new BMap.Marker(point,{icon:icon});
+  	var marker1 = new BMap.Marker(point,{icon:icon});
   
-  	map.addOverlay(marker);
+  	map.addOverlay(marker1);
 	var opts = {
 	  position : point,    // 指定文本标注所在的地理位置
 	  offset   : new BMap.Size(15,-20)    //设置文本偏移量
@@ -27,9 +25,9 @@ function addMarker(point,icon,label,InfoWindow){
 		 fontFamily:"微软雅黑"
 	});
   
- 	marker.setLabel(label);
+ 	marker1.setLabel(label);
  	
- 	marker.addEventListener('click',function(){
+ 	marker1.addEventListener('click',function(){
  		map.openInfoWindow(InfoWindow,point); //开启信息窗口
  	})
 }

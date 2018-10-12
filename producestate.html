@@ -30,7 +30,7 @@
 					<span>车辆调度</span>
 				</a>
 				
-				<a href="javascript:;">
+				<a href="kucun.html">
 					<img src="static/images/icon_kucun1.png" alt="" />
 					<span>库存盘点</span>
 				</a>
@@ -43,17 +43,18 @@
 					<span>实验管理</span>
 				</a>
 				
-				<a  id="tongji">
-					<img src="static/images/icon_tongji1.png" />
+				<a  id="tongji" class="active">
+					<img src="static/images/icon_tongji2.png" />
 					<span>统计分析</span>
 				</a>
 				<ul class="subnav">
-					<li><a href="producestate.html">生产动态表</a></li>
-					<li><a href="producenum.html">生产量分析</a></li>
-					<li><a href="">核算量分析</a></li>
-					<li><a href="">消耗量分析</a></li>
-					<li><a href="">温度波动分析</a></li>
-				</ul>
+				<li><a href="producestate.html">生产动态表</a></li>
+				<li><a href="producenum.html">生产量分析</a></li>
+				<li><a href="hsl.html">核算量分析</a></li>
+				<li><a href="xhl.html">消耗量分析</a></li>
+				<li><a href="temp.html">温度波动分析</a></li>
+				<li><a href="ysb.html">油石比波动分析</a></li>
+			</ul>
 			</div>
 		</div>
 
@@ -94,67 +95,83 @@
 	<script src="static/js/common.js"></script>
 	<script src="static/js/echarts.min.js" type="text/javascript" charset="utf-8"></script>
 	<script src="static/layui/layui.all.js" type="text/javascript" charset="utf-8"></script>
+	<script src="static/js/api.js" type="text/javascript" charset="utf-8"></script>
 	<script type="text/javascript">
 		// 时间选择
+		var time = timeFn();
+		var startTime = time.y+'-'+time.m+'-'+time.d
 		layui.use('laydate', function(){
 		  var laydate = layui.laydate;
-		  
-		 
 		  laydate.render({
 		    elem: '#startTime',
-		    value:'2018-09-01'
+		    value:startTime
 		  });
 		  
 		  laydate.render({
 		   elem: '#endTime',
-		   value:'2018-09-26'
+		   value:startTime
 		  });
 		});
-
-		layui.use('table', function(){
-		  var table = layui.table;
-		  table.render({
-		    elem: '#test'
-		    ,url:'http://192.168.1.123:8080/jbz/api/data/ajaxList'
-		    ,cellMinWidth: 80 //全局定义常规单元格的最小宽度
-		    ,cols: [[ 
-		      {field:'pbh', title: '材料类型'}
-		      ,{field:'dateTime', title: '出料时间',width:200}
-		      ,{field:'one', title: '仓1'}
-		      ,{field:'two', title: '仓2'}
-		      ,{field:'three',  title: '仓3'}
-		      ,{field:'four', title: '仓4', }
-		      ,{field:'five', title: '仓5'}
-		      ,{field:'six',  title: '新粉1'}
- 			  ,{field:'seven',  title: '新粉2'}
- 			  ,{field:'eight',  title: '沥青'}
- 			  ,{field:'eight',  title: '沥温'}
- 			  ,{field:'eight',  title: '集温'}
- 			  ,{field:'eight',  title: '出温'}
-		    ]]
-		    ,page: true
-		    ,limit:10
-		    ,request: {
-			    pageName: 'page' //页码的参数名称，默认：page
-			    ,limitName: 'pageSize' //每页数据量的参数名，默认：limit
-			   
-			}
-		    ,where:{
-		    	 beginDate:'2018-09-01'
-			    ,endDate:'2018-09-26'
+		
+		var params = {
+		    	beginDate:$('#startTime').val() ,
+			   	endDate:$('#endTime').val()
 		    }
-		    , response: {
-	            statusName: 'errno' //数据状态的字段名称，默认：code
-	            , statusCode: 0 //成功的状态码，默认：0
-	            , msgName: 'error' //状态信息的字段名称，默认：msg
-	            , countName: 'num' //数据总数的字段名称，默认：count
-	            , dataName: 'list' //数据列表的字段名称，默认：data
-	        }
-			,even:true
-			
-		  });
-		});
+		tableFn(params)
+		
+		
+		$('.time-btn').click(function(){
+			params = {
+			    	beginDate:$('#startTime').val() ,
+				   	endDate:$('#endTime').val()
+			    }
+			tableFn(params)
+		})
+		
+		function tableFn(params){
+			layui.use('table', function(){
+			  var table = layui.table;
+			  table.render({
+			    elem: '#test'
+			    ,url:produceStsteUrl
+			    ,cellMinWidth: 80 //全局定义常规单元格的最小宽度
+			    ,cols: [[ 
+			      {field:'pbh', title: '材料类型'}
+			      ,{field:'dateTime', title: '出料时间',width:200}
+			      ,{field:'one', title: '仓1'}
+			      ,{field:'two', title: '仓2'}
+			      ,{field:'three',  title: '仓3'}
+			      ,{field:'four', title: '仓4', }
+			      ,{field:'five', title: '仓5'}
+			      ,{field:'six',  title: '新粉1'}
+	 			  ,{field:'seven',  title: '新粉2'}
+	 			  ,{field:'eight',  title: '沥青'}
+	 			  ,{field:'eight',  title: '沥温'}
+	 			  ,{field:'eight',  title: '集温'}
+	 			  ,{field:'eight',  title: '出温'}
+			    ]]
+			    ,page: true
+			    ,limit:10
+			    ,request: {
+				    pageName: 'page' //页码的参数名称，默认：page
+				    ,limitName: 'pageSize' //每页数据量的参数名，默认：limit
+				   
+				}
+			    ,where:params
+			    , response: {
+		            statusName: 'errno' //数据状态的字段名称，默认：code
+		            , statusCode: 0 //成功的状态码，默认：0
+		            , msgName: 'error' //状态信息的字段名称，默认：msg
+		            , countName: 'num' //数据总数的字段名称，默认：count
+		            , dataName: 'list' //数据列表的字段名称，默认：data
+		        }
+				,even:true
+				
+			  });
+			});
+		}
+		
+		
 	</script>
 	</body>
-
 </html>
