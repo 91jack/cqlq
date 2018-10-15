@@ -8,13 +8,13 @@ var gpsUrl = socktHost + 'gps';
 var productUrl = socktHost + 'product';
 
 // 称重过磅
-var weightUrl = 'ws://192.168.1.123:8080/jbz/weight';
+var weightUrl = socktHost + 'weight';
 
 // host 
 var host= 'http://113.207.26.29:8080/jbz';
 
 // 获取材料类型
-var pbUrl = 'http://192.168.1.123:8080/jbz/api/data/ajaxGetPB';
+var pbUrl = host +'/api/data/ajaxGetPB';
 
 // 获取车辆列表
 var carList = host + '/api/location/ajaxGet';
