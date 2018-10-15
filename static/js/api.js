@@ -7,9 +7,14 @@ var gpsUrl = socktHost + 'gps';
 // 生产数据
 var productUrl = socktHost + 'product';
 
+// 称重过磅
+var weightUrl = 'ws://192.168.1.123:8080/jbz/weight';
+
 // host 
 var host= 'http://113.207.26.29:8080/jbz';
 
+// 获取材料类型
+var pbUrl = 'http://192.168.1.123:8080/jbz/api/data/ajaxGetPB';
 
 // 获取车辆列表
 var carList = host + '/api/location/ajaxGet';

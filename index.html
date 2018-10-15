@@ -220,13 +220,13 @@
 				<h2>生产数据</h2>
 				<div class="section3-top-content">
 					<div class="section3-top-item">
-						<div id="guliao" style="width:150px;height:120px;margin-bottom: 0;"></div>
+						<div id="guliao" style="width:140px;height:120px;margin-bottom: 0;"></div>
 					</div>
 					<div class="section3-top-item">
-						<div id="chuliao" style="width:150px;height:120px;margin-bottom: 0;"></div>
+						<div id="chuliao" style="width:140px;height:120px;margin-bottom: 0;"></div>
 					</div>
 					<div class="section3-top-item">
-						<div id="ratio" style="width:150px;height:120px;margin-bottom: 0;"></div>
+						<div id="ratio" style="width:140px;height:120px;margin-bottom: 0;"></div>
 					</div>
 				</div>
 			</div>
@@ -397,7 +397,7 @@ WebSocketFn(productUrl,function(data){
 	$('#curdayProductTotal').html(data.curTotal);
 	
 	// 当日发货总量
-	$('#curdayFahuoTotal').html('185.34');
+	$('#curdayFahuoTotal').html('--');
 	
 	// 当前生产材料
 	$('#productName').html(data.productName);
@@ -487,10 +487,13 @@ WebSocketFn(productUrl,function(data){
 		yData2 = data.productList.map(function(index,value){
 			return index.ysb;
 		})
-//		xData =xData.sort().push(data.rate)
-//		yData = yData.sort().push(data.date)
-		xData2.sort()
-		yData2.sort()
+
+		xData2.sort();
+		yData2.sort();
+		
+		xData2.push(data.rate);
+		yData2.push(data.date);
+		
 		ratioChart('油石比','lineChart1',xData2,yData2);
 	}
 	// 出货详情

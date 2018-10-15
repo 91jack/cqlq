@@ -198,28 +198,28 @@
 			$('.ratio').html(data.lastItemPB.ysb + '%')
 		}
 		
-		
-		layui.use('table', function(){
-  		var table = layui.table;
-  
-	 	// 设计配比
-		table.render({
-		    elem: '#sheji'
-		    ,cols: [[ //标题栏
-		      {field: 'one', title: '仓1'}
-		      ,{field: 'two', title: '仓2'}
-		      ,{field: 'three', title: '仓3'}
-		      ,{field: 'four', title: '仓4'}
-		      ,{field: 'five', title: '仓5'}
-		      ,{field: 'six', title: '新粉1'}
-		      ,{field: 'seven', title: '新粉2'}
-		      ,{field: 'eight', title: '沥青'}
-		      ,{field: 'tjjsl', title: '添加剂'}
-		    ]]
-		    ,data:[data.lastItemPB]
-		    ,even: true
-		  });
-		});
+		if(data.lastItemPB){
+			layui.use('table', function(){
+	  		var table = layui.table;
+	 		// 设计配比
+	 		table.render({
+	 		    elem: '#sheji'
+	 		    ,cols: [[ //标题栏
+	 		      {field: 'one', title: '仓1'}
+	 		      ,{field: 'two', title: '仓2'}
+	 		      ,{field: 'three', title: '仓3'}
+	 		      ,{field: 'four', title: '仓4'}
+	 		      ,{field: 'five', title: '仓5'}
+	 		      ,{field: 'six', title: '新粉1'}
+	 		      ,{field: 'seven', title: '新粉2'}
+	 		      ,{field: 'eight', title: '沥青'}
+	 		      ,{field: 'tjjsl', title: '添加剂'}
+	 		    ]]
+	 		    ,data:[data.lastItemPB]
+	 		    ,even: true
+	 		  });
+	 		});
+	 	}
 		
 		// 生产看板
 		layui.use('table', function(){
