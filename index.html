@@ -173,37 +173,8 @@
 									<th>出货时间</th>
 								</tr>
 							</thead>
-							<tbody>
-								<tr>
-									<td>解放碑项目</td>
-									<td>渝B356874</td>
-									<td>888吨</td>
-									<td>2018-09-09 18:05:06</td>
-								</tr>
-								<tr>
-									<td>大学城项目</td>
-									<td>渝B156874</td>
-									<td>8吨</td>
-									<td>2018-09-09 19:55:06</td>
-								</tr>
-								<tr>
-									<td>解放碑项目</td>
-									<td>渝B356874</td>
-									<td>888吨</td>
-									<td>2018-09-09 20:05:06</td>
-								</tr>
-								<tr>
-									<td>大学城项目</td>
-									<td>渝B156874</td>
-									<td>8吨</td>
-									<td>2018-09-09 22:55:06</td>
-								</tr>
-								<tr>
-									<td>解放碑项目</td>
-									<td>渝B356874</td>
-									<td>888吨</td>
-									<td>2018-09-09 23:05:06</td>
-								</tr>
+							<tbody id="chuhuo">
+								
 							</tbody>
 						</table>
 
@@ -423,13 +394,6 @@ WebSocketFn(productUrl,function(data){
    			var n = $('#productList  tr').length-1;
    			$('#productList tr').eq(n).remove();
    		}
-// 		if(data.productList.length == 5){
-//			$('#productList').html(str);
-//		}else{
-//			$('#productList').prepend(str);
-//			var n = $('#productList  tr').length-1;
-//			$('#productList tr').eq(n).remove();
-//		}
 	}
 	
 	// 仪表盘
@@ -442,7 +406,6 @@ WebSocketFn(productUrl,function(data){
 	//console.log(data.outTemp)
 	
 	// 出料温度
-	
 	if(data.outTList && data.outTList.length>0){
 		var initXdata1 = data.outTList.map(function(index,value){
 				return index.outDate;
@@ -498,6 +461,35 @@ WebSocketFn(productUrl,function(data){
 	}
 	// 出货详情
 });
+
+// 出货详情
+WebSocketFn(weightUrl,function(data){
+	if(data=='{}' || data=='[]'){
+		return;
+	}
+	var data = JSON.parse(data) 
+	console.log(data)
+	var str = ''
+
+	if(data.length>0){
+   		for(var i=0;i<data.length;i++){
+   			str +='<tr>'
+				+	'<td>'+'--'+'</td>'
+				+	'<td>'+data[i].carNumber+'</td>'
+				+	'<td>'+'--'+'</td>'
+				+	'<td>'+data[i].dateTime+'</td>'
+				+'</tr>'
+   		}
+   		
+   		$('#chuhuo').prepend(str);
+   		
+   		if($('#chuhuo tr').length>5){
+   			var n = $('#chuhuo  tr').length-1;
+   			$('#chuhuo tr').eq(n).remove();
+   		}
+	}
+	
+})
 		
 
 

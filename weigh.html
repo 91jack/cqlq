@@ -186,14 +186,25 @@ for(var i=0;i<arr.length;i++){
 }
 $('.carnum').append(spanStr);
 
-// 生产实时数据	
+
+var dataList = []
 WebSocketFn(weightUrl,function(data){
 	if(data=='{}' || data=='[]'){
 		return;
 	}
 	var data = JSON.parse(data) 
 	console.log(data)
-
+	if(data.length == 5){
+		for(var i=0;i<data.length;i++){
+			dataList.push(data[i]);
+		}
+	}else{
+		for(var i=0;i<data.length;i++){
+			dataList.unshift(data[i]);
+		}
+	}
+	
+	console.log(dataList)
 	// 生产看板
 	layui.use('table', function(){
   	var table = layui.table;
@@ -201,7 +212,7 @@ WebSocketFn(weightUrl,function(data){
 	    elem: '#test'
 	    ,cols: [[ //标题栏
 	      {field:'pbh', title: '过磅单编号'}
-	      ,{field:'dateTime', title: '车号'}
+	      ,{field:'aa', title: '车号'}
 	      ,{field:'carNumber', title: '车牌号'}
 	      ,{field:'two', title: '净重（吨）'}
 	      ,{field:'dateTime',  title: '称重时间'}
@@ -209,7 +220,7 @@ WebSocketFn(weightUrl,function(data){
 	      ,{field:'five', title: '客户名称'}
 	      ,{field:'six',  title: '运输状态'}
 	    ]]
-	    ,data: data
+	    ,data: dataList
 	    ,even: true
 	  });
 	});
