@@ -77,11 +77,10 @@
 <script src="static/js/echarts.min.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=wqB7npvF7DsDGlFG2oYhih93K5iEqsou"></script>
 <script src="static/js/api.js" type="text/javascript" charset="utf-8"></script>
-<script src="static/js/map.js" type="text/javascript" charset="utf-8"></script>
+
 <script type="text/javascript">
 // 车辆列表
 ajaxData(carList,{},function(data){
-	
 	console.log(data)
 	var carStr = '';
 	for(var i=0;i<data.list.length;i++){
@@ -98,33 +97,6 @@ ajaxData(carList,{},function(data){
 		})
 	})
 	
-	if(data.list.length > 0){
-		console.log(data.list);
-		map.clearOverlays();
-   		for (var i = 0; i < data.list.length ; i++) {
-			// 地图标注
-			var lng = data.list[i].location.lng;
-			var lat = data.list[i].location.lat;
-			var point = new BMap.Point(lng,lat);
-			console.log(point)
-			map.centerAndZoom(point, 15); 
-			
-			var opt = {
-				width : 300,     // 信息窗口宽度
-				height: 100,     // 信息窗口高度
-			}
-			var content ='<p style="font-weight:bold">车辆号码：'+ data.list[i].location.vno +'</p>'
-					+'<p>mileage:'+ data.list[i].location.mileage +'</p>'
-					+'<p>出货时间：'+ data.list[i].location.stime+'</p>'
-					+'<p>车辆位置：'+ data.list[i].location.location +'</p>'
-					
-			var InfoWindow = new BMap.InfoWindow(content,opt);
-			InfoWindow.enableAutoPan();
-			var label = data.list[i].location.vno;
-			var icon = new BMap.Icon("static/images/icon_car.png", new BMap.Size(33,21));
-			addMarker(point,icon,label,InfoWindow);
-   		}
-	}
 	// 起点
 	
 	
@@ -133,7 +105,70 @@ ajaxData(carList,{},function(data){
 	// 
 })
 	
+// 百度地图API功能
+var map = new BMap.Map("map");
+//map.centerAndZoom(new BMap.Point(106.26663416162559,29.65266647548469), 15);
+//
+//var myP1 = new BMap.Point(106.26663416162559,29.65266647548469);    //起点
+//var myP2 = new BMap.Point(106.26623233866435,29.652518161353896);    //终点
 
+	map.centerAndZoom(new BMap.Point(116.404, 39.915), 15);
+
+	var myP1 = new BMap.Point(116.380967,39.913285);    //起点
+	var myP2 = new BMap.Point(116.424374,39.914668);    //终点
+
+var myIcon = new BMap.Icon("http://lbsyun.baidu.com/jsdemo/img/Mario.png", new BMap.Size(32, 70), {    //小车图片
+	//offset: new BMap.Size(0, -5),    //相当于CSS精灵
+	imageOffset: new BMap.Size(0, 0)    //图片的偏移量。为了是图片底部中心对准坐标点。
+  });
+var driving2 = new BMap.DrivingRoute(map, {renderOptions:{map: map, autoViewport: true}});    //驾车实例
+driving2.search(myP1, myP2);    //显示一条公交线路
+
+window.run = function (){
+	var driving = new BMap.DrivingRoute(map);    //驾车实例
+	driving.search(myP1, myP2);
+	driving.setSearchCompleteCallback(function(){
+		var pts = driving.getResults().getPlan(0).getRoute(0).getPath();    //通过驾车实例，获得一系列点的数组
+		console.log(pts)
+		var paths = pts.length;    //获得有几个点
+//		pts = [
+//			{lng: 116.380955, lat: 39.913149},
+//			{lng: 116.381045, lat: 39.913151},
+//			{lng: 116.381373, lat: 39.913157},
+//			{lng: 116.381462, lat: 39.913158},
+//			{lng: 116.381641, lat: 39.913161},
+//			{lng: 116.38183, lat: 39.913165},
+//			{lng: 116.381989, lat: 39.913167},
+//			{lng: 116.382406, lat: 39.913165},
+//			{lng: 116.383112, lat: 39.913197},
+//			{lng: 116.384106, lat: 39.913214}
+//		]
+		
+		var carMk = new BMap.Marker(pts[0],{icon:myIcon});
+		map.addOverlay(carMk);
+		i=0;
+		function resetMkPoint(i){
+			carMk.setPosition(pts[i]);
+			if(i < paths){
+				setTimeout(function(){
+					i++;
+					resetMkPoint(i);
+				},100);
+			}
+		}
+		setTimeout(function(){
+			resetMkPoint(5);
+		},100)
+
+	});
+}
+
+setTimeout(function(){
+	run();
+},1500);
+		
+		
+	
 		
 	</script>
 	</body>

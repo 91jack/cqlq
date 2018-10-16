@@ -74,7 +74,7 @@
 					<div class="fr">
 						<div class="input-group">
 							<span>车牌号</span>
-							<input type="text" />
+							<input type="text" id="carNo"/>
 						</div>
 						<div class="input-group">
 							<span>红外感应</span>
@@ -195,12 +195,14 @@ WebSocketFn(weightUrl,function(data){
 	var data = JSON.parse(data) 
 	console.log(data)
 	if(data.length == 5){
+		$('#carNo').val(data[0].carNumber);
 		for(var i=0;i<data.length;i++){
 			dataList.push(data[i]);
 		}
 	}else{
 		for(var i=0;i<data.length;i++){
 			dataList.unshift(data[i]);
+			$('#carNo').val(data[i].carNumber);
 		}
 	}
 	
