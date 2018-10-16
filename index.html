@@ -83,7 +83,9 @@
 				</div>
 			</div>
 			<div class="section1-bottom">
-				<h2>拌站场区视频监控画面   <a href="http://192.168.2.222" target="_blank" class="fr">查看全部监控</a></h2>
+				<h2>拌站场区视频监控画面   
+					<!--<a href="http://192.168.2.222" target="_blank" class="fr">查看全部监控</a>-->
+				</h2>
 				<div class="video-list">
 					<div class="index-video">
 						<video
@@ -329,8 +331,6 @@ WebSocketFn(gpsUrl,function(data){
 			var opt = {
 				width : 300,     // 信息窗口宽度
 				height: 100,     // 信息窗口高度
-				//title : data[i].vno , // 信息窗口标题
-				
 			}
 			var content ='<p style="font-weight:bold">车辆号码：'+ data[i].vno +'</p>'
 					+'<p>mileage:'+ data[i].mileage +'</p>'
@@ -397,13 +397,9 @@ WebSocketFn(productUrl,function(data){
 	}
 	
 	// 仪表盘
-	setInterval(function () {
-	    var n = (Math.random() * 100).toFixed(2) +50;
-	    // 骨料温度  为模拟数据
-	   	guliao.setOption(gaugeOption('骨料温度',200,n,'℃'));
-	},3000);
-	
-	//console.log(data.outTemp)
+
+	// 骨料温度  为模拟数据
+	guliao.setOption(gaugeOption('骨料温度',200,10,'℃'));
 	
 	// 出料温度
 	if(data.outTList && data.outTList.length>0){
@@ -497,63 +493,62 @@ WebSocketFn(weightUrl,function(data){
 	
 	
 function ratioChart(name,obj,xData,yData){
-		// 折线图
-		var lineChart = echarts.init(document.getElementById(obj));
-		var option = {
-			grid: {
-				top: 35,
-				left: 40,
-				right:0,
-				bottom:10
-			},
-			tooltip: {
-		        trigger: 'axis',  
-		    },
-			xAxis: {
-				type: 'category',
-				data:xData,
-				axisLine: {
-					lineStyle: {
-						color: '#148976'
-					}
-				},
-				axisTick: {
-					lineStyle: {
-						color: '#fff'
-					}
-				},
-
-			},
-			yAxis: {
-				name:name,
-				type: 'value',
-				splitLine: {
-					show: false
-				},
-				axisLine: {
-					show: true,
-					lineStyle: {
-						color: '#148976'
-					}
-				},
-				axisTick: {
-					lineStyle: {
-						color: '#fff'
-					}
-				},
-			},
-			series: [{
-				name:name,
-				type: 'line',
-				data: yData,
-				itemStyle: {
-					color: '#FFAE00'
+	// 折线图
+	var lineChart = echarts.init(document.getElementById(obj));
+	var option = {
+		grid: {
+			top: 35,
+			left: 40,
+			right:0,
+			bottom:10
+		},
+		tooltip: {
+	        trigger: 'axis',  
+	    },
+		xAxis: {
+			type: 'category',
+			data:xData,
+			axisLine: {
+				lineStyle: {
+					color: '#148976'
 				}
-			}]
-		};
+			},
+			axisTick: {
+				lineStyle: {
+					color: '#fff'
+				}
+			},
 
-		lineChart.setOption(option);
-//	})
+		},
+		yAxis: {
+			name:name,
+			type: 'value',
+			splitLine: {
+				show: false
+			},
+			axisLine: {
+				show: true,
+				lineStyle: {
+					color: '#148976'
+				}
+			},
+			axisTick: {
+				lineStyle: {
+					color: '#fff'
+				}
+			},
+		},
+		series: [{
+			name:name,
+			type: 'line',
+			data: yData,
+			itemStyle: {
+				color: '#FFAE00'
+			}
+		}]
+	};
+
+	lineChart.setOption(option);
 }		
 	
 	
