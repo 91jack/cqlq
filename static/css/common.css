@@ -480,6 +480,7 @@ ul,ol,li{
 	border: 1px solid rgba(25,182,232,1);
 	box-sizing: border-box;
 	padding-left: 1.75rem;
+	text-align: center;
 }
 #protect{
 	margin-bottom: 1rem;
@@ -529,7 +530,7 @@ ul,ol,li{
 	height:1.5rem;
 	color: #36BDE8;
 }
-.top-select .start-time,
+/*.top-select .start-time,
 .top-select .end-time {
 	width:10rem;
 	height:1.5rem;
@@ -546,8 +547,8 @@ ul,ol,li{
 	text-align: center;
 	float:left;
 	border-right:0.05rem solid #BFBFBF;
-}
-.top-select #startTime,
+}*/
+/*.top-select #startTime,
 .top-select #endTime {
 	width:4.25rem;
 	height:1.5rem;
@@ -558,7 +559,7 @@ ul,ol,li{
 	float:right;
 	border:none;
 	background: transparent;
-}
+}*/
 .top-select .time-btn {
 	display: inline-block;
 	width:2.85rem;
@@ -624,20 +625,24 @@ ul,ol,li{
 .time-filter {
 	margin-top: 0.6rem;
 }
-.time-filter .time {
+.time-filter .time,
+.top-select .start-time,
+.top-select .end-time {
 	float:left;
 	height:1.6rem;
 	border:0.05rem solid #19B6E8;
 	border-radius: 0.85rem;
 	margin-right: 1rem;
 }
+.top-select input,
 .time-filter .time input {
 	border:none;
 	height:1.6rem;
 	border-radius: 0.85rem;
 	text-indent: 1rem;
-	background: #E5E5E5;
+	background: rgba(229,229,229,0.4);
 	color: #19B6E8;
+	text-align: center;
 }
 .confirm-btn {
 	display: inline-block;
