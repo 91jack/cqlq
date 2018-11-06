@@ -466,7 +466,7 @@ ul,ol,li{
 .car-map {
 	width:81.2rem;
 	height:45rem;
-	margin-top: 1.8rem;
+	/*margin-top: 1.8rem;*/
 	border:0.05rem solid #00CAB0;
 }
 
