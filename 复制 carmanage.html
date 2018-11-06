@@ -91,6 +91,9 @@
 		<script src="static/js/api.js" type="text/javascript" charset="utf-8"></script>
 		<script src="static/js/map.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
+			//设置地图初始缩放比例
+			map.setZoom(11);
+			
 			// 车辆列表
 			ajaxData(carList, {}, function(data) {
 
@@ -100,41 +103,47 @@
 				}
 
 				$('#carList').html(carStr);
-
-				if(data.list.length > 0) {
-					console.log(data.list);
-					map.clearOverlays();
-					for(var i = 0; i < data.list.length; i++) {
-						// 地图标注
-						var lng = data.list[i].location.lng;
-						var lat = data.list[i].location.lat;
-						var point = new BMap.Point(lng, lat);
-						console.log(point)
-						map.centerAndZoom(point, 15);
-
-						var opt = {
-							width: 300, // 信息窗口宽度
-							height: 100, // 信息窗口高度
+				
+				//车辆定位时时数据
+				WebSocketFn(gpsUrl,function(req){
+					if(req=='{}' || req=='[]'){
+							return;
 						}
-						var content = '<p style="font-weight:bold">车辆号码：' + data.list[i].location.vno + '</p>' +
-							'<p>mileage:' + data.list[i].location.mileage + '</p>' +
-							'<p>出货时间：' + data.list[i].location.stime + '</p>' +
-							'<p>车辆位置：' + data.list[i].location.location + '</p>'
-
-						var InfoWindow = new BMap.InfoWindow(content, opt);
-						InfoWindow.enableAutoPan();
-						var label = data.list[i].location.vno;
-						var icon = new BMap.Icon("static/images/icon_car.png", new BMap.Size(33, 21));
-						addMarker(point, icon, label, InfoWindow);
+					var data = JSON.parse(req);
+					console.log(data)
+					if(data.length > 0){
+						map.clearOverlays();
+				   		for (var i = 0; i < data.length ; i ++) {
+							// 地图标注
+							var lng = data[i].lng;
+							var lat = data[i].lat;
+							var point = new BMap.Point(lng,lat);
+							var opt = {
+								width : 300,     // 信息窗口宽度
+								height: 100,     // 信息窗口高度
+							}
+							var content ='<p style="font-weight:bold">车辆号码：'+ data[i].vno +'</p>'
+									+'<p>mileage:'+ data[i].mileage +'</p>'
+									+'<p>出货时间：'+ data[i].stime+'</p>'
+									+'<p>车辆位置：'+ data[i].location +'</p>'
+									
+							var InfoWindow = new BMap.InfoWindow(content,opt);
+							InfoWindow.enableAutoPan();
+							var label = data[i].vno;
+							var icon = new BMap.Icon("static/images/icon_car.png", new BMap.Size(33,21));
+							addMarker(point,icon,label,InfoWindow);
+				   		}
 					}
-				}
+				});
+				
+				
+				//路径回放点击事件
 				$('#carList li').bind('click', function() {
 					var myIcon = "static/images/icon_car.png";
 					var carNum = $(this).attr('carnum');
 					ajaxData(carTrail, {
 						carNo: carNum
 					}, function(data) {
-						console.log(data);
 						if(data.list.length!=0){
 							var last = data.list[data.list.length - 1];
 							// 起点
@@ -167,6 +176,8 @@
 					})
 				})
 			})
+			
+			
 			//路径回放
 			var run = function(myP1, myP2, pts, myIcon) {
 				var driving = new BMap.DrivingRoute(map); //驾车实例

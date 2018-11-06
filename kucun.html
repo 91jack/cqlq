@@ -114,10 +114,10 @@
 					
 					<div class="time-filter fl">
 						<div class="time">
-							<input type="text" placeholder="开始时间" id="startTime">
+							<input type="text" placeholder="开始时间" id="startTime1">
 						</div>
 						<div class="time">
-							<input type="text" placeholder="结束时间" id="endTime">
+							<input type="text" placeholder="结束时间" id="endTime1">
 						</div>
 						<a href="javascript:;"  class="confirm-btn">确定</a>
 					</div>
@@ -194,6 +194,17 @@
 	    });
    	});
 	
+//	
+//	var open = true ;
+//	$('.video-box').dblclick(function(){
+//		if(open){
+//			$(this).addClass('active');
+//		}else{
+//			$(this).removeClass('active')
+//		}
+//		open = !open;
+//		console.log(open)
+//	})
 // 时间选择
 	layui.use('laydate', function(){
 	  var laydate = layui.laydate;
@@ -207,28 +218,39 @@
 	   value:'2018-09-26'
 	  });
 	});
+	
+	layui.use('laydate', function(){
+	  var laydate = layui.laydate;
+	  laydate.render({
+	    elem: '#startTime1',
+	    value:'2018-09-01'
+	  });
+	  
+	  laydate.render({
+	   elem: '#endTime1',
+	   value:'2018-09-26'
+	  });
+	});
 		
 		
 	layui.use('table', function(){
 	  var table = layui.table;
 	  table.render({
 	    elem: '#test'
-	    ,url:'http://192.168.1.123:8080/jbz/api/data/ajaxList'
+	    ,url:'http://113.207.26.29:8080/jbz/api/data/ajaxList'
 	    ,cellMinWidth: 80 //全局定义常规单元格的最小宽度
 	    ,cols: [[ 
-	      {field:'pbh', title: '材料类型'}
-	      ,{field:'dateTime', title: '出料时间',width:200}
-	      ,{field:'one', title: '仓1'}
-	      ,{field:'two', title: '仓2'}
-	      ,{field:'three',  title: '仓3'}
-	      ,{field:'four', title: '仓4', }
-	      ,{field:'five', title: '仓5'}
-	      ,{field:'six',  title: '新粉1'}
-		  ,{field:'seven',  title: '新粉2'}
-		  ,{field:'eight',  title: '沥青'}
-		  ,{field:'eight',  title: '沥温'}
-		  ,{field:'eight',  title: '集温'}
-		  ,{field:'eight',  title: '出温'}
+	      {field:'pbh', title: '材料类型',width:140}
+	      ,{field:'dateTime', title: '出料时间',width:140}
+	      ,{field:'one', title: '矿粉[S95]',width:140}
+	      ,{field:'two', title: '沥青[70]',width:140}
+	      ,{field:'three',  title: '石灰岩[3-5]',width:140}
+	      ,{field:'four', title: '石灰岩[25-31.5]',width:140 }
+	      ,{field:'five', title: '石灰岩[5-15]',width:140}
+	      ,{field:'six',  title: '玄武岩[5-10]',width:140}
+		  ,{field:'seven',  title: '玄武岩[10-15]',width:140}
+		  ,{field:'eight',  title: '石灰岩[0-3]',width:140}
+		  
 	    ]]
 	    ,page: true
 	    ,limit:10
@@ -257,22 +279,19 @@
 	  var table = layui.table;
 	  table.render({
 	    elem: '#test2'
-	    ,url:'http://192.168.1.123:8080/jbz/api/data/ajaxList'
+	    ,url:'http://113.207.26.29:8080/jbz/api/data/ajaxSCXHL'
 	    ,cellMinWidth: 80 //全局定义常规单元格的最小宽度
 	    ,cols: [[ 
-	      {field:'pbh', title: '材料类型'}
-	      ,{field:'dateTime', title: '出料时间',width:200}
-	      ,{field:'one', title: '仓1'}
-	      ,{field:'two', title: '仓2'}
-	      ,{field:'three',  title: '仓3'}
-	      ,{field:'four', title: '仓4', }
-	      ,{field:'five', title: '仓5'}
-	      ,{field:'six',  title: '新粉1'}
-		  ,{field:'seven',  title: '新粉2'}
-		  ,{field:'eight',  title: '沥青'}
-		  ,{field:'eight',  title: '沥温'}
-		  ,{field:'eight',  title: '集温'}
-		  ,{field:'eight',  title: '出温'}
+	      {field:'pbh', title: '材料类型',width:140}
+	      ,{field:'dateTime', title: '出料时间',width:140}
+	      ,{field:'XFSL', title: '矿粉[S95]',width:140}
+	      ,{field:'LQSL', title: '沥青[70]',width:140}
+	      ,{field:'three',  title: '石灰岩[3-5]',width:140}
+	      ,{field:'four', title: '石灰岩[25-31.5]',width:140 }
+	      ,{field:'five', title: '石灰岩[5-15]',width:140}
+	      ,{field:'six',  title: '玄武岩[5-10]',width:140}
+		  ,{field:'seven',  title: '玄武岩[10-15]',width:140}
+		  ,{field:'eight',  title: '石灰岩[0-3]',width:140}
 	    ]]
 	    ,page: true
 	    ,limit:10

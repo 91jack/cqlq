@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html class="no-js">
 <head>
 	<meta charset="utf-8">
@@ -116,7 +116,7 @@
 						    preload="auto"
 						    poster="http://vjs.zencdn.net/v/oceans.png"
 						    width="210px" height="200px">
-						    <source src='rtmp://118.31.236.94/hls/ch3' type='rtmp/flv'/> 
+						    <source src='rtmp://118.31.236.94/hls/ch6' type='rtmp/flv'/> 
 						</video>
 						<img src="static/images/video.png"/>
 					</div>
@@ -250,7 +250,17 @@ var player4 = videojs('player4');
 var player = videojs('player4', options, function onPlayerReady() {
     this.play();
 });
-   
+//	var open = true ;
+//	$('.index-video').dblclick(function(){
+//		if(open){
+//			$(this).addClass('active');
+//		}else{
+//			$(this).removeClass('active')
+//		}
+//		open = !open;
+//		console.log(open)
+//	})
+
 	
 	
 function gaugeOption(name,max,value,unit){
@@ -313,6 +323,7 @@ var chuliao =  echarts.init(document.getElementById("chuliao"));
 var ratio =  echarts.init(document.getElementById("ratio"));
 	
 // 地图实时数据
+map.setZoom(10);
 WebSocketFn(gpsUrl,function(data){
 	if(data=='{}' || data=='[]'){
 			return;
@@ -325,9 +336,7 @@ WebSocketFn(gpsUrl,function(data){
 			var lng = data[i].lng;
 			var lat = data[i].lat;
 			var point = new BMap.Point(lng,lat);
-			
-			map.centerAndZoom(point, 15); 
-			
+//			map.centerAndZoom(point, 15); 
 			var opt = {
 				width : 300,     // 信息窗口宽度
 				height: 100,     // 信息窗口高度
@@ -353,13 +362,16 @@ var yData1 = [];
 
 var xData2 = [];
 var yData2 = [];
+
+//油石比
+var rate=[]
+
 // 生产实时数据	
 WebSocketFn(productUrl,function(data){
 	if(data=='{}' || data=='[]'){
 		return;
 	}
 	var data = JSON.parse(data) 
-	console.log(data)
 	
 	// 累计生产总量
 	$('#productTotal').html(data.productTotal);
@@ -378,15 +390,28 @@ WebSocketFn(productUrl,function(data){
 
 	
 	if(data.productList && data.productList.length>0){
-   		for(var i=0;i<data.productList.length;i++){
-   			str +='<tr>'
-				+	'<td>'+data.productList[i].dateTime+'</td>'
-				+	'<td>'+data.productList[i].glsl+'</td>'
-				+	'<td>'+data.productList[i].tjjsl+'</td>'
-				+	'<td>'+data.productList[i].xfsl+'</td>'
-				+	'<td>'+data.productList[i].lqsl+'</td>'
-				+'</tr>'
-   		}
+		if(data.productList.length>=5){
+			for(var i=0;i<5;i++){
+	   			str +='<tr>'
+					+	'<td>'+data.productList[i].dateTime+'</td>'
+					+	'<td>'+data.productList[i].glsl+'</td>'
+					+	'<td>'+data.productList[i].tjjsl+'</td>'
+					+	'<td>'+data.productList[i].xfsl+'</td>'
+					+	'<td>'+data.productList[i].lqsl+'</td>'
+					+'</tr>'
+	   		}
+		}else{
+			for(var i=0;i<data.productList.length;i++){
+	   			str +='<tr>'
+					+	'<td>'+data.productList[i].dateTime+'</td>'
+					+	'<td>'+data.productList[i].glsl+'</td>'
+					+	'<td>'+data.productList[i].tjjsl+'</td>'
+					+	'<td>'+data.productList[i].xfsl+'</td>'
+					+	'<td>'+data.productList[i].lqsl+'</td>'
+					+'</tr>'
+	   		}
+		}
+   		
    		
    		$('#productList').prepend(str);
    		
@@ -436,22 +461,25 @@ WebSocketFn(productUrl,function(data){
 	
 	// 油石比
 	if(data.rate){
+		if(data.change){
+			rate = data.productList;
+		}else{
+			rate = data.productList.concat(rate);
+		}
 		ratio.setOption(gaugeOption('油石比',30,data.rate,'%'));
 		//油石比曲线
 
-		xData2 = data.productList.map(function(index,value){
+		xData2 = rate.map(function(index,value){
 			return index.date + '  '+ index.dateTime;
 		})
 		
-		yData2 = data.productList.map(function(index,value){
+		yData2 = rate.map(function(index,value){
 			return index.ysb;
 		})
 
 		xData2.sort();
 		yData2.sort();
 		
-		xData2.push(data.rate);
-		yData2.push(data.date);
 		
 		ratioChart('油石比','lineChart1',xData2,yData2);
 	}
@@ -518,16 +546,9 @@ function ratioChart(name,obj,xData,yData){
 					color: '#fff'
 				}
 			},
-
-			tooltip: {
-		        trigger: 'axis',  
-		    },
-			
-			axisLabel:{
+			axisLabel: {
 				show:false
-			}
-
-
+			}   //隐藏x轴的刻度lable
 		},
 		yAxis: {
 			name:name,
@@ -535,14 +556,12 @@ function ratioChart(name,obj,xData,yData){
 			splitLine: {
 				show: false
 			},
-
 			axisLine: {
 				show: true,
 				lineStyle: {
 					color: '#148976'
 				}
 			},
-			
 			axisTick: {
 				lineStyle: {
 					color: '#fff'

@@ -16,6 +16,7 @@ ul,ol,li{
 	margin: 0;
 	padding: 0;
 }
+
 .fl {
 	float: left;
 }
@@ -72,6 +73,9 @@ ul,ol,li{
 .header .nav>a.active {
 	background:#00CAB0;
 	color:#fff;
+}
+.cite .cell section option{
+	font-size: 0.6rem;
 }
 
 .subnav {
@@ -416,6 +420,18 @@ ul,ol,li{
 	height:27rem;
 	margin:0.5rem;
 }
+/*.jiankong-main .video .clk-video.active{
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 10;
+	width: 96rem;
+	height: 54.95rem;
+}
+.jiankong-main .video .clk-video.active .video-js{
+	width: 100%;
+	height: 100%;
+}*/
 .jiankong-main .video .clk-video img {
 	width:100%;
 	height:100%;
@@ -645,6 +661,18 @@ ul,ol,li{
 	overflow: hidden;
 	margin: 0.55rem auto;
 }
+/*.page-kucun .video .video-box.active{
+	width: 96rem;
+	height: 54.95rem;
+	z-index: 10;
+	top: 0;
+	left: 0;
+	position: fixed;
+}
+.page-kucun .video .video-box.active .video-js{
+	width: 100%;
+	height: 100%;
+}*/
 .page-kucun .video img {
 	width:100%;
 	height:100%;

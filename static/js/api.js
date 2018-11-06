@@ -16,8 +16,20 @@ var host= 'http://113.207.26.29:8080/jbz';
 // 获取材料类型
 var pbUrl = host +'/api/data/ajaxGetPB';
 
+// 获取油石比页面的材料类型
+var pbhUrl = host + '/api/data/ajaxGetPBH';
+
 // 获取车辆列表
 var carList = host + '/api/location/ajaxGet';
+
+//获取材料类型和批次(选择时间)
+var PBHByDateUrl = host + '/api/data/ajaxGetPBHByDate';
+
+//获取材料类型和批次(选择类型)
+var BatchByDateAndPBHUrl = host + '/api/data/ajaxGetBatchByDateAndPBH';
+
+//获取材料类型和批次(选择批次)
+var GetYSBUrl = host + '/api/data/ajaxGetYSB';
 
 // 车辆历史轨迹
 var carTrail = host + '/api/location/history/ajaxGet';
@@ -55,7 +67,7 @@ function ajaxData(url,params,callback){
 // websocket函数
 function WebSocketFn(url,callback){
     if ("WebSocket" in window){
-      // console.log("您的浏览器支持 WebSocket!");
+       // console.log("您的浏览器支持 WebSocket!");
        // 打开一个 web socket
        var ws = new WebSocket(url);
         
