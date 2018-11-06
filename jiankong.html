@@ -13,7 +13,7 @@
 	</head>
 
 	<body>
-		<div class="header clearfix">
+				<div class="header clearfix">
 			<h2>重交沥青搅拌站智慧生产管控系统</h2>
 			<div class="nav">
 				<a href="index.html">
@@ -28,7 +28,7 @@
 					<img src="static/images/icon_jiankong2.png" alt="" />
 					<span>生产监控</span>
 				</a>
-				<a href="carmanage.html">
+				<a href="carmanage.html" >
 					<img src="static/images/icon_car1.png" />
 					<span>车辆调度</span>
 				</a>
@@ -37,14 +37,14 @@
 					<img src="static/images/icon_kucun1.png" alt="" />
 					<span>库存盘点</span>
 				</a>
-				<a href="javascript:;">
+				<!--<a href="javascript:;">
 					<img src="static/images/icon_zhiliang1.png" alt="" />
 					<span>质量管控</span>
 				</a>
 				<a href="javascript:;">
 					<img src="static/images/icon_shiyan1.png" />
 					<span>实验管理</span>
-				</a>
+				</a>-->
 
 				<a id="tongji">
 					<img src="static/images/icon_tongji1.png" />
@@ -58,7 +58,7 @@
 						<a href="producenum.html">生产量分析</a>
 					</li>
 					<li>
-						<a href="hsl.html">核算量分析</a>
+						<a href="javascript:;">核算量分析</a>
 					</li>
 					<li>
 						<a href="xhl.html">消耗量分析</a>
@@ -69,10 +69,13 @@
 					<li>
 						<a href="ysb.html">油石比波动分析</a>
 					</li>
+					<li>
+						<a href="yunju.html">运距统计分析</a>
+					</li>
 				</ul>
 			</div>
 		</div>
-
+		
 		<div class="container">
 			<div class="jiankong-top">
 				<div class="jiankong-top-item type">
@@ -165,16 +168,10 @@
 					videojs.log('Awww...over so soon?!');
 				});
 			});
-//			var open = true ;
-//			$('.clk-video').dblclick(function(){
-//				if(open){
-//					$(this).addClass('active');
-//				}else{
-//					$(this).removeClass('active')
-//				}
-//				open = !open;
-//				console.log(open)
-//			})
+			
+			
+
+
 			var productList=[];
 			// 生产实时数据	
 			WebSocketFn(productUrl, function(data) {

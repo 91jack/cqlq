@@ -35,14 +35,14 @@
 					<img src="static/images/icon_kucun1.png" alt="" />
 					<span>库存盘点</span>
 				</a>
-				<a href="javascript:;">
+				<!--<a href="javascript:;">
 					<img src="static/images/icon_zhiliang1.png" alt="" />
 					<span>质量管控</span>
 				</a>
 				<a href="javascript:;">
 					<img src="static/images/icon_shiyan1.png" />
 					<span>实验管理</span>
-				</a>
+				</a>-->
 
 				<a id="tongji">
 					<img src="static/images/icon_tongji1.png" />
@@ -56,7 +56,7 @@
 						<a href="producenum.html">生产量分析</a>
 					</li>
 					<li>
-						<a href="hsl.html">核算量分析</a>
+						<a href="javascript:;">核算量分析</a>
 					</li>
 					<li>
 						<a href="xhl.html">消耗量分析</a>
@@ -66,6 +66,9 @@
 					</li>
 					<li>
 						<a href="ysb.html">油石比波动分析</a>
+					</li>
+					<li>
+						<a href="yunju.html">运距统计分析</a>
 					</li>
 				</ul>
 			</div>
@@ -105,6 +108,8 @@
 			//设置地图初始缩放比例
 			map.setZoom(11);
 			
+		    
+			
 			// 车辆列表
 			ajaxData(carList, {}, function(data) {
 
@@ -124,6 +129,46 @@
 					console.log(data)
 					if(data.length > 0){
 						map.clearOverlays();
+						
+						// 搅拌站位置
+						var point = new BMap.Point(106.278022,29.682351);
+						var marker = new BMap.Marker(point);  // 创建标注
+						map.addOverlay(marker); 
+						var opts = {
+						  position : point,    // 指定文本标注所在的地理位置
+						  offset   : new BMap.Size(10, -20)    //设置文本偏移量
+						}
+						var label = new BMap.Label("搅拌站", opts);  // 创建文本标注对象
+						label.setStyle({
+							 color : "red",
+							 fontSize : "12px",
+							 height : "20px",
+							 lineHeight : "20px",
+							 fontFamily:"微软雅黑"
+						 });
+						map.addOverlay(label);   
+	
+						// 返程车辆
+						var point = new BMap.Point(106.078022,29.582351);
+						var icon = new BMap.Icon("static/images/icon_car1.png", new BMap.Size(33,21));
+						
+						var marker = new BMap.Marker(point,{icon:icon});  // 创建标注
+						map.addOverlay(marker); 
+						var opts = {
+						  position : point,    // 指定文本标注所在的地理位置
+						  offset   : new BMap.Size(-80, -10)    //设置文本偏移量
+						}
+						var label = new BMap.Label("渝B987456", opts);  // 创建文本标注对象
+						label.setStyle({
+							 color : "red",
+							 fontSize : "12px",
+							 height : "20px",
+							 lineHeight : "20px",
+							 fontFamily:"微软雅黑"
+						 });
+						map.addOverlay(label);   
+						
+						
 				   		for (var i = 0; i < data.length ; i ++) {
 							// 地图标注
 							var lng = data[i].lng;
@@ -143,9 +188,12 @@
 							var label = data[i].vno;
 							var icon = new BMap.Icon("static/images/icon_car.png", new BMap.Size(33,21));
 							addMarker(point,icon,label,InfoWindow);
+							
+							
 				   		}
 					}
 				});
+				
 				
 				
 				//路径回放点击事件

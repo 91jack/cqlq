@@ -80,10 +80,10 @@ ul,ol,li{
 
 .subnav {
 	width:8.25rem;
-	height:15rem;
+	height:17.5rem;
 	position: absolute;
 	top:5.1rem;
-	left:57.4rem;
+	left:41rem;
 	background: #202B3D;
 	z-index: 999;
 	display: none;

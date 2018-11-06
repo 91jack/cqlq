@@ -13,7 +13,7 @@ function addMarker(point,icon,label,InfoWindow){
   	map.addOverlay(marker1);
 	var opts = {
 	  position : point,    // 指定文本标注所在的地理位置
-	  offset   : new BMap.Size(15,-20)    //设置文本偏移量
+	  offset   : new BMap.Size(30,-5)    //设置文本偏移量
 	}
 	
 	var label = new BMap.Label(label, opts);  // 创建文本标注对象

@@ -76,7 +76,7 @@
 	<div class="container">
 		<div class="top-select">
 			<div class="cell title">
-				<a>生产量分析</a>
+				<a>运距统计分析</a>
 				<a href="javascript:;">立即下载</a>
 			</div>
 			<div class="cite cell">
@@ -161,34 +161,25 @@
 			  var table = layui.table;
 			  table.render({
 			    elem: '#test'
-			    ,url:produceNumUrl
 			    ,cellMinWidth: 80 //全局定义常规单元格的最小宽度
 			    ,cols: [[ 
-			      {field:'date', title: '生产时间'}
-			      ,{field:'PB', title: '生产类型'}
-			      ,{field:'total', title: '总量'}
+			      {field:'carNo', title: '车牌'}
+			      ,{field:'outDate', title: '日期'}
+			      ,{field:'project', title: '项目名称'}
+			      ,{field:'carNum', title: '车次'}
+			      ,{field:'yunju', title: '运距'}
 			    ]]
-			    ,page: true
-			    ,limit:20
-			    ,request: {
-				    pageName: 'page' //页码的参数名称，默认：page
-				    ,limitName: 'pageSize' //每页数据量的参数名，默认：limit
-				}
-			    ,where:params
-			    , response: {
-		            statusName: 'errno' //数据状态的字段名称，默认：code
-		            , statusCode: 0 //成功的状态码，默认：0
-		            , msgName: 'error' //状态信息的字段名称，默认：msg
-		            , countName: 'num' //数据总数的字段名称，默认：count
-		            , dataName: 'list' //数据列表的字段名称，默认：data
-		        }
+			 	,data:[
+			    {carNo:'渝C61358',outDate:'2018-11-05',project:'解放碑项目',carNum:10,yunju:161.25}
+			    ,{carNo:'渝C87219',outDate:'2018-11-06',project:'解放碑项目',carNum:11,yunju:141.55}
+			    ,{carNo:'渝CD1835',outDate:'2018-11-06',project:'解放碑项目',carNum:8,yunju:189.65}
+			]
 				,even:true
 				
 			  });
 			});
-		}
 		
-	
+	}
 		
 	</script>
 	</body>
