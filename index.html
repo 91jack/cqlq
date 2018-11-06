@@ -546,9 +546,15 @@ function ratioChart(name,obj,xData,yData){
 					color: '#fff'
 				}
 			},
-			axisLabel: {
+//			axisLabel: {
+//				show:false
+//			}   //隐藏x轴的刻度lable
+			tooltip: {
+		        trigger: 'axis',  
+		    },		
+			axisLabel:{
 				show:false
-			}   //隐藏x轴的刻度lable
+			}
 		},
 		yAxis: {
 			name:name,
@@ -580,9 +586,6 @@ function ratioChart(name,obj,xData,yData){
 
 	lineChart.setOption(option);
 }		
-	
-	
-
 </script>
 </body>
 </html>
