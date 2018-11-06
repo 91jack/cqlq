@@ -115,12 +115,12 @@
 		  var laydate = layui.laydate;
 		  laydate.render({
 		    elem: '#startTime',
-		    value:'2018-10-17'
+		    value:startTime
 		  });
 		  
 		  laydate.render({
 		   elem: '#endTime',
-		   value:'2018-10-17'
+		   value:endTime
 		  });
 		});
 		
@@ -145,63 +145,28 @@
 			  var table = layui.table;
 			  table.render({
 			    elem: '#test'
+			    ,url:tempUrl
 			    ,cellMinWidth: 80 //全局定义常规单元格的最小宽度
 			    ,cols: [[ 
 			      {field:'outDate', title: '时间'}
 			      ,{field:'product', title: '材料类型'}
 			      ,{field:'out', title: '出料温度'}
 			    ]]
-			 	,data:[
-			    {
-			        "id":"5bc6af58179c9071ac931e5c",
-			        "out":158.2,
-			        "product":"AC13",
-			        "outDate":"2018-10-17 11:41:12",
-			        "siteId":"Y7KM5RSP135RDHM1921680199"
-			    },
-			    {
-			        "id":"5bc6af49179c9071ac931e5b",
-			        "out":150.4,
-			        "product":"AC13",
-			        "outDate":"2018-10-17 11:40:57",
-			        "siteId":"Y7KM5RSP135RDHM1921680199"
-			    },
-			    {
-			        "id":"5bc6af39179c9071ac931e5a",
-			        "out":152.1,
-			        "product":"AC13",
-			        "outDate":"2018-10-17 11:40:41",
-			        "siteId":"Y7KM5RSP135RDHM1921680199"
-			    },
-			    {
-			        "id":"5bc6af2a179c9071ac931e59",
-			        "out":153.8,
-			        "product":"AC13",
-			        "outDate":"2018-10-17 11:40:26",
-			        "siteId":"Y7KM5RSP135RDHM1921680199"
-			    },
-			    {
-			        "id":"5bc6af1b179c9071ac931e58",
-			        "out":154.8,
-			        "product":"AC13",
-			        "outDate":"2018-10-17 11:40:11",
-			        "siteId":"Y7KM5RSP135RDHM1921680199"
-			    },
-			    {
-			        "id":"5bc6af0b179c9071ac931e57",
-			        "out":159,
-			        "product":"AC13",
-			        "outDate":"2018-10-17 11:39:55",
-			        "siteId":"Y7KM5RSP135RDHM1921680199"
-			    },
-			    {
-			        "id":"5bc6aefc179c9071ac931e56",
-			        "out":162.5,
-			        "product":"AC13",
-			        "outDate":"2018-10-17 11:39:40",
-			        "siteId":"Y7KM5RSP135RDHM1921680199"
-			    },
-			]
+			    ,page: true
+			    ,limit:10
+			    ,request: {
+				    pageName: 'page' //页码的参数名称，默认：page
+				    ,limitName: 'pageSize' //每页数据量的参数名，默认：limit
+				   
+				}
+			    ,where:params
+			    , response: {
+		            statusName: 'errno' //数据状态的字段名称，默认：code
+		            , statusCode: 0 //成功的状态码，默认：0
+		            , msgName: 'error' //状态信息的字段名称，默认：msg
+		            , countName: 'num' //数据总数的字段名称，默认：count
+		            , dataName: 'obj' //数据列表的字段名称，默认：data
+		        }
 				,even:true
 				
 			  });
@@ -210,63 +175,11 @@
 		
 	//柱状图
 	function chartFn(){
-			var dataArr = [
-   
-    {
-        "id":"5bc6af58179c9071ac931e5c",
-        "out":158.2,
-        "product":"AC13",
-        "outDate":"2018-10-17 11:41:12",
-        "siteId":"Y7KM5RSP135RDHM1921680199"
-    },
-    {
-        "id":"5bc6af49179c9071ac931e5b",
-        "out":150.4,
-        "product":"AC13",
-        "outDate":"2018-10-17 11:40:57",
-        "siteId":"Y7KM5RSP135RDHM1921680199"
-    },
-    {
-        "id":"5bc6af39179c9071ac931e5a",
-        "out":152.1,
-        "product":"AC13",
-        "outDate":"2018-10-17 11:40:41",
-        "siteId":"Y7KM5RSP135RDHM1921680199"
-    },
-    {
-        "id":"5bc6af2a179c9071ac931e59",
-        "out":153.8,
-        "product":"AC13",
-        "outDate":"2018-10-17 11:40:26",
-        "siteId":"Y7KM5RSP135RDHM1921680199"
-    },
-    {
-        "id":"5bc6af1b179c9071ac931e58",
-        "out":154.8,
-        "product":"AC13",
-        "outDate":"2018-10-17 11:40:11",
-        "siteId":"Y7KM5RSP135RDHM1921680199"
-    },
-    {
-        "id":"5bc6af0b179c9071ac931e57",
-        "out":159,
-        "product":"AC13",
-        "outDate":"2018-10-17 11:39:55",
-        "siteId":"Y7KM5RSP135RDHM1921680199"
-    },
-    {
-        "id":"5bc6aefc179c9071ac931e56",
-        "out":162.5,
-        "product":"AC13",
-        "outDate":"2018-10-17 11:39:40",
-        "siteId":"Y7KM5RSP135RDHM1921680199"
-    },
-    
-]
-			var xData = dataArr.map(function(index,value){
+		ajaxData(tempUrl,params,function(res){
+			var xData = res.obj.map(function(index,value){
 					return index.outDate;
 			})
-			var yData = dataArr.map(function(index,value){
+			var yData = res.obj.map(function(index,value){
 					return index.out;
 			})
 			var barChart = echarts.init(document.getElementById('barChart'));
@@ -279,7 +192,7 @@
 					top: 30,
 					left: 40,
 					right:0,
-					bottom:'20%'
+					bottom:'10%'
 				},
 				tooltip: {
 			        trigger: 'axis',  
@@ -298,9 +211,6 @@
 							color: '#148976'
 						}
 					},
-					axisLabel:{
-						rotate:15
-					}
 				},
 				yAxis: {
 					name:'温度（℃）',
@@ -326,25 +236,15 @@
 						type: 'line',
 						itemStyle: {
 							color: '#00CAB0'
-						},
-						markLine: {
-			                data: [
-			                    {type: 'average', name: '平均值'}
-			                ],
-			                lineStyle:{
-			                	color:'red'
-			                }
-			            }
+						}
 					},
 		
 				]
 			};
 		
 			barChart.setOption(option);
-		
+		})
 	}
-	
-
 		
 	</script>
 	</body>

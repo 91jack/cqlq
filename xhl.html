@@ -107,6 +107,7 @@
 	<script src="static/layui/layui.all.js" type="text/javascript" charset="utf-8"></script>
 	<script src="static/js/api.js" type="text/javascript" charset="utf-8"></script>
 	<script type="text/javascript">
+	$(function(){
 		// 时间选择
 		var time = timeFn();
 		var startTime = time.y+'-'+(time.m-1)+'-'+time.d;
@@ -128,8 +129,9 @@
 		    	beginDate:$('#startTime').val() ,
 			   	endDate:$('#endTime').val()
 		    }
+		
 		tableFn(params)
-		chartFn()
+		chartFn(xhlUrl,params);
 		
 		$('.time-btn').click(function(){
 			params = {
@@ -137,7 +139,7 @@
 				   	endDate:$('#endTime').val()
 			    }
 			tableFn(params);
-			chartFn()
+			chartFn(xhlUrl,params);
 		})
 		
 		function tableFn(params){
@@ -177,8 +179,11 @@
 		}
 	
 	//柱状图
-	function chartFn(){
+	function chartFn(xhlUrl,params){
 		ajaxData(xhlUrl,params,function(res){
+			if(res.list ==null){
+				res.list = [];
+			}
 			var xData = res.list.map(function(index,value){
 					return index.date;
 			})
@@ -296,10 +301,11 @@
 			};
 		
 			barChart.setOption(option);
+			
 		})
 	}
 	
-		
+	})	
 	</script>
 	</body>
 
