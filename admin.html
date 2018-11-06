@@ -2,8 +2,28 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
+		<link rel="stylesheet" type="text/css" href="static/css/common.css"/>
+		<link rel="stylesheet" type="text/css" href="static/css/admin.css"/>
 		<title></title>
 	</head>
 	<body>
+		<div class="admin-cont">
+			<div class="login-cont">
+				<p class="tit">智慧搅拌站登录</p>
+				<div class="username">
+					<label>账    号：</label><input type="" name="" id="" value="" placeholder="请输入账号" />
+				</div>
+				<div class="password">
+					<label>密    码：</label><input type="" name="" id="" value="" placeholder="请输入密码" />
+				</div>
+				<button class="btn">登录</button>
+			</div>
+		</div>
 	</body>
+	<script src="static/js/jquery-1.11.0.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		$('.btn').click(function(){
+			window.location.href="index.html"
+		})
+	</script>
 </html>
