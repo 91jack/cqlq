@@ -436,6 +436,88 @@ ul,ol,li{
 	width:100%;
 	height:100%;
 }
+/*
+ * monitor视频监控
+ */
+.inner-li{
+	font-size: 0.7rem;
+	color: #575757;
+}
+.inner-ul.active{
+	display: block;
+}
+.inner-ul{
+	display: none;
+}
+.monitor .car-list li:hover{
+	background:rgba(0,202,176,1)
+}
+.monitor .car-list li.active .inner-ul.active li:hover{
+	background:rgba(0,202,176,0.2);
+}
+.monitor-cont{
+	width: 63.45rem;
+	margin-top: 1.8rem;
+	display: flex;
+	flex-wrap: wrap;	
+}
+.monitor-box{
+	width: 15.2rem;
+	height: 14.7rem;
+	margin-left: 0.6rem;
+	margin-bottom: 0.7rem;
+}
+.monitor-box:nth-child(4n){
+	margin-left: 0.75rem;
+}
+.monitor-info{
+	width: 16.05rem;
+	height: 12.95rem;
+}
+.monitor-info .info-tip{
+	width:16.05rem;
+	height:2.8rem;
+	background:rgba(32,43,61,1);
+	border-radius:0.5rem 0.5rem 0px 0px;
+}
+.monitor-info .info-tip span{
+	color: #00CAB0;
+	font-size: 0.8rem;
+	margin-left: 1rem;
+	line-height: 2.8rem;
+}
+.monitor-info .info-content{
+	width:16.05rem;
+	height:10.15rem;
+	background:rgba(247,247,247,1);
+	border:1px solid rgba(229,229,229,1);
+	border-radius:0px 0px 0.5rem 0.5rem;
+	text-align: center;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.monitor-info .info-content span{
+	text-align: center;
+	font-size: 1.1rem;
+	color: #19B3E4;
+}
+.monitor .car-list .out-li{
+	position: relative;
+}
+.car-list .out-li img{
+	position: absolute;
+	width: 0.5rem;
+	height: 0.6rem;
+	top: 50%;
+	margin-top: -0.3rem;
+	right: 1.2rem;
+}
+.car-list .out-li img.active{
+	-webkit-transform-origin: center center; 
+	-webkit-transform: rotate(90deg);
+}
+
 
 /*
  * carmanage.html车辆调度
@@ -458,11 +540,12 @@ ul,ol,li{
 	text-align: center;
 	border-bottom:0.05rem solid #E4E5E7;
 }
-.car-list li.active,
-.car-list li:hover{
+.car-list.car li.active,
+.car-list.car li:hover{
 	background:#00CAB0;
 	color: #fff;
 }
+
 .car-map {
 	width:81.2rem;
 	height:45rem;
