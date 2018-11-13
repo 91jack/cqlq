@@ -8,22 +8,30 @@
 	</head>
 	<body>
 		<div class="admin-cont">
+			<div class="icon-tit">
+				<img src="static/images/admin/logo.png"/>
+				<strong>搅拌站智慧生产管控系统</strong>
+			</div>
 			<div class="login-cont">
-				<p class="tit">智慧搅拌站登录</p>
-				<div class="username">
-					<label>账    号：</label><input type="" name="" id="" value="" placeholder="请输入账号" />
+				<div class="pic-cont">
+					<img src="static/images/admin/leftpic.png"/>
 				</div>
-				<div class="password">
-					<label>密    码：</label><input type="" name="" id="" value="" placeholder="请输入密码" />
+				<div class="tab">
+					<div class="user">
+						<img src="static/images/admin/user.png"/>
+						<input placeholder="用户名" type="" name="" id="" value="" />
+					</div>
+					<div class="pas">
+						<img class="last" src="static/images/admin/password.png"/>
+						<input placeholder="密码" type="password" name="" id="" value="" />
+					</div>
+					<div class="tonext">
+						<a href="index.html">登录</a>
+					</div>
 				</div>
-				<button class="btn">登录</button>
 			</div>
 		</div>
 	</body>
 	<script src="static/js/jquery-1.11.0.min.js" type="text/javascript" charset="utf-8"></script>
-	<script type="text/javascript">
-		$('.btn').click(function(){
-			window.location.href="index.html"
-		})
-	</script>
+	<script src="static/js/common.js" type="text/javascript" charset="utf-8"></script>
 </html>
