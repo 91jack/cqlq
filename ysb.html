@@ -76,11 +76,11 @@
 			</ul>
 		</div>
 	</div>
-
+	
 	<div class="container">
 		<div class="top-select">
 			<div class="cell title">
-				<a>生产量分析</a>
+				<a>油石比波动分析</a>
 				<a href="javascript:;">立即下载</a>
 			</div>
 			<div class="cite cell">
@@ -91,6 +91,7 @@
 						<li>万州站</li>
 				</ul>
 			</div>
+			
 			<!--<div class="cite cell">
 				<span class="fl">显示类型</span>
 				<ul class="fl">
@@ -101,16 +102,30 @@
 			</div>-->
 			<div class="time-wrap cell">
 				<div class="start-time">
-					
 					<input type="text" id="startTime">
 				</div>
 				<div class="end-time">
-					
 					<input type="text" id="endTime">
 				</div>
 				<a href="javascript:;" class="time-btn">确定</a>
 			</div>
 			
+			<div class="cite cell">
+				<span class="fl">显示类型</span>
+				<!--<ul class="fl">
+					<li></li>
+					<li></li>
+					<li></li>
+				</ul>-->
+				<select name="" id='sel'>
+					<!--<option value="">SMA</option>-->
+				</select>
+				
+				<span>选择阶段</span>
+				<select name="" id='sel1'>
+					<!--<option value="">SMA</option>-->
+				</select>
+			</div>
 		</div>
 		<div class="col-2 fl">
 			<table class="layui-hide" id="test"></table>
@@ -126,6 +141,9 @@
 	<script src="static/layui/layui.all.js" type="text/javascript" charset="utf-8"></script>
 	<script src="static/js/api.js" type="text/javascript" charset="utf-8"></script>
 	<script type="text/javascript">
+		//获取材料类型
+		var defaultPN = '';
+
 		// 时间选择
 		var time = timeFn();
 		var startTime = time.y+'-'+time.m+'-'+time.d;
@@ -134,7 +152,7 @@
 		  var laydate = layui.laydate;
 		  laydate.render({
 		    elem: '#startTime',
-		    value:startTime
+		    value: startTime
 		  });
 		  
 		  laydate.render({
@@ -143,40 +161,85 @@
 		  });
 		});
 		
-		var params = {
-	    	beginDate:$('#startTime').val() ,
-		   	endDate:$('#endTime').val()
-	    }
-		tableFn(params)
-		
-		
-		
-		
+		//选择时间
 		$('.time-btn').click(function(){
-			params = {
-			    	beginDate:$('#startTime').val() ,
-				   	endDate:$('#endTime').val()
-			    }
-			tableFn(params)
+			$.ajax({
+				type:"post",
+				url:PBHByDateUrl,
+				data:{
+					beginDate:$('#startTime').val() ,
+			   		endDate:$('#endTime').val(),
+				},
+				success:function(res){
+					if(res.errno==0){
+						var str1 = "";
+						for(var i=0;i<res.list.length;i++){
+							str1 += '<option data-id='+i+'>'+res.list[i]+'</option>'
+						}
+						str1 = '<option>请选择</option>'+str1;
+						$('#sel').html(str1);
+					}
+				}
+			});
 		})
 		
+		//选择材料类型
+		$('#sel').change(function(){
+			var PN = $(this).find('option:selected').html();
+			$.ajax({
+				type:"post",
+				url:BatchByDateAndPBHUrl,
+				data:{
+					beginDate:$('#startTime').val() ,
+			   		endDate:$('#endTime').val(),
+			   		productName:PN
+				},
+				success:function(res){
+					var str = '';
+					for(var i=0;i<res.list.length;i++){
+						str += '<option data-id='+i+'>'+res.list[i]+'</option>'
+					}
+					str = '<option>请选择</option>'+str;
+					$('#sel1').html(str);
+				}
+			})
+		})
+		
+		//选择批次
+		$('#sel1').change(function(){
+			var batch = $(this).find('option:selected').html();
+			var params = {
+				beginDate:$('#startTime').val() ,
+			   	endDate:$('#endTime').val(),
+			   	productName:$('#sel').find('option:selected').html(),
+			   	batch:batch
+			};
+			
+			tableFn(params);
+			chartFn(params);
+		})
+		
+		
 		function tableFn(params){
+			console.log(params)
+			
 			layui.use('table', function(){
 			  var table = layui.table;
 			  table.render({
 			    elem: '#test'
-			    ,url:produceNumUrl
+			    ,url:GetYSBUrl
 			    ,cellMinWidth: 80 //全局定义常规单元格的最小宽度
 			    ,cols: [[ 
-			      {field:'date', title: '生产时间'}
-			      ,{field:'PB', title: '生产类型'}
-			      ,{field:'total', title: '总量'}
+			      {field:'dateTime', title: '时间'}
+			      ,{field:'rate', title: '油石比'}
 			    ]]
-			    ,page: true
-			    ,limit:20
+//			    ,page: true
+//			    ,limit:10
+				,height:400
 			    ,request: {
 				    pageName: 'page' //页码的参数名称，默认：page
 				    ,limitName: 'pageSize' //每页数据量的参数名，默认：limit
+				   
 				}
 			    ,where:params
 			    , response: {
@@ -191,7 +254,94 @@
 			  });
 			});
 		}
-		
+	
+	//柱状图
+	function chartFn(params){
+		ajaxData(GetYSBUrl,params,function(res){
+			console.log(res)
+			var xData = res.list.map(function(index,value){
+					return index.dateTime;
+			})
+			var yData = res.list.map(function(index,value){
+					return index.rate;
+			})
+			var itemPB = res.obj;
+			var bigPB = itemPB+0.3;
+			var smPB = itemPB-0.3;
+			console.log('标准：'+itemPB+'最大'+bigPB+'最小'+smPB)
+			var barChart = echarts.init(document.getElementById('barChart'));
+			var option = {
+				title:{
+					text:'油石比曲线分析',
+					 x: 'center',
+				},
+				grid: {
+					top: 30,
+					left: 40,
+					right:0,
+					bottom:'10%'
+				},
+				tooltip: {
+			        trigger: 'axis',  
+			    },
+				xAxis: {
+					type: 'category',
+					data: xData,
+					axisTick: {
+						lineStyle: {
+							color: '#fff'
+						}
+					},
+					axisLine: {
+						show: true,
+						lineStyle: {
+							color: '#148976'
+						}
+					},
+				},
+				yAxis: {
+					name:'油石比（%）',
+					type: 'value',
+					splitLine: {
+						show: false
+					},
+					axisLine: {
+						show: true,
+						lineStyle: {
+							color: '#148976'
+						}
+					},
+					axisTick: {
+						lineStyle: {
+							color: '#fff'
+						}
+					},
+					max:6
+				},
+				series: [
+					{
+						name:'油石比',
+						data:yData,
+						type: 'line',
+						itemStyle: {
+							color: '#19B6E8'
+						},
+						markLine : {
+			                data : [
+			                    { yAxis: bigPB,xAxis:0, name: '油石比区间'},
+			                    { yAxis: smPB,xAxis:0}
+//								{ name: '油石比区间',coord: [0, bigPB]},
+//			                    { coord: [0, bigPB]},{coord: [0, smPB]},
+//			                    { type: 'max'}
+			                ]
+			            }
+					},
+					
+				]
+			};
+			barChart.setOption(option);
+		})
+	}
 	
 		
 	</script>

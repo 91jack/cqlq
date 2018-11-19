@@ -15,16 +15,16 @@
 
 
  // 顶部导航切换效果
-$('.header .nav>a').hover(function() {
-	$(this).addClass('active').siblings().removeClass('active');
-	var imgUrl = $(this).children('img').attr('src');
-	var newImgUrl = imgUrl.replace(/1/, "2");
-	$(this).children('img').attr('src', newImgUrl);
-}, function() {
-	var imgUrl = $(this).children('img').attr('src');
-	var newImgUrl = imgUrl.replace(/2/, "1");
-	$(this).children('img').attr('src', newImgUrl);
-})
+//$('.header .nav>a').hover(function() {
+//	$(this).addClass('active').siblings().removeClass('active');
+//	var imgUrl = $(this).children('img').attr('src');
+//	var newImgUrl = imgUrl.replace(/1/, "2");
+//	$(this).children('img').attr('src', newImgUrl);
+//}, function() {
+//	var imgUrl = $(this).children('img').attr('src');
+//	var newImgUrl = imgUrl.replace(/2/, "1");
+//	$(this).children('img').attr('src', newImgUrl);
+//})
 
 // 二级导航
 $('#tongji').hover(function(){
@@ -32,7 +32,7 @@ $('#tongji').hover(function(){
 },function(){
 	setTimeout(function(){
 		$('.subnav').slideUp(200);
-	},5000)
+	},3000)
 })
 
 
@@ -46,3 +46,4 @@ $('.top-title h1').on('click', function() {
 	}
 	on = !on;
 })
+

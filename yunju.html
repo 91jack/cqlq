@@ -1,16 +1,16 @@
 <!doctype html>
 <html class="no-js">
-	<head>
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-		<title>重交沥青搅拌站智慧生产管控系统</title>
-		<link rel="stylesheet" type="text/css" href="static/layui/css/layui.css"/>
-		<link rel="stylesheet" type="text/css" href="static/css/common.css" />
-	</head>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<title>重交沥青搅拌站智慧生产管控系统</title>
+<link rel="stylesheet" type="text/css" href="static/layui/css/layui.css"/>
+<link rel="stylesheet" type="text/css" href="static/css/common.css" />
+</head>
 
-	<body>
-		<div class="header clearfix">
+<body>
+	<div class="header clearfix">
 		<h2>重交沥青搅拌站智慧生产管控系统</h2>
 		<div class="nav">
 			<a href="index.html">
@@ -76,38 +76,58 @@
 			</ul>
 		</div>
 	</div>
-		
-		<div class="container">
-			<div class="top-select">
-				<div class="cell title">
-					<a>生产动态表</a>
-					<a href="javascript:;">立即下载</a>
-				</div>
-				<div class="cite cell">
-					<span class="fl">站点</span>
-					<ul class="fl">
-						<li>璧山站</li>
-						<li>两江站</li>
-						<li>万州站</li>
-					</ul>
-				</div>
-				<div class="time-wrap cell">
-					<div class="start-time">
-					
-						<input type="text" id="startTime">
-					</div>
-					<div class="end-time">
-						
-						<input type="text" id="endTime">
-					</div>
-					<a href="javascript:;" class="time-btn">确定</a>
-				</div>
-				
+
+	<div class="container">
+		<div class="top-select">
+			<div class="cell title">
+				<a>运距统计分析</a>
+				<a href="javascript:;">立即下载</a>
 			</div>
+			<div class="cite cell">
+				<span class="fl">站点</span>
+				<ul class="fl">
+					<li>璧山站</li>
+					<li>两江站</li>
+					<li>万州站</li>
+				</ul>
+			</div>
+			<div class="pro-name">
+				<select id="protect" name="" disabled="disabled">
+					<option value="" selected="selected">项目名称</option>
+				</select>
+			</div>
+			<div class="time-wrap cell">
+				<div class="start-time">
+					<input type="text" id="startTime">
+				</div>
+				<div class="end-time">
+					<input type="text" id="endTime">
+				</div>
+				<a href="javascript:;" class="time-btn">确定</a>
+			</div>
+			<div class="station-name">
+				<select id="station" name="" disabled="disabled">
+					<option value="" selected="selected">车牌号</option>
+				</select>
+			</div>
+			<!--<div class="cite cell">
+				<span class="fl">显示类型</span>
+				<ul class="fl">
+					<li>SMA</li>
+					<li>MA</li>
+					<li>CBA</li>
+				</ul>
+			</div>-->
 			
+			
+		</div>
+		<div class="col-2 fl">
 			<table class="layui-hide" id="test"></table>
 		</div>
-		
+		<div class="col-2 fr">
+			<div class="chart" id="barChart"></div>
+		</div>
+	</div>
 		
 	<script src="static/js/jquery-1.11.0.min.js" type="text/javascript" charset="utf-8"></script>
 	<script src="static/js/common.js"></script>
@@ -117,7 +137,8 @@
 	<script type="text/javascript">
 		// 时间选择
 		var time = timeFn();
-		var startTime = time.y+'-'+time.m+'-'+time.d
+		var startTime = time.y+'-'+time.m+'-'+time.d;
+		var endTime = time.y+'-'+time.m+'-'+time.d;
 		layui.use('laydate', function(){
 		  var laydate = layui.laydate;
 		  laydate.render({
@@ -127,15 +148,17 @@
 		  
 		  laydate.render({
 		   elem: '#endTime',
-		   value:startTime
+		   value:endTime
 		  });
 		});
 		
 		var params = {
-		    	beginDate:$('#startTime').val() ,
-			   	endDate:$('#endTime').val()
-		    }
+	    	beginDate:$('#startTime').val() ,
+		   	endDate:$('#endTime').val()
+	    }
 		tableFn(params)
+		
+		
 		
 		
 		$('.time-btn').click(function(){
@@ -151,43 +174,27 @@
 			  var table = layui.table;
 			  table.render({
 			    elem: '#test'
-			    ,url:produceStsteUrl
 			    ,cellMinWidth: 80 //全局定义常规单元格的最小宽度
 			    ,cols: [[ 
-			      {field:'pbh', title: '材料类型'}
-			      ,{field:'dateTime', title: '出料时间',width:200}
-			      ,{field:'one', title: '仓1'}
-			      ,{field:'two', title: '仓2'}
-			      ,{field:'three',  title: '仓3'}
-			      ,{field:'four', title: '仓4', }
-			      ,{field:'five', title: '仓5'}
-			      ,{field:'six',  title: '新粉1'}
-	 			  ,{field:'seven',  title: '新粉2'}
-	 			  ,{field:'eight',  title: '沥青'}
-	 			  ,{field:'guanci',  title: '备注'}
+			      {field:'carNo', title: '车牌'}
+			      ,{field:'outDate', title: '日期'}
+			      ,{field:'project', title: '项目名称'}
+			      ,{field:'carNum', title: '车次'}
+			      ,{field:'yunju', title: '运距'}
 			    ]]
-			    ,page: true
-			    ,limit:10
-			    ,request: {
-				    pageName: 'page' //页码的参数名称，默认：page
-				    ,limitName: 'pageSize' //每页数据量的参数名，默认：limit
-				   
-				}
-			    ,where:params
-			    , response: {
-		            statusName: 'errno' //数据状态的字段名称，默认：code
-		            , statusCode: 0 //成功的状态码，默认：0
-		            , msgName: 'error' //状态信息的字段名称，默认：msg
-		            , countName: 'num' //数据总数的字段名称，默认：count
-		            , dataName: 'list' //数据列表的字段名称，默认：data
-		        }
+			 	,data:[
+			    {carNo:'渝C61358',outDate:'2018-11-05',project:'解放碑项目',carNum:10,yunju:161.25}
+			    ,{carNo:'渝C87219',outDate:'2018-11-06',project:'解放碑项目',carNum:11,yunju:141.55}
+			    ,{carNo:'渝CD1835',outDate:'2018-11-06',project:'解放碑项目',carNum:8,yunju:189.65}
+			]
 				,even:true
 				
 			  });
 			});
-		}
 		
+	}
 		
 	</script>
 	</body>
+
 </html>

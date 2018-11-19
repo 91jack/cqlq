@@ -17,8 +17,8 @@
 					<img src="static/images/icon_home1.png" alt="" />
 					<span>首页</span>
 				</a>
-				<a href="weigh.html">
-					<img src="static/images/icon_chengzhong1.png" alt="" />
+				<a href="weigh.html"  class="active">
+					<img src="static/images/icon_chengzhong2.png" alt="" />
 					<span>称重过磅</span>
 				</a>
 				<a href="jiankong.html">
@@ -29,30 +29,50 @@
 					<img src="static/images/icon_car1.png" />
 					<span>车辆调度</span>
 				</a>
-				
-				<a href="javascript:;">
+
+				<a href="kucun.html">
 					<img src="static/images/icon_kucun1.png" alt="" />
 					<span>库存盘点</span>
 				</a>
-				<a href="javascript:;">
+				<a href="monitor.html">
+					<img src="static/images/icon_zhiliang1.png" alt="" />
+					<span>视频监控</span>
+				</a>
+				<!--<a href="javascript:;">
 					<img src="static/images/icon_zhiliang1.png" alt="" />
 					<span>质量管控</span>
 				</a>
 				<a href="javascript:;">
 					<img src="static/images/icon_shiyan1.png" />
 					<span>实验管理</span>
-				</a>
-				
-				<a  id="tongji">
+				</a>-->
+
+				<a id="tongji">
 					<img src="static/images/icon_tongji1.png" />
 					<span>统计分析</span>
 				</a>
 				<ul class="subnav">
-					<li><a href="producestate.html">生产动态表</a></li>
-					<li><a href="producenum.html">生产量分析</a></li>
-					<li><a href="">核算量分析</a></li>
-					<li><a href="">消耗量分析</a></li>
-					<li><a href="">温度波动分析</a></li>
+					<li>
+						<a href="producestate.html">生产动态表</a>
+					</li>
+					<li>
+						<a href="producenum.html">生产量分析</a>
+					</li>
+					<li>
+						<a href="javascript:;">核算量分析</a>
+					</li>
+					<li>
+						<a href="xhl.html">消耗量分析</a>
+					</li>
+					<li>
+						<a href="temp.html">温度波动分析</a>
+					</li>
+					<li>
+						<a href="ysb.html">油石比波动分析</a>
+					</li>
+					<li>
+						<a href="yunju.html">运距统计分析</a>
+					</li>
 				</ul>
 			</div>
 		</div>
@@ -64,7 +84,7 @@
 					
 					<div class="fl weigh">
 						<div class="weigh-num fl">
-							16.88
+							00.00
 						</div>
 						<div class="weigh-btn fl">
 							称<br/>重
@@ -73,7 +93,7 @@
 					<div class="fr">
 						<div class="input-group">
 							<span>车牌号</span>
-							<input type="text" />
+							<input type="text" id="carNo"/>
 						</div>
 						<div class="input-group">
 							<span>红外感应</span>
@@ -161,7 +181,7 @@
 		
 		<div class="container  clearfix">
 			<div class="tab-btn">
-				<span>最近称重车辆列表</span>
+			<!--	<span>最近称重车辆列表</span>-->
 				<span>最近50条发货过磅信息</span>
 			</div>
 			
@@ -170,66 +190,62 @@
 		</div>
 		
 		
-	<script src="static/js/jquery-1.11.0.min.js" type="text/javascript" charset="utf-8"></script>
-	<script src="static/js/common.js"></script>
-	<script src="static/js/echarts.min.js" type="text/javascript" charset="utf-8"></script>
-	<script src="static/layui/layui.all.js" type="text/javascript" charset="utf-8"></script>
-	<script src="static/laydate/laydate.js" type="text/javascript" charset="utf-8"></script>
-	<script type="text/javascript">
-		var arr = ['沪','浙','苏','皖','鲁','豫',
-					'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z',
-					'0','1','2','3','4','5','6','7','8','9'];
-		var spanStr = '';			
-		for(var i=0;i<arr.length;i++){
-			spanStr +='<span>'+arr[i]+'</span>'
-		}
-		$('.carnum').append(spanStr);
-		
-		layui.use('table', function(){
-		  var table = layui.table;
-		  table.render({
-		    elem: '#test'
-		    ,url:'http://192.168.1.123:8080/jbz/api/data/ajaxList'
-		    ,cellMinWidth: 80 //全局定义常规单元格的最小宽度
-		    ,cols: [[ 
-		      {field:'pbh', title: '材料类型'}
-		      ,{field:'dateTime', title: '出料时间',width:200}
-		      ,{field:'one', title: '仓1'}
-		      ,{field:'two', title: '仓2'}
-		      ,{field:'three',  title: '仓3'}
-		      ,{field:'four', title: '仓4', }
-		      ,{field:'five', title: '仓5'}
-		      ,{field:'six',  title: '新粉1'}
- 			  ,{field:'seven',  title: '新粉2'}
- 			  ,{field:'eight',  title: '沥青'}
- 			  ,{field:'eight',  title: '沥温'}
- 			  ,{field:'eight',  title: '集温'}
- 			  ,{field:'eight',  title: '出温'}
-		    ]]
-		    ,page: true
-		    ,limit:10
-		    ,request: {
-			    pageName: 'page' //页码的参数名称，默认：page
-			    ,limitName: 'pageSize' //每页数据量的参数名，默认：limit
-			   
-			}
-		    ,where:{
-		    	 beginDate:'2018-09-01'
-			    ,endDate:'2018-09-26'
-		    }
-		    , response: {
-	            statusName: 'errno' //数据状态的字段名称，默认：code
-	            , statusCode: 0 //成功的状态码，默认：0
-	            , msgName: 'error' //状态信息的字段名称，默认：msg
-	            , countName: 'num' //数据总数的字段名称，默认：count
-	            , dataName: 'list' //数据列表的字段名称，默认：data
-	        }
-			,even:true
-			
-		  });
-		});
-		
-	</script>
-	</body>
+<script src="static/js/jquery-1.11.0.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="static/js/common.js"></script>
+<script src="static/js/echarts.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="static/layui/layui.all.js" type="text/javascript" charset="utf-8"></script>
+<script src="static/js/api.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+var arr = ['沪','浙','苏','皖','鲁','豫',
+			'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z',
+			'0','1','2','3','4','5','6','7','8','9'];
+var spanStr = '';			
+for(var i=0;i<arr.length;i++){
+	spanStr +='<span>'+arr[i]+'</span>'
+}
+$('.carnum').append(spanStr);
 
+
+var dataList = []
+WebSocketFn(weightUrl,function(data){
+	if(data=='{}' || data=='[]'){
+		return;
+	}
+	var data = JSON.parse(data) 
+	console.log(data)
+	if(data.length == 5){
+		$('#carNo').val(data[0].carNumber);
+		for(var i=0;i<data.length;i++){
+			dataList.push(data[i]);
+		}
+	}else{
+		for(var i=0;i<data.length;i++){
+			dataList.unshift(data[i]);
+			$('#carNo').val(data[i].carNumber);
+		}
+	}
+	
+	console.log(dataList)
+	// 生产看板
+	layui.use('table', function(){
+  	var table = layui.table;
+	  table.render({
+	    elem: '#test'
+	    ,cols: [[ //标题栏
+	      {field:'pbh', title: '过磅单编号'}
+	      ,{field:'aa', title: '车号'}
+	      ,{field:'carNumber', title: '车牌号'}
+	      ,{field:'two', title: '净重（吨）'}
+	      ,{field:'dateTime',  title: '称重时间'}
+	      ,{field:'four', title: '工程名称', }
+	      ,{field:'five', title: '客户名称'}
+	      ,{field:'six',  title: '运输状态'}
+	    ]]
+	    ,data: dataList
+	    ,even: true
+	  });
+	});
+})
+</script>
+</body>
 </html>
