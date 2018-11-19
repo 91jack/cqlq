@@ -180,15 +180,15 @@
 					<h2>生产数据</h2>
 					<div class="section3-top-content">
 						<div class="section3-top-item">
-							<div class="guliao">150°C</div>
+							<div class="guliao"></div>
 							<p>骨料温度</p>
 						</div>
 						<div class="section3-top-item">
-							<div class="chucai">100°C</div>
+							<div class="chucai"></div>
 							<p>出料温度</p>
 						</div>
 						<div class="section3-top-item">
-							<div class="ratio" id="ratio"></div>
+							<div class="ratio" id="ratio">30</div>
 							<p>油石比</p>
 						</div>
 					</div>
@@ -260,8 +260,6 @@
 	
 	
 
-	$(".guliao").tempGauge({width:35, borderWidth:2, showLabel:true, borderColor:"#19B6E8",maxTemp:200,fillColor:'#FAB80C'});     
-	$(".chucai").tempGauge({width:35, borderWidth:2, showLabel:true, borderColor:"#19B6E8",maxTemp:200,fillColor:'#FF7979'});
 
 	
 	// 地图初始化
@@ -475,12 +473,18 @@
    		
    		
    		
-   		$('#ratio').html(data.rate+'%');
-		$(".ratio").tempGauge({width:35, borderWidth:0, showLabel:true, borderColor:"#19B6E8",maxTemp:100,fillColor:'#00CAB0'});
-   		
+    	
    		indexChart();
 	});
 		
+// 		$('#ratio').html(data.rate+'%');
+   		$('#ratio').html(2+'%');
+		$(".ratio").tempGauge({width:35, borderWidth:0, showLabel:true, borderColor:"#19B6E8",maxTemp:100,fillColor:'#00CAB0'});
+   		$('.guliao').html(30+'℃');
+   		$(".guliao").tempGauge({width:35, borderWidth:2, showLabel:true, borderColor:"#19B6E8",maxTemp:200,fillColor:'#FAB80C'});     
+   		$('.chucai').html(40+'℃');
+		$(".chucai").tempGauge({width:35, borderWidth:2, showLabel:true, borderColor:"#19B6E8",maxTemp:200,fillColor:'#FF7979'});
+   		
 
 	// websocket函数
 	function WebSocketFn(url,callback){
