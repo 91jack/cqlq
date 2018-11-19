@@ -181,6 +181,9 @@
 			      ,{field:'project', title: '项目名称'}
 			      ,{field:'carNum', title: '车次'}
 			      ,{field:'yunju', title: '运距'}
+			      ,{field:'',title:'',templet: function(d){
+			        return '<a href="cardetail.html" style="color: #4B5462;text-decoration: underline;">查看详情</span>'
+			      },width:100}
 			    ]]
 			 	,data:[
 			    {carNo:'渝C61358',outDate:'2018-11-05',project:'解放碑项目',carNum:10,yunju:161.25}
