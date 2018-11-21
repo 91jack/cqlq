@@ -597,7 +597,7 @@ ul,ol,li{
 .cite span {
 	font-size:0.8rem;
 	font-weight: bold;
-	margin-right: 1rem;
+	margin-left:1rem;
 }
 .cite ul li {
 	float:left;
