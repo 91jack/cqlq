@@ -792,3 +792,66 @@ ul,ol,li{
 	height:25rem;
 	margin-left: 5rem;
 }
+/*地图中位置的查询*/
+.search-station{
+	margin-top:1rem;
+}
+.search-station>span{
+	display: inline-block;
+	height: 1.65rem;
+	border-radius:0.85rem;
+	width: 2.4rem;
+	line-height: 1.65rem;
+	text-align: center;
+	background: #19B6E8;
+	font-size: 0.7rem;
+	color: #fff;
+	vertical-align: top;
+}
+.search-station>span.search-address{
+	width: 6.45rem;
+	background: #E5E5E5;
+	border:1px solid rgba(25,182,232,1);
+	color: #19B6E8;
+	overflow: hidden;
+}
+.search{
+	position: absolute;
+	top: 6.6rem;
+	right: 1.8rem;
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+}
+.search input{
+	width: 8.6rem;
+	height: 1.65rem;
+	border-radius: 1.65rem;
+	outline: none;
+	box-shadow: none;
+	border:1px solid #BFBFBF;
+	font-size: 0.7rem;
+	color: #A5A5A5;
+	box-sizing: border-box;
+	padding-left: 0.8rem;
+	opacity: 0.8;
+}
+.search span{
+	display: inline-block;
+	width: 3.3rem;
+	height: 1.55rem;
+	background: #19B6E8;
+	font-size: 0.7rem;
+	text-align: center;
+	line-height: 1.55rem;
+	border-radius: 0.8rem;
+	color: #fff;
+}
+::-moz-placeholder{
+	font-size: 0.7rem;
+	color: #A5A5A5;
+}
+::-webkit-input-placeholder{
+	font-size: 0.7rem;
+	color: #A5A5A5;
+}
