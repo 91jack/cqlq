@@ -232,17 +232,18 @@ WebSocketFn(weightUrl,function(data){
 	  table.render({
 	    elem: '#test'
 	    ,cols: [[ //标题栏
-	      {field:'pbh', title: '过磅单编号'}
-	      ,{field:'dateTime',  title: '称重时间'}
-	      ,{field:'two', title: '净重（吨）'}
-	      ,{field:'aa', title: '物料类型'}
-	      ,{field:'carNumber', title: '车牌号'}
-	      ,{field:'four', title: '工程名称', }
-	      ,{field:'five', title: '客户名称'}
-	      ,{field:'six',  title: '运输状态'}
+	      {field:'gbdh', title: '过磅单编号'}
+	      ,{field:'ccsj',  title: '称重时间'}
+	      ,{field:'jz', title: '净重（吨）'}
+	      ,{field:'wl', title: '物料类型'}
+	      ,{field:'cph', title: '车牌号'}
+	      ,{field:'xm', title: '工程名称', }
+	      ,{field:'wldw', title: '客户名称'}
+	      ,{field:'bdzt',  title: '运输状态'}
 	    ]]
-	    ,data: dataList
+	    ,data: data.list
 	    ,even: true
+			,page: true //开启分页
 	  });
 	});
 })

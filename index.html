@@ -388,8 +388,7 @@ WebSocketFn(productUrl,function(data){
 	// 当日生产总量
 	$('#curdayProductTotal').html(data.curTotal);
 	
-	// 当日发货总量
-	$('#curdayFahuoTotal').html('--');
+	
 	
 	// 当前生产材料
 	$('#productName').html(data.productName);
@@ -500,17 +499,22 @@ WebSocketFn(weightUrl,function(data){
 	if(data=='{}' || data=='[]'){
 		return;
 	}
-	var data = JSON.parse(data) 
+	var data = JSON.parse(data);
+	if(data.curCHTotal){
+		// 当日发货总量
+		$('#curdayFahuoTotal').html(data.curCHTotal);
+	}
+	data = data.list;
 	console.log(data)
 	var str = ''
 
 	if(data.length>0){
    		for(var i=0;i<data.length;i++){
    			str +='<tr>'
-				+	'<td>'+'--'+'</td>'
-				+	'<td>'+data[i].carNumber+'</td>'
-				+	'<td>'+'--'+'</td>'
-				+	'<td>'+data[i].dateTime+'</td>'
+				+	'<td>'+data[i].xm+'</td>'
+				+	'<td>'+data[i].cph+'</td>'
+				+	'<td>'+data[i].jz+'</td>'
+				+	'<td>'+data[i].rcsj+'</td>'
 				+'</tr>'
    		}
    		

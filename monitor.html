@@ -105,45 +105,83 @@
 					    <source src='rtmp://118.31.236.94/hls/ch1' type='rtmp/flv'/> 
 					</video>
 				</div>
-				<!--<div class="monitor-box">
-					<video width="800" height="">
-						<video
-						    id="player1"
-						    class="video-js"
-						   	controls
-						    preload="auto"
-						    poster="http://vjs.zencdn.net/v/oceans.png"
-						    width="210px" height="200px">
-						    <source src='rtmp://118.31.236.94/hls/ch1' type='rtmp/flv'/> 
-						</video>
+				<div class="monitor-box">
+					<video
+						id="player2"
+						class="video-js"
+						controls
+						preload="auto"
+						poster="http://vjs.zencdn.net/v/oceans.png"
+						width="304px" height="294px">
+						<source src='rtmp://118.31.236.94/hls/ch2' type='rtmp/flv'/> 
 					</video>
 				</div>
 				<div class="monitor-box">
-					<video width="800" height="">
-						<video
-						    id="player1"
-						    class="video-js"
-						   	controls
-						    preload="auto"
-						    poster="http://vjs.zencdn.net/v/oceans.png"
-						    width="210px" height="200px">
-						    <source src='rtmp://118.31.236.94/hls/ch1' type='rtmp/flv'/> 
-						</video>
+					<video
+						id="player3"
+						class="video-js"
+						controls
+						preload="auto"
+						poster="http://vjs.zencdn.net/v/oceans.png"
+						width="304px" height="294px">
+						<source src='rtmp://118.31.236.94/hls/ch3' type='rtmp/flv'/> 
 					</video>
 				</div>
 				<div class="monitor-box">
-					<video width="800" height="">
-						<video
-						    id="player1"
-						    class="video-js"
-						   	controls
-						    preload="auto"
-						    poster="http://vjs.zencdn.net/v/oceans.png"
-						    width="210px" height="200px">
-						    <source src='rtmp://118.31.236.94/hls/ch1' type='rtmp/flv'/> 
-						</video>
+					<video
+						id="player4"
+						class="video-js"
+						controls
+						preload="auto"
+						poster="http://vjs.zencdn.net/v/oceans.png"
+						width="304px" height="294px">
+						<source src='rtmp://118.31.236.94/hls/ch4' type='rtmp/flv'/> 
 					</video>
-				</div>-->
+				</div>
+				<div class="monitor-box">
+					<video
+						id="player5"
+						class="video-js"
+						controls
+						preload="auto"
+						poster="http://vjs.zencdn.net/v/oceans.png"
+						width="304px" height="294px">
+						<source src='rtmp://118.31.236.94/hls/ch5' type='rtmp/flv'/> 
+					</video>
+				</div>
+				<div class="monitor-box">
+					<video
+						id="player6"
+						class="video-js"
+						controls
+						preload="auto"
+						poster="http://vjs.zencdn.net/v/oceans.png"
+						width="304px" height="294px">
+						<source src='rtmp://118.31.236.94/hls/ch6' type='rtmp/flv'/> 
+					</video>
+				</div>
+				<div class="monitor-box">
+					<video
+						id="player7"
+						class="video-js"
+						controls
+						preload="auto"
+						poster="http://vjs.zencdn.net/v/oceans.png"
+						width="304px" height="294px">
+						<source src='rtmp://118.31.236.94/hls/ch7' type='rtmp/flv'/> 
+					</video>
+				</div>
+				<div class="monitor-box">
+					<video
+						id="player8"
+						class="video-js"
+						controls
+						preload="auto"
+						poster="http://vjs.zencdn.net/v/oceans.png"
+						width="304px" height="294px">
+						<source src='rtmp://118.31.236.94/hls/ch8' type='rtmp/flv'/> 
+					</video>
+				</div>
 			</div>
 			<div class="monitor-info fr">
 				<div class="info-tip">
@@ -182,7 +220,50 @@
 			var player = videojs('player1', options, function onPlayerReady() {
 			    this.play();
 			});
+			
+			var player2 = videojs('player2');
+			var options = {};
+			var player = videojs('player2', options, function onPlayerReady() {
+				this.play();
+			});
 
+			var player3 = videojs('player3');
+			var options = {};
+			var player = videojs('player3', options, function onPlayerReady() {
+				this.play();
+			});
+			
+			var player4 = videojs('player4');
+			var options = {};
+			var player = videojs('player4', options, function onPlayerReady() {
+				this.play();
+			});
+
+			var player5 = videojs('player5');
+			var options = {};
+			var player = videojs('player5', options, function onPlayerReady() {
+			    this.play();
+			});
+			
+			var player6 = videojs('player6');
+			var options = {};
+			var player = videojs('player6', options, function onPlayerReady() {
+				this.play();
+			});
+
+			var player7 = videojs('player7');
+			var options = {};
+			var player = videojs('player7', options, function onPlayerReady() {
+				this.play();
+			});
+			
+			var player8 = videojs('player8');
+			var options = {};
+			var player = videojs('player8', options, function onPlayerReady() {
+				this.play();
+			});
+			
+			
 		</script>
 	</body>
 
