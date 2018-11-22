@@ -159,20 +159,19 @@
 						<input type="text" />
 					</div>
 					<div class="input-group">
-						<span>施工单位</span>
+						<span>物料单位</span>
+						<input type="text" />
+					</div>
+					
+					<div class="input-group">
+						<span>物料类型</span>
 						<input type="text" />
 					</div>
 					<div class="input-group">
 						<span>自动识别车牌</span>
 						<input type="radio" /> 是
 						<input type="radio" /> 否
-						
 					</div>
-					<div class="input-group">
-						<span>混合料类型</span>
-						<input type="text" />
-					</div>
-					
 				</div>
 			</div>
 			
@@ -238,7 +237,7 @@ WebSocketFn(weightUrl,function(data){
 	      ,{field:'wl', title: '物料类型'}
 	      ,{field:'cph', title: '车牌号'}
 	      ,{field:'xm', title: '工程名称', }
-	      ,{field:'wldw', title: '客户名称'}
+	      ,{field:'wldw', title: '物料单位'}
 	      ,{field:'bdzt',  title: '运输状态'}
 	    ]]
 	    ,data: data.list
